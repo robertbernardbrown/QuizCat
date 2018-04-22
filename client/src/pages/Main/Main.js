@@ -1,13 +1,17 @@
 import React, {Component} from "react";
 import Header from "../../components/Header";
 import Wrapper from "../../components/Wrapper";
+import Footer from "../../components/Footer";
 
 class Main extends Component {
     render() {
         return (
-            <Wrapper>
+            <div>
                 <Header/>
-            </Wrapper>
+                <Wrapper>
+                </Wrapper>
+                <Footer/>
+            </div>
         )
     }
 }
