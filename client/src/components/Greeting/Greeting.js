@@ -1,7 +1,7 @@
 import React from "react";
 
-const About = () => (
-    <div className="about">
+const Greeting = () => (
+    <div className="greeting">
         <h1>Welcome to QuizCat</h1>
         <p>Play our quizzes every day at 2pm and 8pm.</p>
         <br/>
@@ -9,4 +9,4 @@ const About = () => (
     </div>
 )
 
-export default About;
+export default Greeting;
