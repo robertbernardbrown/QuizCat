@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import Wrapper from "../../components/Wrapper";
 import Footer from "../../components/Footer";
 import About from "../../components/About";
-import Countdown from "../../components/Countdown";
+import CountdownComp from "../../components/CountdownComp";
 
 class Main extends Component {
     render() {
@@ -12,7 +12,7 @@ class Main extends Component {
                 <Header/>
                 <Wrapper>
                     <About/>
-                    <Countdown/>
+                    <CountdownComp/>
                 </Wrapper>
                 <Footer/>
             </div>
