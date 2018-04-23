@@ -1,13 +1,21 @@
 import React, {Component} from "react";
 import Header from "../../components/Header";
 import Wrapper from "../../components/Wrapper";
+import Footer from "../../components/Footer";
+import About from "../../components/About";
+import CountdownComp from "../../components/CountdownComp";
 
 class Main extends Component {
     render() {
         return (
-            <Wrapper>
+            <div>
                 <Header/>
-            </Wrapper>
+                <Wrapper>
+                    <About/>
+                    <CountdownComp/>
+                </Wrapper>
+                <Footer/>
+            </div>
         )
     }
 }

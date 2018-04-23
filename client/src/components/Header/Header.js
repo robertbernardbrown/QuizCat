@@ -6,9 +6,7 @@ import "react-bootstrap";
 const Header = () => (
     <div className="jumbotron">
         <div className="container">
-            <h1 className="display-4">QuizCat</h1>
-            <hr className="my-4"/>
-            <p>Play the game, beat your friends</p>
+            <h1 className="display-4 text-center">QuizCat</h1>
         </div>
     </div>
 )
