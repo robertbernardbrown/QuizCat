@@ -10,9 +10,9 @@ class SideBar extends React.Component {
   render () {
     return (
       <Menu>
-        {/* <ReactBurgerMenu/> */}
         <a id="home" className="menu-item" href="/">Home</a>
         <a id="about" className="menu-item" href="/about">About</a>
+        <a id="leaderboard" className="menu-item" href="/leaderboard">Leaderboard</a>
         <a id="contact" className="menu-item" href="/contact">Contact</a>
         <a onClick={ this.showSettings } className="menu-item--small" href="">Settings</a>
       </Menu>
