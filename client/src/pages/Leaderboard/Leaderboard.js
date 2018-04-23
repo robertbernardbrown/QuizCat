@@ -1,19 +1,19 @@
-import React, {Component} from "react";
+import React from "react";
 import Header from "../../components/Header";
 import Wrapper from "../../components/Wrapper";
 import Footer from "../../components/Footer";
 import SideBar from "../../components/SideBar";
-import AboutComp from "../../components/About";
+import LeaderboardComp from "../../components/Leaderboard/Leaderboard";
 
-const About = () => (
+const Leaderboard = () => (
     <div>
         <SideBar/>
         <Header/>
         <Wrapper>
-            <AboutComp/>
+            <LeaderboardComp/>
         </Wrapper>
         <Footer/>
     </div>
 )
 
-export default About;
+export default Leaderboard;

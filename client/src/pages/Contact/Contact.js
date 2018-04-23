@@ -1,19 +1,19 @@
-import React, {Component} from "react";
+import React from "react";
 import Header from "../../components/Header";
 import Wrapper from "../../components/Wrapper";
 import Footer from "../../components/Footer";
 import SideBar from "../../components/SideBar";
-import AboutComp from "../../components/About";
+import ContactComp from "../../components/Contact";
 
-const About = () => (
+const Contact = () => (
     <div>
         <SideBar/>
         <Header/>
         <Wrapper>
-            <AboutComp/>
+            <ContactComp/>
         </Wrapper>
         <Footer/>
     </div>
 )
 
-export default About;
+export default Contact;
