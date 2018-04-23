@@ -4,6 +4,7 @@ import "./App.css";
 import 'bootstrap/dist/css/bootstrap.css';
 import Main from "../src/pages/Main";
 import About from "../src/pages/About";
+import Contact from "../src/pages/Contact";
 
 const App = () => (
   <Router>
@@ -11,8 +12,8 @@ const App = () => (
       <Switch>
       <Route exact path="/" component={Main} />
       <Route path="/about" component={About} />
-      {/* <Route path="/leaderboard" component={Leaderboard} />
-      <Route path="/contact" component={Contact} /> */}
+      {/* <Route path="/leaderboard" component={Leaderboard} /> */}
+      <Route path="/contact" component={Contact} />
       </Switch>
     </div>
   </Router>
