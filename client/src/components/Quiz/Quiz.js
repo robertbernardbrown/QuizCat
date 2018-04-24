@@ -20,7 +20,6 @@ class Quiz extends Component {
             console.log(res)
             this.setState({ 
                 quiz: res.data.results,
-                quizLoaded: true
             })
         })
         .catch(err => console.log(err))
