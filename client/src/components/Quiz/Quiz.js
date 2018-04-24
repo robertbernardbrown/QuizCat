@@ -9,8 +9,8 @@ class Quiz extends Component {
     state = {
         question: "",
         answers: "",
-        quiz: [],
-        quizLoaded: false
+        questionIndex: 0,
+        quiz: []
     }
 
     componentDidMount() {
@@ -26,11 +26,19 @@ class Quiz extends Component {
     }
 
     render() {
-        return !this.state.quizLoaded ? <div className="container"> Loading question </div> : (
-        <div className="container">
-            <Question questions={this.state.quiz}/>
-            <Answer answers={this.state.quiz}/>
-        </div>
+        return (
+            !this.state.quiz.length ? <div className="container"> Loading question </div> : (
+                <div className="container">
+                    {this.state.quiz.map((cur, i, arr) => {
+                        return (
+                        <div key={i}>
+                            <Question questions={arr[this.state.questionIndex].question}/>
+                            <Answer answers={arr[this.state.questionIndex].incorrect_answers}/>
+                        </div>
+                        )
+                    })}
+                </div>
+            )
         )
     }
 }
