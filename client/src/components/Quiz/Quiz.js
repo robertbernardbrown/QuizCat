@@ -8,7 +8,8 @@ class Quiz extends Component {
 
     state = {
         question: "",
-        answers: "",
+        options: [],
+        answer: "",
         questionIndex: 0,
         quiz: []
     }
@@ -29,14 +30,13 @@ class Quiz extends Component {
         return (
             !this.state.quiz.length ? <div className="container"> Loading question </div> : (
                 <div className="container">
-                    {this.state.quiz.map((cur, i, arr) => {
-                        return (
-                        <div key={i}>
-                            <Question questions={arr[this.state.questionIndex].question}/>
-                            <Answer answers={arr[this.state.questionIndex].incorrect_answers}/>
-                        </div>
-                        )
-                    })}
+                    <div>
+                        <Question questions={this.state.quiz[this.state.questionIndex].question}/>
+                        <Answer 
+                        options={this.state.quiz[this.state.questionIndex].incorrect_answers}
+                        answer={this.state.quiz[this.state.questionIndex].correct_answer}
+                        />
+                    </div>
                 </div>
             )
         )

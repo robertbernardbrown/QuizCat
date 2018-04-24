@@ -3,8 +3,10 @@ import "./Answer.css";
 
 const Answer = (props) => {
     let parser = new DOMParser();
-    let answers = props.answers
-    let dom = parser.parseFromString(answers, 'text/html');
+    let options = props.options;
+    let answer = props.answer;
+    options.push(answer);
+    let dom = parser.parseFromString(options, 'text/html');
     let decodedString = dom.body.textContent;
     return (
         <div className="question">
