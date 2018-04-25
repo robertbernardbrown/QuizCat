@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import "./Quiz.css";
+import shuffleArray from "../../utils/shuffleArray";
 import Question from "../Question";
 import Answer from "../Answer";
 import API from "../../utils/API";
@@ -19,7 +20,7 @@ class Quiz extends Component {
         .then(res=>{
             console.log(res)
             this.setState({ 
-                quiz: res.data.results,
+                quiz: shuffleArray(res.data.results),
             })
         })
         .catch(err => console.log(err))
