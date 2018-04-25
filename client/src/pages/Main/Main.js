@@ -15,15 +15,17 @@ class Main extends Component {
         quizTime: false
     }
 
+    //on mount, set start time and countdown state
     componentDidMount = () => {
         let date = new Date()
-        date.setHours(20, 10, 0)
+        date.setHours(21, 5, 30)
         this.setState({
             start: date,
             countdown: this.tick()
         })
     }
 
+    //adds zeroes to time display on page
     pad = (num) => {
         return ("0" + parseInt(num, 10)).substr(-2);
     }
@@ -43,7 +45,9 @@ class Main extends Component {
         this.setState({
             countdown: `${hh}:${mm}:${ss}`
         });
+        //run quizTime function to check for "00:00:00" to run quiz
         this.quizTime(this.state.countdown);
+        // recursive call to tick function
         setTimeout(this.tick, 1000);
     }
 
@@ -59,6 +63,7 @@ class Main extends Component {
                 <SideBar/>
                 <Header/>
                 <Wrapper>
+                    {/* render quiz if quiztime, else show countdown and about components */}
                     {this.state.quizTime === true ? <Quiz/> : 
                     <div>
                         <Greeting/>

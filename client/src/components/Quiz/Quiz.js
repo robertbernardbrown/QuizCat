@@ -26,6 +26,10 @@ class Quiz extends Component {
         .catch(err => console.log(err))
     }
 
+    handleUserGuess = () => {
+        console.log("hi")
+    }
+
     render() {
         return (
             !this.state.quiz.length ? <div className="container"> Loading question </div> : (
@@ -35,6 +39,7 @@ class Quiz extends Component {
                         <Answer 
                         options={this.state.quiz[this.state.questionIndex].incorrect_answers}
                         answer={this.state.quiz[this.state.questionIndex].correct_answer}
+                        handleUserGuess={this.handleUserGuess}
                         />
                     </div>
                 </div>
