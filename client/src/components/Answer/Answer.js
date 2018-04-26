@@ -12,9 +12,11 @@ class Answer extends Component {
 
     componentDidMount() {
         let answer = this.props.answer;
+        console.log(answer)
         let options = this.props.options;
         options.push(answer);
         shuffleArray(options);
+        console.log(answer)
         this.setState({
             answer: answer,
             options: this.parseOptions(options)
@@ -40,7 +42,7 @@ class Answer extends Component {
                 {!this.state.options.length ? <div>hi</div> : 
                 this.state.options.map((cur,i) => (
                     <li key={i} className="list-group-item" onClick={this.props.handleUserGuess}>
-                        <p>{cur}</p>
+                        <p id={cur} >{cur}</p>
                     </li>
                 ))}
             </div>

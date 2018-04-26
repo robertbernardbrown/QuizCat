@@ -26,8 +26,13 @@ class Quiz extends Component {
         .catch(err => console.log(err))
     }
 
-    handleUserGuess = () => {
-        console.log("hi")
+    handleUserGuess = (e) => {
+        console.log(e.target);
+        console.log(e.target.id)
+        console.log(this.state.answer)
+        if (e.target.id === this.state.answer) {
+            console.log("you got it!")
+        }
     }
 
     render() {
