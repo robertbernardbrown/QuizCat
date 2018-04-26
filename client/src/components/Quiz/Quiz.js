@@ -22,12 +22,19 @@ class Quiz extends Component {
             this.setState({ 
                 quiz: shuffleArray(res.data.results),
             })
+            this.setState({
+                answer: this.state.quiz[this.state.questionIndex].correct_answer
+            })
         })
         .catch(err => console.log(err))
     }
 
+    setAnswer() {
+        
+    }
+
     handleUserGuess = (e) => {
-        console.log(e.target);
+        // console.log(e.target);
         console.log(e.target.id)
         console.log(this.state.answer)
         if (e.target.id === this.state.answer) {
