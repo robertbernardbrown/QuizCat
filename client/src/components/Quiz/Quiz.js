@@ -20,30 +20,37 @@ class Quiz extends Component {
         API.getQuiz()
         .then(res=>{
             console.log(res)
+            //fetch quiz from API
             this.setState({ 
                 quiz: shuffleArray(res.data.results),
             })
-            this.setState({
-                answer: this.state.quiz[this.state.questionIndex].correct_answer
-            })
-            this.formatOptionArray();
+            //set initial quiz question
+            this.setQuestion();
         })
         .catch(err => console.log(err))
     }
 
+    //sets each new question/options/answer chronologically from quiz stored in state
+    setQuestion = () => {
+        this.setState({
+            answer: this.parseString(this.state.quiz[this.state.questionIndex].correct_answer),
+            question: this.state.quiz[this.state.questionIndex].question
+        })
+        this.formatOptionArray();
+    }
+
     formatOptionArray =() => {
-        let answer = this.state.answer;
-        console.log(answer)
+        let answer = this.state.quiz[this.state.questionIndex].correct_answer;
+        // console.log(answer)
         let options = this.state.quiz[this.state.questionIndex].incorrect_answers;
         options.push(answer);
         shuffleArray(options);
-        console.log(answer)
         this.setState({
-            options: this.parseOptions(options)
+            options: this.parseArr(options)
         })
     }
 
-    parseOptions = (arr) => {
+    parseArr = (arr) => {
         return ( 
             arr.map((cur, i) => {
             let array = [];
@@ -56,16 +63,24 @@ class Quiz extends Component {
         )
     }
 
+    parseString = (str) => {
+        let parser = new DOMParser();
+        let dom = parser.parseFromString(str, 'text/html');
+        let decodedString = dom.body.textContent;
+        return decodedString;
+    }
+
     handleUserGuess = (e) => {
         // console.log(e.target);
-        console.log(e.target.id)
-        console.log(this.state.answer)
+        // console.log(e.target.id)
+        // console.log(this.state.answer)
         if (e.target.id === this.state.answer) {
-            console.log("you got it!")
-            let questionIndex = this.state.questionIndex;
-            this.setState({
-                questionIndex: ++questionIndex
-            })
+            // console.log("you got it!")
+            let questionIndex = ++this.state.questionIndex;
+            console.log(this.state.answer);
+            (this.setState({
+                questionIndex: questionIndex
+            }), this.setQuestion())
         }
     }
 
@@ -74,12 +89,8 @@ class Quiz extends Component {
             !this.state.quiz.length ? <div className="container"> Loading question </div> : (
                 <div className="container">
                     <div>
-                        <Question questions={this.state.quiz[this.state.questionIndex].question}/>
-                        <Answer 
-                        options={this.state.options}
-                        answer={this.state.answer}
-                        handleUserGuess={this.handleUserGuess}
-                        />
+                        <Question questions={this.state.question}/>
+                        <Answer options={this.state.options} answer={this.state.answer} handleUserGuess={this.handleUserGuess}/>
                     </div>
                 </div>
             )
