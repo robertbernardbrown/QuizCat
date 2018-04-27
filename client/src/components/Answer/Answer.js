@@ -39,7 +39,7 @@ class Answer extends Component {
     render(){
         return (
             <div className="answer">
-                {!this.state.options.length ? <div>hi</div> : 
+                {!this.state.options.length ? <div>Loading options</div> : 
                 this.state.options.map((cur,i) => (
                     <li key={i} className="list-group-item" onClick={this.props.handleUserGuess}>
                         <p id={cur} >{cur}</p>

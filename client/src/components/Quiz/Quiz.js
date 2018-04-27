@@ -29,16 +29,16 @@ class Quiz extends Component {
         .catch(err => console.log(err))
     }
 
-    setAnswer() {
-        
-    }
-
     handleUserGuess = (e) => {
         // console.log(e.target);
         console.log(e.target.id)
         console.log(this.state.answer)
         if (e.target.id === this.state.answer) {
             console.log("you got it!")
+            let questionIndex = this.state.questionIndex;
+            this.setState({
+                questionIndex: ++questionIndex
+            })
         }
     }
 
