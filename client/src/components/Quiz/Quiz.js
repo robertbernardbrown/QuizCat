@@ -41,7 +41,6 @@ class Quiz extends Component {
 
     formatOptionArray =() => {
         let answer = this.state.quiz[this.state.questionIndex].correct_answer;
-        // console.log(answer)
         let options = this.state.quiz[this.state.questionIndex].incorrect_answers;
         options.push(answer);
         shuffleArray(options);
@@ -69,18 +68,20 @@ class Quiz extends Component {
     }
 
     handleUserGuess = (e) => {
-        // console.log(e.target);
-        // console.log(e.target.id)
-        // console.log(this.state.answer)
         if (e.target.id === this.state.answer) {
-            // console.log("you got it!")
             let questionIndex = ++this.state.questionIndex;
-            console.log(this.state.answer);
             this.setState({
                 questionIndex: questionIndex
             })
             this.setQuestion()
+        } else {
+            console.log("wrong");
+            this.update();
         }
+    }
+
+    update = () => {
+        this.props.updateStillIn();
     }
 
     render() {

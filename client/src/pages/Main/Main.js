@@ -12,13 +12,14 @@ class Main extends Component {
     state = {
         start: {},
         countdown: "",
-        quizTime: false
+        quizTime: false,
+        stillIn: true
     }
 
     //on mount, set start time and countdown state
     componentDidMount = () => {
         let date = new Date()
-        date.setHours(16, 48, 25)
+        date.setHours(18, 24, 50)
         this.setState({
             start: date,
             countdown: this.tick()
@@ -57,6 +58,12 @@ class Main extends Component {
         }
     }
 
+    updateStillIn = () => {
+        this.setState({
+            stillIn: false
+        })
+    }
+
     render() {
         return (
             <div>
@@ -64,7 +71,7 @@ class Main extends Component {
                 <Header/>
                 <Wrapper>
                     {/* render quiz if quiztime, else show countdown and about components */}
-                    {this.state.quizTime === true ? <Quiz/> : 
+                    {this.state.quizTime && this.state.stillIn ? <Quiz updateStillIn={this.updateStillIn}/> : 
                     <div>
                         <Greeting/>
                         <CountdownComp countdown={this.state.countdown}/>
