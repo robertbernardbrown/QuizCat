@@ -51,16 +51,14 @@ class Quiz extends Component {
     }
 
     parseArr = (arr) => {
-        return ( 
-            arr.map((cur, i) => {
-            let array = [];
-            let parser = new DOMParser();
+        let array = [];
+        let parser = new DOMParser();
+        arr.map((cur, i) => {
             let dom = parser.parseFromString(cur, 'text/html');
             let decodedString = dom.body.textContent;
             array.push(decodedString);
-            return array;
-            })
-        )
+        })
+        return array;
     }
 
     parseString = (str) => {
