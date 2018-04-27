@@ -53,7 +53,7 @@ class Quiz extends Component {
     parseArr = (arr) => {
         let array = [];
         let parser = new DOMParser();
-        arr.map((cur, i) => {
+        arr.forEach(cur => {
             let dom = parser.parseFromString(cur, 'text/html');
             let decodedString = dom.body.textContent;
             array.push(decodedString);
@@ -76,9 +76,10 @@ class Quiz extends Component {
             // console.log("you got it!")
             let questionIndex = ++this.state.questionIndex;
             console.log(this.state.answer);
-            (this.setState({
+            this.setState({
                 questionIndex: questionIndex
-            }), this.setQuestion())
+            })
+            this.setQuestion()
         }
     }
 
