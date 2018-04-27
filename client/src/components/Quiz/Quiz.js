@@ -11,6 +11,7 @@ class Quiz extends Component {
         question: "",
         options: [],
         answer: "",
+        parseOptions: [],
         questionIndex: 0,
         quiz: []
     }
@@ -25,8 +26,34 @@ class Quiz extends Component {
             this.setState({
                 answer: this.state.quiz[this.state.questionIndex].correct_answer
             })
+            this.formatOptionArray();
         })
         .catch(err => console.log(err))
+    }
+
+    formatOptionArray =() => {
+        let answer = this.state.answer;
+        console.log(answer)
+        let options = this.state.quiz[this.state.questionIndex].incorrect_answers;
+        options.push(answer);
+        shuffleArray(options);
+        console.log(answer)
+        this.setState({
+            options: this.parseOptions(options)
+        })
+    }
+
+    parseOptions = (arr) => {
+        return ( 
+            arr.map((cur, i) => {
+            let array = [];
+            let parser = new DOMParser();
+            let dom = parser.parseFromString(cur, 'text/html');
+            let decodedString = dom.body.textContent;
+            array.push(decodedString);
+            return array;
+            })
+        )
     }
 
     handleUserGuess = (e) => {
@@ -49,8 +76,8 @@ class Quiz extends Component {
                     <div>
                         <Question questions={this.state.quiz[this.state.questionIndex].question}/>
                         <Answer 
-                        options={this.state.quiz[this.state.questionIndex].incorrect_answers}
-                        answer={this.state.quiz[this.state.questionIndex].correct_answer}
+                        options={this.state.options}
+                        answer={this.state.answer}
                         handleUserGuess={this.handleUserGuess}
                         />
                     </div>

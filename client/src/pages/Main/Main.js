@@ -18,7 +18,7 @@ class Main extends Component {
     //on mount, set start time and countdown state
     componentDidMount = () => {
         let date = new Date()
-        date.setHours(11, 15, 0)
+        date.setHours(10, 49, 40)
         this.setState({
             start: date,
             countdown: this.tick()
