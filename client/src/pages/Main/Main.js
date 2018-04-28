@@ -18,12 +18,23 @@ class Main extends Component {
 
     //on mount, set start time and countdown state
     componentDidMount = () => {
+        var now = new Date();
         let date = new Date()
-        date.setHours(18, 24, 50)
-        this.setState({
-            start: date,
-            countdown: this.tick()
-        })
+        date.setHours(14, 0, 0)
+        if (now < date){
+            this.setState({
+                start: date,
+                countdown: this.tick()
+            })
+        }
+        else if (now > date) {
+            date.setHours(20, 0, 0);
+            this.setState({
+                start: date,
+                countdown: this.tick()
+            })
+        }
+        
     }
 
     //adds zeroes to time display on page
