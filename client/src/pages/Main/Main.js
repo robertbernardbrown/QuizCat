@@ -6,21 +6,31 @@ import Greeting from "../../components/Greeting";
 import CountdownComp from "../../components/CountdownComp";
 import SideBar from "../../components/SideBar";
 import Quiz from "../../components/Quiz";
+import FeedbackModal from "../../components/Modal";
 
 class Main extends Component {
 
     state = {
         start: {},
+        nextStart: {},
         countdown: "",
-        quizTime: false
+        quizTime: false,
+        stillIn: true
     }
 
     //on mount, set start time and countdown state
     componentDidMount = () => {
-        let date = new Date()
-        date.setHours(16, 22, 0)
+        this.setTime();
+    }
+
+    setTime = () => {
+        let start1 = new Date();
+        let start2 = new Date();
+        start1.setHours(11, 20, 20)
+        start2.setHours(11, 22, 20)
         this.setState({
-            start: date,
+            start: start1,
+            nextStart: start2,
             countdown: this.tick()
         })
     }
@@ -35,7 +45,9 @@ class Main extends Component {
         if (now > this.state.start) { // too late, go to tomorrow
           let newStart = this.state.start.setDate(this.state.start.getDate() + 1)
           this.setState({
-              start: newStart
+              start: this.state.nextStart,
+              nextStart: newStart,
+              stillIn: true
           })
         }
         var remain = ((this.state.start - now) / 1000);
@@ -51,10 +63,16 @@ class Main extends Component {
         setTimeout(this.tick, 1000);
     }
 
-    quizTime = () => {
-        if (this.state.countdown === "00:00:00") {
+    quizTime = (countdown) => {
+        if (countdown === "00:00:00") {
             this.setState({quizTime: true})
         }
+    }
+
+    updateStillIn = () => {
+        this.setState({
+            stillIn: false
+        })
     }
 
     render() {
@@ -64,13 +82,14 @@ class Main extends Component {
                 <Header/>
                 <Wrapper>
                     {/* render quiz if quiztime, else show countdown and about components */}
-                    {this.state.quizTime === true ? <Quiz/> : 
+                    {this.state.quizTime && this.state.stillIn ? <Quiz updateStillIn={this.updateStillIn}/> : 
                     <div>
                         <Greeting/>
                         <CountdownComp countdown={this.state.countdown}/>
                     </div>
                     }
                 </Wrapper>
+                <FeedbackModal/>
                 <Footer/>
             </div>
         )
