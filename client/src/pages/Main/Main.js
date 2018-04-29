@@ -25,8 +25,8 @@ class Main extends Component {
     setTime = () => {
         let start1 = new Date();
         let start2 = new Date();
-        start1.setHours(20, 8, 30)
-        start2.setHours(20, 9, 20)
+        start1.setHours(20, 52, 10)
+        start2.setHours(20, 53, 0)
         this.setState({
             start: start1,
             nextStart: start2,
@@ -42,13 +42,11 @@ class Main extends Component {
     tick = () => {
         var now = new Date();
         if (now > this.state.start) { // too late, go to tomorrow
-            console.log(now)
-            console.log(this.state.start)
-            console.log(this.state.countdown)
           let newStart = this.state.start.setDate(this.state.start.getDate() + 1)
           this.setState({
               start: this.state.nextStart,
-              nextStart: newStart
+              nextStart: newStart,
+              stillIn: true
           })
         }
         var remain = ((this.state.start - now) / 1000);
@@ -64,8 +62,8 @@ class Main extends Component {
         setTimeout(this.tick, 1000);
     }
 
-    quizTime = () => {
-        if (this.state.countdown === "00:00:00") {
+    quizTime = (countdown) => {
+        if (countdown === "00:00:00") {
             this.setState({quizTime: true})
         }
     }
