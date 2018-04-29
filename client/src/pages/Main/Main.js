@@ -6,6 +6,7 @@ import Greeting from "../../components/Greeting";
 import CountdownComp from "../../components/CountdownComp";
 import SideBar from "../../components/SideBar";
 import Quiz from "../../components/Quiz";
+import FeedbackModal from "../../components/Modal";
 
 class Main extends Component {
 
@@ -25,8 +26,8 @@ class Main extends Component {
     setTime = () => {
         let start1 = new Date();
         let start2 = new Date();
-        start1.setHours(21, 57, 20)
-        start2.setHours(21, 58, 20)
+        start1.setHours(11, 20, 20)
+        start2.setHours(11, 22, 20)
         this.setState({
             start: start1,
             nextStart: start2,
@@ -88,6 +89,7 @@ class Main extends Component {
                     </div>
                     }
                 </Wrapper>
+                <FeedbackModal/>
                 <Footer/>
             </div>
         )

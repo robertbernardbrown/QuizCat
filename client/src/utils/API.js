@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     getQuiz: () => {
-        return axios.get("https://opentdb.com/api.php?amount=12&category=9&difficulty=easy&type=multiple")
+        return axios.get("https://opentdb.com/api.php?amount=10&category=11")
     }
 }
 
