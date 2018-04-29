@@ -68,7 +68,7 @@ class Quiz extends Component {
     }
 
     handleUserGuess = (e) => {
-        if (e.target.id === this.state.answer) {
+        if (e.target.textContent === this.state.answer) {
             let questionIndex = ++this.state.questionIndex;
             this.setState({
                 questionIndex: questionIndex

@@ -25,8 +25,8 @@ class Main extends Component {
     setTime = () => {
         let start1 = new Date();
         let start2 = new Date();
-        start1.setHours(20, 52, 10)
-        start2.setHours(20, 53, 0)
+        start1.setHours(21, 57, 20)
+        start2.setHours(21, 58, 20)
         this.setState({
             start: start1,
             nextStart: start2,
