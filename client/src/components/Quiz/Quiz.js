@@ -76,12 +76,8 @@ class Quiz extends Component {
             this.setQuestion()
         } else {
             console.log("wrong");
-            this.update();
+            this.props.updateStillIn();
         }
-    }
-
-    update = () => {
-        this.props.updateStillIn();
     }
 
     render() {

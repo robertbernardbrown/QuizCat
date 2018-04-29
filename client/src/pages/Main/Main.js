@@ -11,6 +11,7 @@ class Main extends Component {
 
     state = {
         start: {},
+        nextStart: {},
         countdown: "",
         quizTime: false,
         stillIn: true
@@ -18,23 +19,19 @@ class Main extends Component {
 
     //on mount, set start time and countdown state
     componentDidMount = () => {
-        var now = new Date();
-        let date = new Date()
-        date.setHours(14, 0, 0)
-        if (now < date){
-            this.setState({
-                start: date,
-                countdown: this.tick()
-            })
-        }
-        else if (now > date) {
-            date.setHours(20, 0, 0);
-            this.setState({
-                start: date,
-                countdown: this.tick()
-            })
-        }
-        
+        this.setTime();
+    }
+
+    setTime = () => {
+        let start1 = new Date();
+        let start2 = new Date();
+        start1.setHours(20, 8, 30)
+        start2.setHours(20, 9, 20)
+        this.setState({
+            start: start1,
+            nextStart: start2,
+            countdown: this.tick()
+        })
     }
 
     //adds zeroes to time display on page
@@ -45,9 +42,13 @@ class Main extends Component {
     tick = () => {
         var now = new Date();
         if (now > this.state.start) { // too late, go to tomorrow
+            console.log(now)
+            console.log(this.state.start)
+            console.log(this.state.countdown)
           let newStart = this.state.start.setDate(this.state.start.getDate() + 1)
           this.setState({
-              start: newStart
+              start: this.state.nextStart,
+              nextStart: newStart
           })
         }
         var remain = ((this.state.start - now) / 1000);
