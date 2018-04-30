@@ -32,6 +32,9 @@ class Quiz extends Component {
 
     //sets each new question/options/answer chronologically from quiz stored in state
     setQuestion = () => {
+        if (this.state.questionIndex === 11){
+            this.endOfGame()
+        }
         this.setState({
             answer: this.parseString(this.state.quiz[this.state.questionIndex].correct_answer),
             question: this.state.quiz[this.state.questionIndex].question
@@ -39,6 +42,7 @@ class Quiz extends Component {
         this.formatOptionArray();
     }
 
+    //pushes answer onto option array and shuffles array
     formatOptionArray =() => {
         let answer = this.state.quiz[this.state.questionIndex].correct_answer;
         let options = this.state.quiz[this.state.questionIndex].incorrect_answers;
@@ -49,6 +53,7 @@ class Quiz extends Component {
         })
     }
 
+    //parses arrays from unicode to readable strings from API
     parseArr = (arr) => {
         let array = [];
         let parser = new DOMParser();
@@ -60,6 +65,7 @@ class Quiz extends Component {
         return array;
     }
 
+    //parses strings from unicode to readable strings from API
     parseString = (str) => {
         let parser = new DOMParser();
         let dom = parser.parseFromString(str, 'text/html');
@@ -76,8 +82,12 @@ class Quiz extends Component {
             this.setQuestion()
         } else {
             console.log("wrong");
-            this.props.updateStillIn();
+            this.props.handleLose();
         }
+    }
+
+    endOfGame = () => {
+        this.props.handleWin();
     }
   
     render() {
