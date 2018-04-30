@@ -77,14 +77,9 @@ class Quiz extends Component {
         } else {
             console.log("wrong");
             this.props.updateStillIn();
-            this.wrongAnswerMessage();
         }
     }
-
-    wrongAnswerMessage = () => {
-        console.log("hi")
-    }
-
+  
     render() {
         return (
             !this.state.quiz.length ? <div className="container"> Loading question </div> : (

@@ -15,7 +15,8 @@ class Main extends Component {
         nextStart: {},
         countdown: "",
         quizTime: false,
-        stillIn: true
+        stillIn: true,
+        show: false
     }
 
     //on mount, set start time and countdown state
@@ -26,8 +27,8 @@ class Main extends Component {
     setTime = () => {
         let start1 = new Date();
         let start2 = new Date();
-        start1.setHours(11, 20, 20)
-        start2.setHours(11, 22, 20)
+        start1.setHours(13, 1, 0)
+        start2.setHours(13, 2, 0)
         this.setState({
             start: start1,
             nextStart: start2,
@@ -73,8 +74,17 @@ class Main extends Component {
         this.setState({
             stillIn: false
         })
+        this.handleShow();
     }
-
+  
+    handleClose  = () => {
+      this.setState({ show: false });
+    }
+  
+    handleShow = () => {
+      this.setState({ show: true });
+    }
+  
     render() {
         return (
             <div>
@@ -86,10 +96,10 @@ class Main extends Component {
                     <div>
                         <Greeting/>
                         <CountdownComp countdown={this.state.countdown}/>
+                        <FeedbackModal show={this.state.show} handleClose={this.handleClose}/>
                     </div>
                     }
                 </Wrapper>
-                <FeedbackModal/>
                 <Footer/>
             </div>
         )
