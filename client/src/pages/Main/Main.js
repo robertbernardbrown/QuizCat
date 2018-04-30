@@ -15,7 +15,9 @@ class Main extends Component {
         nextStart: {},
         countdown: "",
         quizTime: false,
-        stillIn: true
+        stillIn: true,
+        show: false,
+        winner: false
     }
 
     //on mount, set start time and countdown state
@@ -26,8 +28,8 @@ class Main extends Component {
     setTime = () => {
         let start1 = new Date();
         let start2 = new Date();
-        start1.setHours(11, 20, 20)
-        start2.setHours(11, 22, 20)
+        start1.setHours(16, 5, 0)
+        start2.setHours(16, 6, 0)
         this.setState({
             start: start1,
             nextStart: start2,
@@ -69,12 +71,29 @@ class Main extends Component {
         }
     }
 
-    updateStillIn = () => {
+    handleLose = () => {
         this.setState({
             stillIn: false
         })
+        this.handleShow();
     }
 
+    handleWin = () => {
+        this.setState({
+            stillIn: false,
+            winner: true
+        })
+        this.handleShow();
+    }
+  
+    handleClose  = () => {
+      this.setState({ show: false });
+    }
+  
+    handleShow = () => {
+      this.setState({ show: true });
+    }
+  
     render() {
         return (
             <div>
@@ -82,14 +101,14 @@ class Main extends Component {
                 <Header/>
                 <Wrapper>
                     {/* render quiz if quiztime, else show countdown and about components */}
-                    {this.state.quizTime && this.state.stillIn ? <Quiz updateStillIn={this.updateStillIn}/> : 
+                    {this.state.quizTime && this.state.stillIn ? <Quiz handleLose={this.handleLose} handleWin={this.handleWin}/> : 
                     <div>
                         <Greeting/>
                         <CountdownComp countdown={this.state.countdown}/>
+                        <FeedbackModal show={this.state.show} handleClose={this.handleClose} winner={this.state.winner}/>
                     </div>
                     }
                 </Wrapper>
-                <FeedbackModal/>
                 <Footer/>
             </div>
         )
