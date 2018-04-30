@@ -19,7 +19,8 @@ class Main extends Component {
         show: false,
         winner: false,
         time: {},
-        timeSince: {}
+        timeSince: {},
+        stopTimer: false
     }
 
     //on mount, set start time and countdown state
@@ -33,8 +34,8 @@ class Main extends Component {
     setTime = () => {
         let start1 = new Date();
         let start2 = new Date();
-        start1.setHours(17, 5, 0)
-        start2.setHours(17, 6, 0)
+        start1.setHours(18, 0, 40)
+        start2.setHours(18, 1, 20)
         this.setState({
             start: start1,
             nextStart: start2,
@@ -80,23 +81,29 @@ class Main extends Component {
             timeSince: `${mm}:${ss}:${ms}`
         });
         // recursive call to runTimer function
-        setTimeout(this.runTimer, 100);
+        if (!this.state.stopTimer) {
+            setTimeout(this.runTimer, 100);
+        }
     }
 
     quizTime = (countdown) => {
         var now = new Date();
         if (countdown === "00:00:00") {
             this.setState({
+                show: false,
                 quizTime: true,
-                time: now
+                time: now,
+                stopTimer: false,
+                winner: false
             })
+            this.runTimer();
         }
-        this.runTimer();
     }
 
     handleLose = () => {
         this.setState({
-            stillIn: false
+            stillIn: false,
+            stopTimer: true
         })
         this.handleShow();
     }
@@ -104,19 +111,24 @@ class Main extends Component {
     handleWin = () => {
         this.setState({
             stillIn: false,
-            winner: true
+            winner: true,
+            stopTimer: true
         })
         this.handleShow();
     }
   
     //close modal
     handleClose  = () => {
-      this.setState({ show: false });
+        this.setState({ show: false });
     }
   
     //show modal
     handleShow = () => {
-      this.setState({ show: true });
+        this.setState({ show: true });
+    }
+
+    resetWin = () => {
+        this.setState({ winner: false})
     }
   
     render() {
@@ -131,7 +143,7 @@ class Main extends Component {
                     <div>
                         <Greeting/>
                         <CountdownComp countdown={this.state.countdown}/>
-                        <FeedbackModal show={this.state.show} handleClose={this.handleClose} winner={this.state.winner}/>
+                        <FeedbackModal show={this.state.show} handleClose={this.handleClose} winner={this.state.winner} timer={this.state.timeSince}/>
                     </div>
                     }
                 </Wrapper>

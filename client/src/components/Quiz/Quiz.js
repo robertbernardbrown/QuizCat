@@ -14,8 +14,7 @@ class Quiz extends Component {
         answer: "",
         parseOptions: [],
         questionIndex: 0,
-        quiz: [],
-        time: {}
+        quiz: []
     }
 
     componentDidMount() {
@@ -34,14 +33,15 @@ class Quiz extends Component {
 
     //sets each new question/options/answer chronologically from quiz stored in state
     setQuestion = () => {
-        if (this.state.questionIndex === 11){
+        if (this.state.questionIndex === 12){
             this.endOfGame()
+        } else {
+            this.setState({
+                answer: this.parseString(this.state.quiz[this.state.questionIndex].correct_answer),
+                question: this.state.quiz[this.state.questionIndex].question
+            })
+            this.formatOptionArray();
         }
-        this.setState({
-            answer: this.parseString(this.state.quiz[this.state.questionIndex].correct_answer),
-            question: this.state.quiz[this.state.questionIndex].question
-        })
-        this.formatOptionArray();
     }
 
     //pushes answer onto option array and shuffles array

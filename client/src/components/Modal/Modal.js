@@ -15,7 +15,8 @@ class FeedbackModal extends Component {
               <Modal.Body>
                 <h4>That's actually surprising</h4>
                 <p>
-                  We might have underestimated you
+                  We might have underestimated you.<br/>
+                  You took {this.props.timer} to finish the quiz
                 </p>
               </Modal.Body>
               <Modal.Footer>
