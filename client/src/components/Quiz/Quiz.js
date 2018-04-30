@@ -4,6 +4,7 @@ import shuffleArray from "../../utils/shuffleArray";
 import Question from "../Question";
 import Answer from "../Answer";
 import API from "../../utils/API";
+import Timer from "../Timer";
 
 class Quiz extends Component {
 
@@ -32,14 +33,15 @@ class Quiz extends Component {
 
     //sets each new question/options/answer chronologically from quiz stored in state
     setQuestion = () => {
-        if (this.state.questionIndex === 11){
+        if (this.state.questionIndex === 12){
             this.endOfGame()
+        } else {
+            this.setState({
+                answer: this.parseString(this.state.quiz[this.state.questionIndex].correct_answer),
+                question: this.state.quiz[this.state.questionIndex].question
+            })
+            this.formatOptionArray();
         }
-        this.setState({
-            answer: this.parseString(this.state.quiz[this.state.questionIndex].correct_answer),
-            question: this.state.quiz[this.state.questionIndex].question
-        })
-        this.formatOptionArray();
     }
 
     //pushes answer onto option array and shuffles array
@@ -97,6 +99,7 @@ class Quiz extends Component {
                     <div>
                         <Question questions={this.state.question}/>
                         <Answer options={this.state.options} answer={this.state.answer} handleUserGuess={this.handleUserGuess}/>
+                        <Timer time={this.props.timer}/>
                     </div>
                 </div>
             )

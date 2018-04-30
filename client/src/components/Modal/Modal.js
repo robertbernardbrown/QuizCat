@@ -7,6 +7,7 @@ class FeedbackModal extends Component {
       return (
         <div> 
           {this.props.winner ? 
+            //winner modal shows win message
             <Modal show={this.props.show} onHide={this.props.handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>You...win?!</Modal.Title>
@@ -14,7 +15,8 @@ class FeedbackModal extends Component {
               <Modal.Body>
                 <h4>That's actually surprising</h4>
                 <p>
-                  We might have underestimated you
+                  We might have underestimated you.<br/>
+                  You took {this.props.timer} to finish the quiz
                 </p>
               </Modal.Body>
               <Modal.Footer>
@@ -22,6 +24,7 @@ class FeedbackModal extends Component {
               </Modal.Footer>
             </Modal> 
             :
+            //loser modal shows lose message
             <Modal show={this.props.show} onHide={this.props.handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>You lose!</Modal.Title>
