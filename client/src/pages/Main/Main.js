@@ -17,23 +17,28 @@ class Main extends Component {
         quizTime: false,
         stillIn: true,
         show: false,
-        winner: false
+        winner: false,
+        time: {},
+        timeSince: {}
     }
 
     //on mount, set start time and countdown state
     componentDidMount = () => {
         this.setTime();
+        this.setState({
+            winner: false
+        })
     }
 
     setTime = () => {
         let start1 = new Date();
         let start2 = new Date();
-        start1.setHours(16, 5, 0)
-        start2.setHours(16, 6, 0)
+        start1.setHours(17, 5, 0)
+        start2.setHours(17, 6, 0)
         this.setState({
             start: start1,
             nextStart: start2,
-            countdown: this.tick()
+            countdown: this.tickDown()
         })
     }
 
@@ -42,7 +47,7 @@ class Main extends Component {
         return ("0" + parseInt(num, 10)).substr(-2);
     }
 
-    tick = () => {
+    tickDown = () => {
         var now = new Date();
         if (now > this.state.start) { // too late, go to tomorrow
           let newStart = this.state.start.setDate(this.state.start.getDate() + 1)
@@ -61,14 +66,32 @@ class Main extends Component {
         });
         //run quizTime function to check for "00:00:00" to run quiz
         this.quizTime(this.state.countdown);
-        // recursive call to tick function
-        setTimeout(this.tick, 1000);
+        // recursive call to tickDown function
+        setTimeout(this.tickDown, 1000);
+    }
+
+    runTimer = () => {
+        var now = new Date();
+        var remain = ((now - this.state.time) / 1000);
+        var mm = this.pad((remain / 60) % 60);
+        var ss = this.pad(remain % 60);
+        var ms = this.pad(remain * 1000)
+        this.setState({
+            timeSince: `${mm}:${ss}:${ms}`
+        });
+        // recursive call to runTimer function
+        setTimeout(this.runTimer, 100);
     }
 
     quizTime = (countdown) => {
+        var now = new Date();
         if (countdown === "00:00:00") {
-            this.setState({quizTime: true})
+            this.setState({
+                quizTime: true,
+                time: now
+            })
         }
+        this.runTimer();
     }
 
     handleLose = () => {
@@ -86,10 +109,12 @@ class Main extends Component {
         this.handleShow();
     }
   
+    //close modal
     handleClose  = () => {
       this.setState({ show: false });
     }
   
+    //show modal
     handleShow = () => {
       this.setState({ show: true });
     }
@@ -101,7 +126,8 @@ class Main extends Component {
                 <Header/>
                 <Wrapper>
                     {/* render quiz if quiztime, else show countdown and about components */}
-                    {this.state.quizTime && this.state.stillIn ? <Quiz handleLose={this.handleLose} handleWin={this.handleWin}/> : 
+                    {this.state.quizTime && this.state.stillIn ? 
+                        <Quiz handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince}/> : 
                     <div>
                         <Greeting/>
                         <CountdownComp countdown={this.state.countdown}/>

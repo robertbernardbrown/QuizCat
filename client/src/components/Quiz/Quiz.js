@@ -4,6 +4,7 @@ import shuffleArray from "../../utils/shuffleArray";
 import Question from "../Question";
 import Answer from "../Answer";
 import API from "../../utils/API";
+import Timer from "../Timer";
 
 class Quiz extends Component {
 
@@ -13,7 +14,8 @@ class Quiz extends Component {
         answer: "",
         parseOptions: [],
         questionIndex: 0,
-        quiz: []
+        quiz: [],
+        time: {}
     }
 
     componentDidMount() {
@@ -97,6 +99,7 @@ class Quiz extends Component {
                     <div>
                         <Question questions={this.state.question}/>
                         <Answer options={this.state.options} answer={this.state.answer} handleUserGuess={this.handleUserGuess}/>
+                        <Timer time={this.props.timer}/>
                     </div>
                 </div>
             )
