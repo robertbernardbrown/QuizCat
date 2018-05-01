@@ -1,6 +1,19 @@
 const db = require("../models");
 
 module.exports = {
+  fetchCategory: (req, res) => {
+    //go into db and fetch saved categories
+    db.Category
+      .find({})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.json(err));
+  },
+  createCat: (req, res) => {
+    let cat = { category: "Any" }
+    db.Category.create(cat)
+    .then(dbCat => console.log(dbCat))
+    .catch(err=> res.json(err));
+  },
   indexRender: (req, res) => {
   //go into db and fetch articles
   db.Article.find({})
@@ -10,21 +23,6 @@ module.exports = {
         article: data
       };
       res.render("index", articleObj);
-    })
-    .catch(err => {
-      res.json(err);
-    });
-  },
-
-  fetchSavedData: (req, res) => {
-  //go into db and fetch saved articles
-  db.Article.find({})
-    .where('saved').equals('true')
-    .then(function (data) {
-      let articleObj = {
-        article: data
-      };
-      res.render("saved", articleObj);
     })
     .catch(err => {
       res.json(err);
@@ -123,24 +121,6 @@ module.exports = {
     res.json(err);
   });
   },
-
-  createCat: (req, res) => {
-  let id = req.params.id;
-  let note = {
-    note: req.body.note
-  }
-  db.Category.create(note)
-  .then(function(dbNote) {
-    return db.Article.findOneAndUpdate({_id:id}, { $push: { note: dbNote._id } }, { new: true });
-  })
-  .then(function(data) {
-    res.json(data);
-  })
-  .catch(err=> {
-    res.json(err);
-  });
-  },
-
   noteDelete: (req, res)=>{
   let id = req.params.id;
   db.Note.findByIdAndRemove(id)

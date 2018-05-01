@@ -7,6 +7,7 @@ import CountdownComp from "../../components/CountdownComp";
 import SideBar from "../../components/SideBar";
 import Quiz from "../../components/Quiz";
 import FeedbackModal from "../../components/Modal";
+import API from "../../utils/API";
 
 class Main extends Component {
 
@@ -57,6 +58,11 @@ class Main extends Component {
         this.setState({
             winner: false
         })
+        API.getCategory()
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => console.log(err));
     }
 
     randomCat() {
