@@ -20,7 +20,35 @@ class Main extends Component {
         winner: false,
         time: {},
         timeSince: {},
-        stopTimer: false
+        stopTimer: false,
+        categories: [
+            'Any',
+            'General',
+            'Books',
+            'Film',
+            'Music',
+            'Theatre',
+            'TV',
+            'Video Games',
+            'Board Games',
+            'Nature',
+            'Computers',
+            'Math',
+            'Mythology',
+            'Sports',
+            'Geography',
+            'History',
+            'Politics',
+            'Art',
+            'Celebrities',
+            'Animals',
+            'Vehicles',
+            'Comics',
+            'Gadgets',
+            'Anime',
+            'Cartoons',
+        ],
+        randomCat: "Any"
     }
 
     //on mount, set start time and countdown state
@@ -31,11 +59,17 @@ class Main extends Component {
         })
     }
 
+    randomCat() {
+        let index =  this.state.categories[Math.floor(Math.random()*this.state.categories.length)];
+        console.log(index);
+        return index;
+    }
+
     setTime = () => {
         let start1 = new Date();
         let start2 = new Date();
-        start1.setHours(18, 0, 40)
-        start2.setHours(18, 1, 20)
+        start1.setHours(10, 20, 0)
+        start2.setHours(10, 21, 0)
         this.setState({
             start: start1,
             nextStart: start2,
@@ -94,7 +128,8 @@ class Main extends Component {
                 quizTime: true,
                 time: now,
                 stopTimer: false,
-                winner: false
+                winner: false,
+                randomCat: this.randomCat()
             })
             this.runTimer();
         }
@@ -139,9 +174,9 @@ class Main extends Component {
                 <Wrapper>
                     {/* render quiz if quiztime, else show countdown and about components */}
                     {this.state.quizTime && this.state.stillIn ? 
-                        <Quiz handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince}/> : 
+                        <Quiz handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince} category={this.state.randomCat}/> : 
                     <div>
-                        <Greeting/>
+                        <Greeting category={this.state.randomCat}/>
                         <CountdownComp countdown={this.state.countdown}/>
                         <FeedbackModal show={this.state.show} handleClose={this.handleClose} winner={this.state.winner} timer={this.state.timeSince}/>
                     </div>
