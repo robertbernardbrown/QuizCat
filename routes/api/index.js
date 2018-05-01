@@ -1,8 +1,11 @@
 const router = require("express").Router();
-const dataRoutes = require("./articles");
+const userRoutes = require("./user");
+const scoresRoutes = require("./scores");
+const categoryRoutes = require("./category");
 
-// Article routes
-router.use("/data", dataRoutes);
-
+// "api/" routes
+router.use("/user", userRoutes);
+router.use("/scores", scoresRoutes);
+router.use("/category", categoryRoutes);
 
 module.exports = router;

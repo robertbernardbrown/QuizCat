@@ -1,13 +1,13 @@
-// const mongoose = require("mongoose");
-// const Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-// const articleSchema = new Schema({
-//   title: { type: String, required: true },
-//   date: { type: String, required: true },
-//   url: { type: String, required: true},
-//   dateAccessed: { type: Date, default: Date.now }
-// });
+const userSchema = new Schema({
+  username: { type: String, required: true },
+  password: { type: String, required: true },
+  email: { type: String, required: true},
+  dateAccessed: { type: Date, default: Date.now }
+});
 
-// const Article = mongoose.model("Article", articleSchema);
+const User = mongoose.model("User", userSchema);
 
-// module.exports = Article;
+module.exports = User;
