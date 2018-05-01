@@ -1,3 +1,5 @@
-// module.exports = {
-//     Article: require("./article")
-// };
+module.exports = {
+    Category: require("./category"),
+    User: require("./user"),
+    Score: require("./scores")
+};
