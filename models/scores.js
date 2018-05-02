@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const scoreSchema = new Schema({
+  username: { type: Schema.Types.ObjectId, ref: 'User' },
   category: { type: String, required: true },
   timeFinished: { type: String, required: true },
   dateAccessed: { type: Date, default: Date.now }
