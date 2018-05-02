@@ -7,6 +7,7 @@ import CountdownComp from "../../components/CountdownComp";
 import SideBar from "../../components/SideBar";
 import Quiz from "../../components/Quiz";
 import FeedbackModal from "../../components/Modal";
+import API from "../../utils/API";
 
 class Main extends Component {
 
@@ -21,34 +22,7 @@ class Main extends Component {
         time: {},
         timeSince: {},
         stopTimer: false,
-        categories: [
-            'Any',
-            'General',
-            'Books',
-            'Film',
-            'Music',
-            'Theatre',
-            'TV',
-            'Video Games',
-            'Board Games',
-            'Nature',
-            'Computers',
-            'Math',
-            'Mythology',
-            'Sports',
-            'Geography',
-            'History',
-            'Politics',
-            'Art',
-            'Celebrities',
-            'Animals',
-            'Vehicles',
-            'Comics',
-            'Gadgets',
-            'Anime',
-            'Cartoons',
-        ],
-        randomCat: "Any"
+        randomCat: ""
     }
 
     //on mount, set start time and countdown state
@@ -57,19 +31,21 @@ class Main extends Component {
         this.setState({
             winner: false
         })
-    }
-
-    randomCat() {
-        let index =  this.state.categories[Math.floor(Math.random()*this.state.categories.length)];
-        console.log(index);
-        return index;
+        API.getCategory()
+        .then(res => {
+            console.log(res)
+            this.setState({
+                randomCat: res.data[0].category
+            })
+        })
+        .catch(err => console.log(err));
     }
 
     setTime = () => {
         let start1 = new Date();
         let start2 = new Date();
-        start1.setHours(10, 36, 0)
-        start2.setHours(10, 37, 0)
+        start1.setHours(14, 45, 0)
+        start2.setHours(14, 46, 0)
         this.setState({
             start: start1,
             nextStart: start2,

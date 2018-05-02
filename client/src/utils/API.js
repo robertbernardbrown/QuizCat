@@ -32,6 +32,19 @@ export default {
         let index =  dict[key]
         console.log(index)
         return axios.get(index);
+    },
+    getCategory: () => {
+        console.log("GET should be hitting /api/category")
+        return axios.get("/api/category")
+    },
+    updateCategory: () => {
+        console.log("PUT should be hitting /api/category")
+        return axios.put("/api/category")
+    },
+    //not used but keeping just in case the category collection needs to change
+    createCat: () => {
+        console.log("POST should be hitting /api/category")
+        return axios.post("/api/category")
     }
 }
 

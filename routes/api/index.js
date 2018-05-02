@@ -1,8 +1,18 @@
 const router = require("express").Router();
-const dataRoutes = require("./articles");
+const quizController = require("../../controllers/quizController");
 
-// Article routes
-router.use("/data", dataRoutes);
+// "/api/x routes
+router.route("/user")
+    .post(quizController.createCat)
+    .get(quizController.fetchCategory)
 
+router.route("/scores")
+    .post(quizController.createCat)
+    .get(quizController.fetchCategory)
+
+router.route("/category")
+    .post(quizController.createCat)
+    .get(quizController.fetchCategory)
+    .put(quizController.updateCategory)
 
 module.exports = router;
