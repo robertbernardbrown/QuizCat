@@ -31,21 +31,25 @@ class Main extends Component {
         this.setState({
             winner: false
         })
-        API.getCategory()
-        .then(res => {
-            console.log(res)
-            this.setState({
-                randomCat: res.data[0].category
-            })
+        this.checkCategory();
+    }
+
+    checkCategory = () => {
+    API.getCategory()
+    .then(res => {
+        console.log(res)
+        this.setState({
+            randomCat: res.data[0].category
         })
-        .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
     }
 
     setTime = () => {
         let start1 = new Date();
         let start2 = new Date();
-        start1.setHours(14, 45, 0)
-        start2.setHours(14, 46, 0)
+        start1.setHours(19, 29, 0)
+        start2.setHours(19, 30, 0)
         this.setState({
             start: start1,
             nextStart: start2,
@@ -105,7 +109,7 @@ class Main extends Component {
                 time: now,
                 stopTimer: false,
                 winner: false,
-                randomCat: this.randomCat()
+                // randomCat: this.randomCat()
             })
             this.runTimer();
         }
@@ -131,15 +135,12 @@ class Main extends Component {
     //close modal
     handleClose  = () => {
         this.setState({ show: false });
+        this.checkCategory();
     }
   
     //show modal
     handleShow = () => {
         this.setState({ show: true });
-    }
-
-    resetWin = () => {
-        this.setState({ winner: false})
     }
   
     render() {

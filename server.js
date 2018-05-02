@@ -37,14 +37,14 @@ let categories = [
 
 randomCat = () => {
   let index =  categories[Math.floor(Math.random()*categories.length)];
-  // console.log(index);
+  console.log(index);
   return index;
 }
  
-var firstTime = schedule.scheduleJob('*/2 * * * *', function(){
-  console.log('The answer to life, the universe, and everything!');
+var firstTime = schedule.scheduleJob('2 29 19 * * *', function(){
+  controller.updateCategory(randomCat());
 });
-var SecondTime = schedule.scheduleJob('*/1 * * * *', function(){
+var secondTime = schedule.scheduleJob('2 30 19 * * *', function(){
   controller.updateCategory(randomCat());
 });
 
