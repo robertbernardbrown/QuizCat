@@ -5,7 +5,8 @@ const routes = require("./routes");
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -14,6 +15,9 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 app.use(routes);
+
+io.on('connection', function(){ console.log("fasho") });
+server.listen(3002);
 
 // Send every request to the React app
 // Define any API routes before this runs
@@ -26,3 +30,5 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/quizcatdb");
 app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
 });
+
+

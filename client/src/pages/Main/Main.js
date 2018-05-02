@@ -8,6 +8,8 @@ import SideBar from "../../components/SideBar";
 import Quiz from "../../components/Quiz";
 import FeedbackModal from "../../components/Modal";
 import API from "../../utils/API";
+import io from "socket.io-client";
+const socket = io('http://localhost:3002');
 
 class Main extends Component {
 
@@ -49,7 +51,7 @@ class Main extends Component {
             'Anime',
             'Cartoons',
         ],
-        randomCat: "Any"
+        randomCat: ""
     }
 
     //on mount, set start time and countdown state
@@ -61,6 +63,9 @@ class Main extends Component {
         API.getCategory()
         .then(res => {
             console.log(res)
+            this.setState({
+                randomCat: res.data[0].category
+            })
         })
         .catch(err => console.log(err));
     }
