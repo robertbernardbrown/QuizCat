@@ -10,11 +10,12 @@ module.exports = {
   },
   updateCategory: (req, res) => {
     console.log(req)
-    console.log(req.body)
+    // console.log(req.body)
     // let cat = { category: "Any" }
-    // db.Category.set(cat)
-    // .then(dbCat => console.log(dbCat))
-    // .catch(err=> res.json(err));
+    db.Category.find({})
+    .update({$set: {category: req}})
+    .then(dbCat => console.log(dbCat))
+    .catch(err=> res.json(err));
   },
   createCat: (req, res) => {
     let cat = { category: "Any" }

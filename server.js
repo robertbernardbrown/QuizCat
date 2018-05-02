@@ -5,6 +5,48 @@ const routes = require("./routes");
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const schedule = require('node-schedule');
+const controller = require("./controllers/quizController");
+let categories = [
+  'Any',
+  'General',
+  'Books',
+  'Film',
+  'Music',
+  'Theatre',
+  'TV',
+  'Video Games',
+  'Board Games',
+  'Nature',
+  'Computers',
+  'Math',
+  'Mythology',
+  'Sports',
+  'Geography',
+  'History',
+  'Politics',
+  'Art',
+  'Celebrities',
+  'Animals',
+  'Vehicles',
+  'Comics',
+  'Gadgets',
+  'Anime',
+  'Cartoons',
+]
+
+randomCat = () => {
+  let index =  categories[Math.floor(Math.random()*categories.length)];
+  // console.log(index);
+  return index;
+}
+ 
+var firstTime = schedule.scheduleJob('*/2 * * * *', function(){
+  console.log('The answer to life, the universe, and everything!');
+});
+var SecondTime = schedule.scheduleJob('*/1 * * * *', function(){
+  controller.updateCategory(randomCat());
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

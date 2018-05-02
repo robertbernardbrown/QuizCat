@@ -22,33 +22,6 @@ class Main extends Component {
         time: {},
         timeSince: {},
         stopTimer: false,
-        categories: [
-            'Any',
-            'General',
-            'Books',
-            'Film',
-            'Music',
-            'Theatre',
-            'TV',
-            'Video Games',
-            'Board Games',
-            'Nature',
-            'Computers',
-            'Math',
-            'Mythology',
-            'Sports',
-            'Geography',
-            'History',
-            'Politics',
-            'Art',
-            'Celebrities',
-            'Animals',
-            'Vehicles',
-            'Comics',
-            'Gadgets',
-            'Anime',
-            'Cartoons',
-        ],
         randomCat: ""
     }
 
@@ -66,12 +39,6 @@ class Main extends Component {
             })
         })
         .catch(err => console.log(err));
-    }
-
-    randomCat() {
-        let index =  this.state.categories[Math.floor(Math.random()*this.state.categories.length)];
-        console.log(index);
-        return index;
     }
 
     setTime = () => {
