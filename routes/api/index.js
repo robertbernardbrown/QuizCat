@@ -13,5 +13,6 @@ router.route("/scores")
 router.route("/category")
     .post(quizController.createCat)
     .get(quizController.fetchCategory)
+    .put(quizController.updateCategory)
 
 module.exports = router;

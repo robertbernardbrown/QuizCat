@@ -8,6 +8,14 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.json(err));
   },
+  updateCategory: (req, res) => {
+    console.log(req)
+    console.log(req.body)
+    // let cat = { category: "Any" }
+    // db.Category.set(cat)
+    // .then(dbCat => console.log(dbCat))
+    // .catch(err=> res.json(err));
+  },
   createCat: (req, res) => {
     let cat = { category: "Any" }
     db.Category.create(cat)

@@ -5,8 +5,6 @@ const routes = require("./routes");
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -15,15 +13,6 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 app.use(routes);
-
-io.on('connection', function(){ console.log("fasho") });
-io.sockets.on('connection', function (socket) {
-  socket.emit('message', 'You are connected!');
-  socket.on('message', function (message) {
-    console.log('A client is speaking to me! They’re saying: ' + message);
-  }); 
-});
-server.listen(3002);
 
 // Send every request to the React app
 // Define any API routes before this runs

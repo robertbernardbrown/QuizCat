@@ -8,12 +8,6 @@ import SideBar from "../../components/SideBar";
 import Quiz from "../../components/Quiz";
 import FeedbackModal from "../../components/Modal";
 import API from "../../utils/API";
-import io from "socket.io-client";
-const socket = io('http://localhost:3002');
-
-socket.on('message', function(message) {
-    console.log('The server has a message for you: ' + message);
-})
 
 class Main extends Component {
 
@@ -72,7 +66,6 @@ class Main extends Component {
             })
         })
         .catch(err => console.log(err));
-        socket.emit('message', 'poking server!');
     }
 
     randomCat() {
@@ -84,8 +77,8 @@ class Main extends Component {
     setTime = () => {
         let start1 = new Date();
         let start2 = new Date();
-        start1.setHours(10, 36, 0)
-        start2.setHours(10, 37, 0)
+        start1.setHours(14, 45, 0)
+        start2.setHours(14, 46, 0)
         this.setState({
             start: start1,
             nextStart: start2,
