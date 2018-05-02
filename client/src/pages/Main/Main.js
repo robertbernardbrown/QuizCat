@@ -11,6 +11,10 @@ import API from "../../utils/API";
 import io from "socket.io-client";
 const socket = io('http://localhost:3002');
 
+socket.on('message', function(message) {
+    console.log('The server has a message for you: ' + message);
+})
+
 class Main extends Component {
 
     state = {
@@ -68,6 +72,7 @@ class Main extends Component {
             })
         })
         .catch(err => console.log(err));
+        socket.emit('message', 'poking server!');
     }
 
     randomCat() {

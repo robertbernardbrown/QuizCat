@@ -17,6 +17,12 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 io.on('connection', function(){ console.log("fasho") });
+io.sockets.on('connection', function (socket) {
+  socket.emit('message', 'You are connected!');
+  socket.on('message', function (message) {
+    console.log('A client is speaking to me! They’re saying: ' + message);
+  }); 
+});
 server.listen(3002);
 
 // Send every request to the React app
