@@ -72,7 +72,7 @@ async (accessToken, refreshToken, profile, done) => {
         } 
         const newUser = {
             idUser : profile.id,
-            nameUser : profile.displayName,
+            nameUser : profile.name.givenName,
             email : profile.emails[0].value
         };
         console.log("New user:" + newUser);

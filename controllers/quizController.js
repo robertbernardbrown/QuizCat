@@ -1,24 +1,14 @@
 const db = require("../models");
-const JWT = require('jsonwebtoken');
-const { JWT_SECRET } = require('../config');
-
-signToken = user => {
-  return JWT.sign({
-    iss: 'CodeWorkr',
-    sub: user.id,
-    iat: new Date().getTime(), // current time
-    exp: new Date().setDate(new Date().getDate() + 1) // current time + 1 day ahead
-  }, JWT_SECRET);
-}
 
 module.exports = {
+  //go into db and fetch saved categories
   fetchCategory: (req, res) => {
-    //go into db and fetch saved categories
     db.Category
       .find({})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.json(err));
   },
+  //update the category for the quiz
   updateCategory: (req, res) => {
     console.log(req)
     // console.log(req.body)
@@ -28,17 +18,12 @@ module.exports = {
     .then(dbCat => console.log(dbCat))
     .catch(err=> res.json(err));
   },
+  //keeping for now in case I need to recreate category in db
   createCat: (req, res) => {
     let cat = { category: "Any" }
     db.Category.create(cat)
     .then(dbCat => console.log(dbCat))
     .catch(err=> res.json(err));
-  },
-  facebookOauth: async (req, res, next) => {
-    console.log("got here");
-    console.log("req.user", req.user);
-    const token = signToken(req.user);
-    res.status(200).json({ token });
   },
   indexRender: (req, res) => {
   //go into db and fetch articles
