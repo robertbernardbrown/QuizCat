@@ -23,6 +23,9 @@ module.exports = {
     .then(dbCat => console.log(dbCat))
     .catch(err=> res.json(err));
   },
+  facebookOauth: async (req, res, next) => {
+    console.log("got here");
+  },
   indexRender: (req, res) => {
   //go into db and fetch articles
   db.Article.find({})
