@@ -1,57 +1,20 @@
 const express = require("express");
-const path = require("path");
-const PORT = process.env.PORT || 3001;
-const routes = require("./routes");
-const app = express();
-const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/quizcatdb");
 const bodyParser = require("body-parser");
-const schedule = require('node-schedule');
-const controller = require("./controllers/quizController");
+const path = require("path");
 const passport = require('passport')
+const config = require("./config/index");
+const PORT = process.env.PORT || 3001;
+const app = express();
+
+const routes = require("./routes");
+const mongoose = require("mongoose");
+mongoose.connect(process.env.MONGODB_URI || config.dbUri);
 const FacebookStrategy = require('passport-facebook-token');
 const db = require("./models/index");
-const config = require("./config/index");
-let categories = [
-  'Any',
-  'General',
-  'Books',
-  'Film',
-  'Music',
-  'Theatre',
-  'TV',
-  'Video Games',
-  'Board Games',
-  'Nature',
-  'Computers',
-  'Math',
-  'Mythology',
-  'Sports',
-  'Geography',
-  'History',
-  'Politics',
-  'Art',
-  'Celebrities',
-  'Animals',
-  'Vehicles',
-  'Comics',
-  'Gadgets',
-  'Anime',
-  'Cartoons',
-]
+const {firstChange, secondChange} = require("./utils/randomCat");
 
-randomCat = () => {
-  let index =  categories[Math.floor(Math.random()*categories.length)];
-  console.log(index);
-  return index;
-}
- 
-var firstTime = schedule.scheduleJob('2 29 19 * * *', function(){
-  controller.updateCategory(randomCat());
-});
-var secondTime = schedule.scheduleJob('2 30 19 * * *', function(){
-  controller.updateCategory(randomCat());
-});
+firstChange;
+secondChange;
 
 passport.use("facebookToken", new FacebookStrategy({
   clientID: config.oauth.facebook.clientID,
