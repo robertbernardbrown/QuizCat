@@ -56,24 +56,33 @@ var secondTime = schedule.scheduleJob('2 30 19 * * *', function(){
 passport.use("facebookToken", new FacebookStrategy({
   clientID: config.oauth.facebook.clientID,
   clientSecret: config.oauth.facebook.clientSecret,
-  callbackURL: "localhost:3000",
-  profileFields: ['id', 'emails', 'displayName', 'name'] 
+  // callbackURL: "localhost:3000",
+  // profileFields: ['id', 'emails', 'displayName', 'name'] 
 },
 async (accessToken, refreshToken, profile, done) => {
       try {
         console.log(profile);
         console.log(accessToken);
         console.log(refreshToken);
-      } catch (error) {
-        done(error), false, error.message
+        const existingUser = await db.User.findOne({'idUser': profile.id});
+        console.log("Existing user:" + existingUser);
+        if(existingUser) {
+          console.log("inside existing user")
+          return done(null, existingUser);
+        } 
+        const newUser = {
+            idUser : profile.id,
+            nameUser : profile.displayName,
+            email : profile.emails[0].value
+        };
+        console.log("New user:" + newUser);
+
+        await db.User.create(newUser);
+        done(null, newUser);
+        } catch (error) {
+        done(error, false, error.message)
       }
-      // db.User.find( { where : { idUser : profile.id } }).then(function (user, err) {
-      //     if(err) {
-      //         return done(err);
-      //     } 
-      //     if(user) {
-      //         return done(null, user);
-      //     } else {
+      //  else {
       //         //Create the user
       //         db.User.insert({
       //             idUser : profile.id,
