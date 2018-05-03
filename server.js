@@ -4,23 +4,30 @@ const path = require("path");
 const passport = require('passport')
 const config = require("./config/index");
 const PORT = process.env.PORT || 3001;
-const app = express();
-
-const routes = require("./routes");
-const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGODB_URI || config.dbUri);
-const FacebookStrategy = require('passport-facebook-token');
-const db = require("./models/index");
 const {firstChange, secondChange} = require("./utils/randomCat");
 
-firstChange;
-secondChange;
+const app = express();
+
+const mongoose = require("mongoose");
+mongoose.connect(process.env.MONGODB_URI || config.dbUri);
+
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+
+const FacebookStrategy = require('passport-facebook-token');
+const db = require("./models/index");
 
 passport.use("facebookToken", new FacebookStrategy({
   clientID: config.oauth.facebook.clientID,
   clientSecret: config.oauth.facebook.clientSecret,
-  // callbackURL: "localhost:3000",
-  // profileFields: ['id', 'emails', 'displayName', 'name'] 
+  callbackURL: "localhost:3000",
+  profileFields: ['id', 'emails', 'displayName', 'name'] 
 },
 async (accessToken, refreshToken, profile, done) => {
       try {
@@ -66,12 +73,10 @@ async (accessToken, refreshToken, profile, done) => {
       // });
 })); 
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+firstChange;
+secondChange;
+
+const routes = require("./routes");
 app.use(routes);
 
 // Send every request to the React app
