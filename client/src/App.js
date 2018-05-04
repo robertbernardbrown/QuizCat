@@ -32,16 +32,18 @@ class App extends Component {
   render() {
     return(
       <Router>
-        <div className="app">
+        <div>
           <SideBar login={this.state.authenticated ? 
             (
-              <div className="float-right">
-                <Link to="/dashboard">Dashboard</Link><br/>
-                <Link to="/logout">Log out</Link>
+              <div>
+                <Link to="/home">Home</Link><br/>
+                <Link to="/about">About</Link><br/>
+                <Link to="/leaderboard">Leaderboard</Link><br/>
+                <Link to="/logout">Log out</Link><br/>
               </div>
             ) : 
             (
-              <div className="float-right">
+              <div>
                 <Link to="/login">Log in</Link><br/>
                 <Link to="/signup">Sign up</Link>
               </div>
