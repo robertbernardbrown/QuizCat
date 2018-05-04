@@ -4,9 +4,9 @@ const path = require("path");
 const passport = require('passport')
 const config = require("./config/index");
 const PORT = process.env.PORT || 3001;
+const FacebookStrategy = require("./server/passport/facebook-login");
 const {firstChange, secondChange} = require("./utils/randomCat");
 const routes = require("./routes");
-
 
 const app = express();
 

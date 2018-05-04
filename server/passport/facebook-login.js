@@ -1,7 +1,8 @@
-const db = require("./models/index");
+const db = require("../../models");
 const FacebookStrategy = require('passport-facebook-token');
+const config = require("../../config/index");
 
-passport.use("facebookToken", new FacebookStrategy({
+module.exports = new FacebookStrategy({
   clientID: config.oauth.facebook.clientID,
   clientSecret: config.oauth.facebook.clientSecret,
   callbackURL: "localhost:3000",
@@ -30,23 +31,4 @@ async (accessToken, refreshToken, profile, done) => {
         } catch (error) {
         done(error, false, error.message)
       }
-      //  else {
-      //         //Create the user
-      //         db.User.insert({
-      //             idUser : profile.id,
-      //             token : accessToken,
-      //             nameUser : profile.displayName,
-      //             email : profile.emails[0].value
-      //         });
-
-      //         //Find the user (therefore checking if it was indeed created) and return it
-      //         db.User.findOne( { where : { idUser : profile.id } }).then(function (user, err) {
-      //             if(user) {
-      //                 return done(null, user);
-      //             } else {
-      //                 return done(err);
-      //             }
-      //         });
-      //     }
-      // });
-})); 
+}); 
