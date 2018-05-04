@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3001;
 const FacebookStrategy = require("./server/passport/facebook-login");
 const {firstChange, secondChange} = require("./utils/randomCat");
 const routes = require("./routes");
+const authCheckMiddleware = require("./server/middleware/auth-check");
 
 const app = express();
 
@@ -34,6 +35,7 @@ passport.use("facebookToken", FacebookStrategy);
 passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 
+app.use('api', authCheckMiddleware);
 app.use(routes);
 
 // Send every request to the React app

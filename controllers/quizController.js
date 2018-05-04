@@ -5,7 +5,7 @@ module.exports = {
   fetchCategory: (req, res) => {
     db.Category
       .find({})
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => res.status(200).json(dbModel))
       .catch(err => res.json(err));
   },
   //update the category for the quiz

@@ -4,7 +4,6 @@ import Wrapper from "../../components/Wrapper";
 import Footer from "../../components/Footer";
 import Greeting from "../../components/Greeting";
 import CountdownComp from "../../components/CountdownComp";
-import SideBar from "../../components/SideBar";
 import Quiz from "../../components/Quiz";
 import FeedbackModal from "../../components/Modal";
 import API from "../../utils/API";
@@ -146,7 +145,6 @@ class Main extends Component {
     render() {
         return (
             <div>
-                <SideBar/>
                 <Header/>
                 <Wrapper>
                     {/* render quiz if quiztime, else show countdown and about components */}

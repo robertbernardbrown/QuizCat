@@ -14,7 +14,7 @@ class SideBar extends React.Component {
         <a id="about" className="menu-item" href="/about">About</a>
         <a id="leaderboard" className="menu-item" href="/leaderboard">Leaderboard</a>
         <a id="contact" className="menu-item" href="/contact">Contact</a>
-        {/* <a onClick={ this.showSettings } className="menu-item--small" href="">Settings</a> */}
+        {this.props.login}
       </Menu>
     );
   }
