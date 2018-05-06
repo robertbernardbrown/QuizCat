@@ -19,7 +19,13 @@ export default {
     createCat: () => {
         console.log("POST should be hitting /api/category")
         return axios.post("/api/category")
-    }
+    },
+    login: userData => 
+        axios.post("/user/login",  userData),
+    signUp: userData => 
+  	    axios.post('/user/signup', userData),
+    quiz: token =>
+        axios.get('/user/dashboard', {headers: {Authorization: `bearer ${token}`}})
 }
 
 // getQuiz: () => {

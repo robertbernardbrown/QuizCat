@@ -7,9 +7,9 @@ import About from "../src/pages/About";
 import Contact from "../src/pages/Contact";
 import Leaderboard from "../src/pages/Leaderboard";
 import SideBar from "./components/SideBar";
-// import { PrivateRoute, PropsRoute, LoggedOutRoute } from './components/Routes';
+import { PrivateRoute, PropsRoute, LoggedOutRoute } from './components/Routes';
 // import LoginPage from './pages/LoginPage.jsx';
-// import LogoutFunction from './pages/LogoutFunction.jsx';
+import LogoutFunction from './pages/LogoutFunction';
 // import SignUpPage from './pages/SignUpPage.jsx';
 // import Auth from './utils/Auth';
 
@@ -53,6 +53,7 @@ class App extends Component {
             <Route exact path="/about" component={About} />
             <Route exact path="/leaderboard" component={Leaderboard} />
             <Route exact path="/contact" component={Contact} />
+            <Route path="/logout" component={LogoutFunction}/>
           </Switch>
         </div>
       </Router>
