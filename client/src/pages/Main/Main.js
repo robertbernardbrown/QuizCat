@@ -7,6 +7,7 @@ import CountdownComp from "../../components/CountdownComp";
 import Quiz from "../../components/Quiz";
 import FeedbackModal from "../../components/Modal";
 import API from "../../utils/API";
+import Auth from "../../utils/Auth";
 
 class Main extends Component {
 
@@ -21,16 +22,30 @@ class Main extends Component {
         time: {},
         timeSince: {},
         stopTimer: false,
-        randomCat: ""
+        randomCat: "",
+        secretData: '',
+        user: {}
     }
 
     //on mount, set start time and countdown state
     componentDidMount = () => {
         this.setTime();
+        this.checkLoginStatus();
         this.setState({
             winner: false
         })
         this.checkCategory();
+    }
+
+    checkLoginStatus = () => {
+        API.quiz(Auth.getToken())
+        .then(res => {
+            this.setState({
+            secretData: res.data.message,
+            user: res.data.user
+            });
+            console.log(this.state.user, this.state.secretData)
+        })
     }
 
     checkCategory = () => {
@@ -47,7 +62,7 @@ class Main extends Component {
     setTime = () => {
         let start1 = new Date();
         let start2 = new Date();
-        start1.setHours(16, 39, 40)
+        start1.setHours(13, 57, 0)
         start2.setHours(8, 30, 0)
         this.setState({
             start: start1,
@@ -147,15 +162,22 @@ class Main extends Component {
             <div>
                 <Header/>
                 <Wrapper>
-                    {/* render quiz if quiztime, else show countdown and about components */}
-                    {this.state.quizTime && this.state.stillIn ? 
-                        <Quiz handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince} category={this.state.randomCat}/> : 
+                {this.state.user && this.state.secretData ? 
+                // {/* render quiz if quiztime, else show countdown and about components */}
+                    this.state.quizTime && this.state.stillIn ? 
+                        <Quiz secretData={this.state.secretData} user={this.state.user} handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince} category={this.state.randomCat}/> 
+                    : 
                     <div>
                         <Greeting category={this.state.randomCat}/>
                         <CountdownComp countdown={this.state.countdown}/>
                         <FeedbackModal show={this.state.show} handleClose={this.handleClose} winner={this.state.winner} timer={this.state.timeSince}/>
                     </div>
-                    }
+                :
+                <div>
+                    <p>Please login to play the quiz!</p>
+                </div>
+                }
+                    
                 </Wrapper>
                 <Footer/>
             </div>
