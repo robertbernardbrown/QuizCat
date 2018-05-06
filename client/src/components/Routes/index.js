@@ -1,1 +1,1 @@
-export { default } from "./Routes";
+export { PrivateRoute, LoggedOutRoute, PropsRoute } from "./Routes";

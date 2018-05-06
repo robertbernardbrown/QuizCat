@@ -49,10 +49,12 @@ class App extends Component {
               </div>
             )}/>
           <Switch>
-            <Route exact path="/" component={Main} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/leaderboard" component={Leaderboard} />
-            <Route exact path="/contact" component={Contact} />
+            <PropsRoute exact path="/" component={Main} />
+            <PropsRoute exact path="/about" component={About} />
+            <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
+            <PropsRoute exact path="/contact" component={Contact} />
+            {/* <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={this.toggleAuthenticateStatus} /> */}
+            {/* <LoggedOutRoute path="/signup" component={SignUpPage}/> */}
             <Route path="/logout" component={LogoutFunction}/>
           </Switch>
         </div>
