@@ -11,7 +11,7 @@ import { PrivateRoute, PropsRoute, LoggedOutRoute } from './components/Routes';
 // import LoginPage from './pages/LoginPage.jsx';
 import LogoutFunction from './pages/LogoutFunction';
 // import SignUpPage from './pages/SignUpPage.jsx';
-// import Auth from './utils/Auth';
+import Auth from './utils/Auth';
 
 class App extends Component {
 
@@ -19,15 +19,15 @@ class App extends Component {
     authenticated: false
   }
 
-  // componentDidMount() {
-  //   // check if user is logged in on refresh
-  //   this.toggleAuthenticateStatus()
-  // }
+  componentDidMount() {
+    // check if user is logged in on refresh
+    this.toggleAuthenticateStatus()
+  }
 
-  // toggleAuthenticateStatus = () => {
-  //   // check authenticated status and toggle state based on that
-  //   this.setState({ authenticated: Auth.isUserAuthenticated() })
-  // }
+  toggleAuthenticateStatus = () => {
+    // check authenticated status and toggle state based on that
+    this.setState({ authenticated: Auth.isUserAuthenticated() })
+  }
 
   render() {
     return(
