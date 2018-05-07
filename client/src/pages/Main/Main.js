@@ -24,7 +24,7 @@ class Main extends Component {
         stopTimer: false,
         randomCat: "",
         secretData: '',
-        user: {}
+        user: ""
     }
 
     //on mount, set start time and countdown state
@@ -40,9 +40,10 @@ class Main extends Component {
     checkLoginStatus = () => {
         API.quiz(Auth.getToken())
         .then(res => {
+            console.log(res);
             this.setState({
             secretData: res.data.message,
-            user: res.data.user
+            user: res.data.name
             });
             console.log(this.state.user, this.state.secretData)
         })
@@ -162,19 +163,21 @@ class Main extends Component {
             <div>
                 <Header/>
                 <Wrapper>
-                {this.state.user && this.state.secretData ? 
+                {this.state.user ? 
                 // {/* render quiz if quiztime, else show countdown and about components */}
                     this.state.quizTime && this.state.stillIn ? 
                         <Quiz secretData={this.state.secretData} user={this.state.user} handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince} category={this.state.randomCat}/> 
                     : 
                     <div>
-                        <Greeting category={this.state.randomCat}/>
+                        <Greeting category={this.state.randomCat} name={this.state.user}/>
                         <CountdownComp countdown={this.state.countdown}/>
                         <FeedbackModal show={this.state.show} handleClose={this.handleClose} winner={this.state.winner} timer={this.state.timeSince}/>
                     </div>
                 :
                 <div>
                     <p>Please login to play the quiz!</p>
+                    <div className="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false">
+                    </div>
                 </div>
                 }
                     

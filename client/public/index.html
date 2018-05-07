@@ -36,6 +36,8 @@
         version    : 'v2.12'
       });
       FB.getLoginStatus(function(response) {
+        localStorage.setItem('token', response.authResponse.accessToken)
+        // console.log(response.authResponse.accessToken);
         statusChangeCallback(response);
       });
       FB.AppEvents.logPageView();   

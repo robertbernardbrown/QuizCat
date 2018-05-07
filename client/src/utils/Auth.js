@@ -29,7 +29,9 @@ class Auth {
      */
   
     static getToken() {
-      return localStorage.getItem('token');
+      let token = localStorage.getItem('token');
+      console.log(token);
+      return token;
     }
   
   }
