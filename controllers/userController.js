@@ -17,5 +17,13 @@ module.exports = {
     console.log("req.user", req.user);
     const token = signToken(req.user);
     res.status(200).json({ token });
+  },
+  getId: (req, res) => {
+    console.log(req)
+    db.User.find({})
+    .where("nameUser").equals(req.query.name)
+    .then(data => {
+      res.status(200).json(data);
+    })
   }
 }

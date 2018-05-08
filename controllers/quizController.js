@@ -25,25 +25,30 @@ module.exports = {
     .then(dbCat => console.log(dbCat))
     .catch(err=> res.json(err));
   },
-  indexRender: (req, res) => {
-  //go into db and fetch articles
-  db.Article.find({})
-    .where('saved').equals('false')
+  saveScore: (req, res) => {
+    console.log(req);
+    let scoreRecord = {
+      userId: req.body.userId,
+      userName: req.body.userName,
+      category: req.body.category,
+      timeFinished: req.body.timeFinished,
+    }
+    db.Score.create(scoreRecord)
     .then(function (data) {
-      let articleObj = {
-        article: data
-      };
-      res.render("index", articleObj);
+      console.log("Data:" + data)
+      db.User.findOneAndUpdate({idUser: scoreRecord.userId}, { $push: {score:data} }, { new: true })
+      .then( record => {
+        console.log("Record:" + record)
+      })
     })
     .catch(err => {
       res.json(err);
     });
   },
-
-  clearData: (req, res) => {
+  fetchScore: (req, res) => {
   //go into db and clear non-saved articles
-  db.Article.remove()
-    .where('saved').equals('false')
+  db.Score.find({})
+    .where('userName').equals(req)
     .then(function (data) {
       // let articleObj = {
       //   article: data

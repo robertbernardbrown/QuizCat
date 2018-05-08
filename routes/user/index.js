@@ -6,4 +6,7 @@ const passport = require("passport");
 router.route("/oauth/facebook")
     .post(passport.authenticate("facebookToken", {session: false}), userController.facebookOauth);
 
+router.route("/getid")
+    .get(userController.getId);
+
 module.exports = router;

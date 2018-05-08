@@ -20,8 +20,8 @@ router.route("/user")
   });
 
 router.route("/scores")
-    .post(quizController.createCat)
-    .get(quizController.fetchCategory)
+    .post(quizController.saveScore)
+    .get(quizController.fetchScore)
 
 router.route("/category")
     .post(quizController.createCat)

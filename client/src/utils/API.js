@@ -35,6 +35,17 @@ export default {
     getUser: token => {
         console.log(token);
         return axios.get("https://graph.facebook.com/me?access_token="+token);
+    },
+    saveScore: (userData) => {
+        axios.post("/api/scores", userData);
+    },
+    fetchId: (name) => {
+        console.log(name);
+        return axios.get("/user/getid", { 
+            params: {
+                name: name
+            }
+        });
     }
 
 

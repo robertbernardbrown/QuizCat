@@ -24,7 +24,8 @@ class Main extends Component {
         stopTimer: false,
         randomCat: "",
         secretData: '',
-        user: ""
+        user: "",
+        user_id: ""
     }
 
     //on mount, set start time and countdown state
@@ -39,13 +40,18 @@ class Main extends Component {
 
     checkLoginStatus = () => {
         API.quiz(Auth.getToken())
-        .then(res => {
-            console.log(res);
-            this.setState({
-            secretData: res.data.message,
-            user: res.data.name
-            });
-            console.log(this.state.user, this.state.secretData)
+        .then(nameRes => {
+            console.log(nameRes);
+            // API.fetchId(nameRes.data.name)
+            // .then(idRes => {
+            //     console.log(this.state.name, idRes)
+            //     if (idRes) {
+                    this.setState({
+                        user: nameRes.data.name,
+                        user_id: nameRes.data.id
+                    });
+            //     }
+            // })
         })
     }
 
@@ -63,8 +69,8 @@ class Main extends Component {
     setTime = () => {
         let start1 = new Date();
         let start2 = new Date();
-        start1.setHours(13, 57, 0)
-        start2.setHours(8, 30, 0)
+        start1.setHours(19, 2, 40)
+        start2.setHours(15, 38, 0)
         this.setState({
             start: start1,
             nextStart: start2,
@@ -144,7 +150,18 @@ class Main extends Component {
             winner: true,
             stopTimer: true
         })
+        this.saveScore();
         this.handleShow();
+    }
+
+    saveScore = () => {
+        let userScore = {
+            userName: this.state.user, 
+            userId: this.state.user_id, 
+            timeFinished: this.state.timeSince, 
+            category: this.state.randomCat
+        }
+        API.saveScore(userScore)
     }
   
     //close modal
@@ -166,7 +183,7 @@ class Main extends Component {
                 {this.state.user ? 
                 // {/* render quiz if quiztime, else show countdown and about components */}
                     this.state.quizTime && this.state.stillIn ? 
-                        <Quiz secretData={this.state.secretData} user={this.state.user} handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince} category={this.state.randomCat}/> 
+                        <Quiz user={this.state.user} handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince} category={this.state.randomCat}/> 
                     : 
                     <div>
                         <Greeting category={this.state.randomCat} name={this.state.user}/>

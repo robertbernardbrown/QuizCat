@@ -6,7 +6,6 @@ module.exports = new FacebookStrategy({
   clientID: config.oauth.facebook.clientID,
   clientSecret: config.oauth.facebook.clientSecret,
   callbackURL: "localhost:3000",
-  profileFields: ['id', 'emails', 'displayName', 'name'] 
 },
 async (accessToken, refreshToken, profile, done) => {
       try {
