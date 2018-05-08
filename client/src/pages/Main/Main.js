@@ -4,10 +4,10 @@ import Wrapper from "../../components/Wrapper";
 import Footer from "../../components/Footer";
 import Greeting from "../../components/Greeting";
 import CountdownComp from "../../components/CountdownComp";
-import SideBar from "../../components/SideBar";
 import Quiz from "../../components/Quiz";
 import FeedbackModal from "../../components/Modal";
 import API from "../../utils/API";
+import Auth from "../../utils/Auth";
 
 class Main extends Component {
 
@@ -22,30 +22,55 @@ class Main extends Component {
         time: {},
         timeSince: {},
         stopTimer: false,
-        randomCat: ""
+        randomCat: "",
+        secretData: '',
+        user: "",
+        user_id: ""
     }
 
     //on mount, set start time and countdown state
     componentDidMount = () => {
         this.setTime();
+        this.checkLoginStatus();
         this.setState({
             winner: false
         })
-        API.getCategory()
-        .then(res => {
-            console.log(res)
-            this.setState({
-                randomCat: res.data[0].category
-            })
+        this.checkCategory();
+    }
+
+    checkLoginStatus = () => {
+        API.quiz(Auth.getToken())
+        .then(nameRes => {
+            console.log(nameRes);
+            // API.fetchId(nameRes.data.name)
+            // .then(idRes => {
+            //     console.log(this.state.name, idRes)
+            //     if (idRes) {
+                    this.setState({
+                        user: nameRes.data.name,
+                        user_id: nameRes.data.id
+                    });
+            //     }
+            // })
         })
-        .catch(err => console.log(err));
+    }
+
+    checkCategory = () => {
+    API.getCategory()
+    .then(res => {
+        console.log(res)
+        this.setState({
+            randomCat: res.data[0].category
+        })
+    })
+    .catch(err => console.log(err));
     }
 
     setTime = () => {
         let start1 = new Date();
         let start2 = new Date();
-        start1.setHours(14, 45, 0)
-        start2.setHours(14, 46, 0)
+        start1.setHours(19, 2, 40)
+        start2.setHours(15, 38, 0)
         this.setState({
             start: start1,
             nextStart: start2,
@@ -105,7 +130,7 @@ class Main extends Component {
                 time: now,
                 stopTimer: false,
                 winner: false,
-                randomCat: this.randomCat()
+                // randomCat: this.randomCat()
             })
             this.runTimer();
         }
@@ -125,38 +150,54 @@ class Main extends Component {
             winner: true,
             stopTimer: true
         })
+        this.saveScore();
         this.handleShow();
+    }
+
+    saveScore = () => {
+        let userScore = {
+            userName: this.state.user, 
+            userId: this.state.user_id, 
+            timeFinished: this.state.timeSince, 
+            category: this.state.randomCat
+        }
+        API.saveScore(userScore)
     }
   
     //close modal
     handleClose  = () => {
         this.setState({ show: false });
+        this.checkCategory();
     }
   
     //show modal
     handleShow = () => {
         this.setState({ show: true });
     }
-
-    resetWin = () => {
-        this.setState({ winner: false})
-    }
   
     render() {
         return (
             <div>
-                <SideBar/>
                 <Header/>
                 <Wrapper>
-                    {/* render quiz if quiztime, else show countdown and about components */}
-                    {this.state.quizTime && this.state.stillIn ? 
-                        <Quiz handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince} category={this.state.randomCat}/> : 
+                {this.state.user ? 
+                // {/* render quiz if quiztime, else show countdown and about components */}
+                    this.state.quizTime && this.state.stillIn ? 
+                        <Quiz user={this.state.user} handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince} category={this.state.randomCat}/> 
+                    : 
                     <div>
-                        <Greeting category={this.state.randomCat}/>
+                        <Greeting category={this.state.randomCat} name={this.state.user}/>
                         <CountdownComp countdown={this.state.countdown}/>
                         <FeedbackModal show={this.state.show} handleClose={this.handleClose} winner={this.state.winner} timer={this.state.timeSince}/>
                     </div>
-                    }
+                :
+                <div>
+                    <p>Please login to play the quiz!</p>
+                    <div className="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false">
+                    </div>
+                </div>
+                }
+                    
                 </Wrapper>
                 <Footer/>
             </div>

@@ -1,59 +1,41 @@
 const express = require("express");
-const path = require("path");
-const PORT = process.env.PORT || 3001;
-const routes = require("./routes");
-const app = express();
-const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const schedule = require('node-schedule');
-const controller = require("./controllers/quizController");
-let categories = [
-  'Any',
-  'General',
-  'Books',
-  'Film',
-  'Music',
-  'Theatre',
-  'TV',
-  'Video Games',
-  'Board Games',
-  'Nature',
-  'Computers',
-  'Math',
-  'Mythology',
-  'Sports',
-  'Geography',
-  'History',
-  'Politics',
-  'Art',
-  'Celebrities',
-  'Animals',
-  'Vehicles',
-  'Comics',
-  'Gadgets',
-  'Anime',
-  'Cartoons',
-]
+const path = require("path");
+const passport = require('passport')
+const config = require("./config/index");
+const PORT = process.env.PORT || 3001;
+const FacebookStrategy = require("./server/passport/facebook-login");
+const {firstChange, secondChange} = require("./utils/randomCat");
+const routes = require("./routes");
+const authCheckMiddleware = require("./server/middleware/auth-check");
 
-randomCat = () => {
-  let index =  categories[Math.floor(Math.random()*categories.length)];
-  // console.log(index);
-  return index;
-}
- 
-var firstTime = schedule.scheduleJob('*/2 * * * *', function(){
-  console.log('The answer to life, the universe, and everything!');
-});
-var SecondTime = schedule.scheduleJob('*/1 * * * *', function(){
-  controller.updateCategory(randomCat());
-});
+const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+const mongoose = require("mongoose");
+mongoose.connect(process.env.MONGODB_URI || config.dbUri);
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
+firstChange;
+secondChange;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+// pass the passport middleware
+app.use(passport.initialize());
+
+//load Passport strategies
+const facebookLoginStrategy = require("./server/passport/facebook-login");
+const localSignupStrategy = require('./server/passport/local-signup');
+const localLoginStrategy = require('./server/passport/local-login');
+passport.use("facebookToken", FacebookStrategy);
+passport.use('local-signup', localSignupStrategy);
+passport.use('local-login', localLoginStrategy);
+
+app.use('api', authCheckMiddleware);
 app.use(routes);
 
 // Send every request to the React app
@@ -62,10 +44,6 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/quizcatdb");
-
 app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
 });
-
-

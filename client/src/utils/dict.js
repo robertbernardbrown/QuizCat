@@ -1,0 +1,28 @@
+var dict = {};
+dict['Any'] = "https://opentdb.com/api.php?amount=12";
+dict['General'] = "https://opentdb.com/api.php?amount=12&category=9";
+dict['Books'] = "https://opentdb.com/api.php?amount=12&category=10";
+dict['Film'] = "https://opentdb.com/api.php?amount=12&category=11";
+dict['Music'] = "https://opentdb.com/api.php?amount=12&category=12";
+dict['Theatre'] = "https://opentdb.com/api.php?amount=12&category=13";
+dict['TV'] = "https://opentdb.com/api.php?amount=12&category=14";
+dict['Video Games'] = "https://opentdb.com/api.php?amount=12&category=15";
+dict['Board Games'] = "https://opentdb.com/api.php?amount=12&category=16";
+dict['Nature'] = "https://opentdb.com/api.php?amount=12&category=17";
+dict['Computers'] = "https://opentdb.com/api.php?amount=12&category=18";
+dict['Math'] = "https://opentdb.com/api.php?amount=12&category=19";
+dict['Mythology'] = "https://opentdb.com/api.php?amount=12&category=20";
+dict['Sports'] = "https://opentdb.com/api.php?amount=12&category=21";
+dict['Geography'] = "https://opentdb.com/api.php?amount=12&category=22";
+dict['History'] = "https://opentdb.com/api.php?amount=12&category=23";
+dict['Politics'] = "https://opentdb.com/api.php?amount=12&category=24";
+dict['Art'] = "https://opentdb.com/api.php?amount=12&category=25";
+dict['Celebrities'] = "https://opentdb.com/api.php?amount=12&category=26";
+dict['Animals'] = "https://opentdb.com/api.php?amount=12&category=27";
+dict['Vehicles'] = "https://opentdb.com/api.php?amount=12&category=28";
+dict['Comics'] = "https://opentdb.com/api.php?amount=12&category=29";
+dict['Gadgets'] = "https://opentdb.com/api.php?amount=12&category=30";
+dict['Anime'] = "https://opentdb.com/api.php?amount=12&category=31";
+dict['Cartoons'] = "https://opentdb.com/api.php?amount=12&category=32";
+
+module.exports = dict;

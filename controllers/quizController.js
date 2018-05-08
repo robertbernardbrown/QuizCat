@@ -1,13 +1,14 @@
 const db = require("../models");
 
 module.exports = {
+  //go into db and fetch saved categories
   fetchCategory: (req, res) => {
-    //go into db and fetch saved categories
     db.Category
       .find({})
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => res.status(200).json(dbModel))
       .catch(err => res.json(err));
   },
+  //update the category for the quiz
   updateCategory: (req, res) => {
     console.log(req)
     // console.log(req.body)
@@ -17,31 +18,37 @@ module.exports = {
     .then(dbCat => console.log(dbCat))
     .catch(err=> res.json(err));
   },
+  //keeping for now in case I need to recreate category in db
   createCat: (req, res) => {
     let cat = { category: "Any" }
     db.Category.create(cat)
     .then(dbCat => console.log(dbCat))
     .catch(err=> res.json(err));
   },
-  indexRender: (req, res) => {
-  //go into db and fetch articles
-  db.Article.find({})
-    .where('saved').equals('false')
+  saveScore: (req, res) => {
+    console.log(req);
+    let scoreRecord = {
+      userId: req.body.userId,
+      userName: req.body.userName,
+      category: req.body.category,
+      timeFinished: req.body.timeFinished,
+    }
+    db.Score.create(scoreRecord)
     .then(function (data) {
-      let articleObj = {
-        article: data
-      };
-      res.render("index", articleObj);
+      console.log("Data:" + data)
+      db.User.findOneAndUpdate({idUser: scoreRecord.userId}, { $push: {score:data} }, { new: true })
+      .then( record => {
+        console.log("Record:" + record)
+      })
     })
     .catch(err => {
       res.json(err);
     });
   },
-
-  clearData: (req, res) => {
+  fetchScore: (req, res) => {
   //go into db and clear non-saved articles
-  db.Article.remove()
-    .where('saved').equals('false')
+  db.Score.find({})
+    .where('userName').equals(req)
     .then(function (data) {
       // let articleObj = {
       //   article: data
