@@ -8,6 +8,8 @@ import Quiz from "../../components/Quiz";
 import FeedbackModal from "../../components/Modal";
 import API from "../../utils/API";
 import Auth from "../../utils/Auth";
+import LoginPage from "../LoginPage";
+import SignupPage from "../SignupPage";
 
 class Main extends Component {
 
@@ -193,8 +195,8 @@ class Main extends Component {
                 :
                 <div>
                     <p>Please login to play the quiz!</p>
-                    <div className="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false">
-                    </div>
+                    <LoginPage/>
+                    <SignupPage/>
                 </div>
                 }
                     
