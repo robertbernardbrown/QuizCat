@@ -6,8 +6,10 @@ import Auth from '../../utils/Auth';
 class LogoutFunction extends React.Component {
 
   componentDidMount() {
+    console.log(this.props)
     // deauthenticate user
     Auth.deauthenticateUser();
+    this.props.toggleAuthenticateStatus();
     // change the current URL to / after logout
     this.props.history.push('/');
   }

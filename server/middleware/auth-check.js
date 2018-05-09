@@ -9,7 +9,6 @@ module.exports = (req, res, next) => {
   console.log("Headers:")
   console.log(req.headers)
   if (!req.headers.authorization) {
-    console.log("fail1")
     return res.status(401).end();
   }
 
@@ -19,14 +18,13 @@ module.exports = (req, res, next) => {
   // decode the token using a secret key-phrase
   return jwt.verify(token, config.JWT_SECRET, (err, decoded) => {
     // the 401 code is for unauthorized status
-    if (err) { console.log("fail2"); return res.status(401).end(); }
+    if (err) { return res.status(401).end(); }
 
     const userId = decoded.sub;
 
     // check if a user exists
     return User.findById(userId, (userErr, user) => {
       if (userErr || !user) {
-        console.log("fail3")
         return res.status(401).end();
       }
       // pass user details onto next route

@@ -57,7 +57,7 @@ class App extends Component {
             <PropsRoute exact path="/contact" component={Contact} />
             {/* <LoggedOutRoute path="/login" component={Main} toggleAuthenticateStatus={this.toggleAuthenticateStatus} /> */}
             <LoggedOutRoute path="/signup" component={SignupPage} toggleAuthenticateStatus={this.toggleAuthenticateStatus}/>
-            <Route path="/logout" component={LogoutFunction}/>
+            <PropsRoute path="/logout" component={LogoutFunction} toggleAuthenticateStatus={this.toggleAuthenticateStatus}/>
           </Switch>
         </div>
       </Router>
