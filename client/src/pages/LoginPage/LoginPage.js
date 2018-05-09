@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Route , withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Auth from '../../utils/Auth';
 import LoginForm from '../../components/Login';
@@ -42,25 +43,25 @@ class LoginPage extends Component {
       // change the component-container state
         // save the token
         Auth.authenticateUser(res.data.token);
+        console.log(this.props)
 
         // update authenticated state
         this.props.toggleAuthenticateStatus()
-
         // redirect signed in user to dashboard
         this.props.history.push('/');
         this.setState({
           errors: {}
         });
-    }).catch(( {response} ) => {
+      })
+    // }).catch(( {response} ) => {
+    //     console.log(response)
+    //     const errors = response.data.errors ? response.data.errors : {};
+    //     errors.summary = response.data.message;
 
-        const errors = response.data.errors ? response.data.errors : {};
-        errors.summary = response.data.message;
-
-        this.setState({
-          errors
-        });
-      });
-    
+    //     this.setState({
+    //       errors
+    //     });
+    //   });
   }
 
   /**

@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { Route , withRouter} from 'react-router-dom';
 import Header from "../../components/Header";
 import Wrapper from "../../components/Wrapper";
 import Footer from "../../components/Footer";
@@ -32,14 +33,14 @@ class Main extends Component {
 
     //on mount, set start time and countdown state
     componentDidMount = () => {
-        if(this.props.authenticated){
+        // if(this.props.authenticated){
         this.checkLoginStatus();
         this.setTime();
         this.setState({
             winner: false
         })
         this.checkCategory();
-    }
+    // }
     }
 
     checkLoginStatus = () => {
@@ -178,7 +179,7 @@ class Main extends Component {
             <div>
                 <Header/>
                 <Wrapper>
-                {this.state.user ? 
+                {this.props.authenticated ? 
                 // {/* render quiz if quiztime, else show countdown and about components */}
                     this.state.quizTime && this.state.stillIn ? 
                         <Quiz user={this.state.user} handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince} category={this.state.randomCat}/> 
@@ -192,7 +193,8 @@ class Main extends Component {
                 <div>
                     <p>Please login or signup to play the quiz!</p>
                     <div className="container">
-                        <LoginPage/>
+                        <Route exact path="/" render={(props) => <LoginPage {...props} toggleAuthenticateStatus={this.props.toggleAuthenticateStatus} />} />
+                        {/* <LoginPage toggleAuthenticateStatus={this.props.toggleAuthenticateStatus}/> */}
                     </div>
                 </div>
                 }
