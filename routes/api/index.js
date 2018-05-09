@@ -4,6 +4,14 @@ const router = require("express").Router();
 const quizController = require("../../controllers/quizController");
 
 // "/api/x routes
+router.get("/user", (req, res) => {
+    res.status(200).json({
+        // user values passed through from auth middleware
+        user: req.user.name,
+        user_id: req.user._id
+      });
+})
+
 router.route("/scores")
     .post(quizController.saveScore)
     .get(quizController.fetchScore)

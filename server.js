@@ -32,7 +32,7 @@ const localLoginStrategy = require('./server/passport/local-login');
 passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 
-app.use('api', authCheckMiddleware);
+app.use('/api', authCheckMiddleware);
 app.use(routes);
 
 // Send every request to the React app

@@ -52,16 +52,15 @@ class LoginPage extends Component {
         this.setState({
           errors: {}
         });
-      })
-    // }).catch(( {response} ) => {
-    //     console.log(response)
-    //     const errors = response.data.errors ? response.data.errors : {};
-    //     errors.summary = response.data.message;
+    }).catch(( {response} ) => {
+        console.log(response)
+        const errors = response.data.errors ? response.data.errors : {};
+        errors.summary = response.data.message;
 
-    //     this.setState({
-    //       errors
-    //     });
-    //   });
+        this.setState({
+          errors
+        });
+      });
   }
 
   /**
