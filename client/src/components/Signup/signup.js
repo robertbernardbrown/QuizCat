@@ -2,9 +2,9 @@ import React from 'react';
 import "./signup.css";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Card, CardText } from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+// import { Card, CardText } from 'material-ui/Card';
+// import RaisedButton from 'material-ui/RaisedButton';
+// import TextField from 'material-ui/TextField';
 
 const SignUpForm = ({
   onSubmit,
@@ -12,15 +12,15 @@ const SignUpForm = ({
   errors,
   user,
 }) => (
-  <Card className="container">
+  <div className="container">
     <form action="/" onSubmit={onSubmit}>
       <h2 className="card-heading">Sign Up</h2>
 
       {errors.summary && <p className="error-message">{errors.summary}</p>}
 
       <div className="field-line">
-        <TextField
-          floatingLabelText="Name"
+        <input
+          placeholder="Name"
           name="name"
           errorText={errors.name}
           onChange={onChange}
@@ -29,8 +29,8 @@ const SignUpForm = ({
       </div>
 
       <div className="field-line">
-        <TextField
-          floatingLabelText="Email"
+        <input
+          placeholder="Email"
           name="email"
           errorText={errors.email}
           onChange={onChange}
@@ -39,8 +39,8 @@ const SignUpForm = ({
       </div>
 
       <div className="field-line">
-        <TextField
-          floatingLabelText="Password"
+        <input
+          placeholder="Password"
           type="password"
           name="password"
           onChange={onChange}
@@ -50,12 +50,12 @@ const SignUpForm = ({
       </div>
 
       <div className="button-line">
-        <RaisedButton type="submit" label="Create New Account" primary />
+        <button className="btn btn-primary" type="submit">Sign-Up</button>
       </div>
 
-      <CardText>Already have an account? <Link to={'/login'}>Log in</Link></CardText>
+      <p>Already have an account? <Link to={'/login'}>Log in</Link></p>
     </form>
-  </Card>
+  </div>
 );
 
 SignUpForm.propTypes = {

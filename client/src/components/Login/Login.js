@@ -2,28 +2,22 @@ import "./Login.css";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Card, CardText } from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import Bootstrap from 'react-bootstrap';
+// import { Card, CardText } from 'material-ui/Card';
+// import RaisedButton from 'material-ui/RaisedButton';
+// import TextField from 'material-ui/TextField';
 
-const LoginForm = ({
-  onSubmit,
-  onChange,
-  errors,
-  successMessage,
-  user,
-  toggleAuthenticateStatus
-}) => (
-  <Card className="container">
+const LoginForm = ({onSubmit,onChange,errors,successMessage,user,toggleAuthenticateStatus}) => (
+  <div className="container">
     <form action="/" onSubmit={onSubmit}>
-      <h2 className="card-heading">Login</h2>
+      <h2 className="login-heading">Login</h2>
 
       {successMessage && <p className="success-message">{successMessage}</p>}
       {errors.summary && <p className="error-message">{errors.summary}</p>}
 
       <div className="field-line">
-        <TextField
-          floatingLabelText="Email"
+        <input
+          placeholder="Email"
           name="email"
           errorText={errors.email}
           onChange={onChange}
@@ -32,8 +26,8 @@ const LoginForm = ({
       </div>
 
       <div className="field-line">
-        <TextField
-          floatingLabelText="Password"
+        <input
+          placeholder="Password"
           type="password"
           name="password"
           onChange={onChange}
@@ -43,12 +37,12 @@ const LoginForm = ({
       </div>
 
       <div className="button-line">
-        <RaisedButton type="submit" label="Log in" primary />
+        <button className="btn btn-primary" type="submit">Log-In</button>
       </div>
 
-      <CardText>Don't have an account? <Link to={'/signup'}>Create one</Link>.</CardText>
+      <p>Don't have an account? <Link to={'/signup'}>Create one</Link>.</p>
     </form>
-  </Card>
+  </div>
 );
 
 LoginForm.propTypes = {

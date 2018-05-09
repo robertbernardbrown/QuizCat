@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SignUpForm from '../components/SignUpForm.jsx';
-import API from '../utils/API';
+import SignUpForm from '../../components/Signup';
+import API from '../../utils/API';
 
 class SignUpPage extends React.Component {
   // set the initial component state
