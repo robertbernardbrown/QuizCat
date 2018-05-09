@@ -32,28 +32,24 @@ class Main extends Component {
 
     //on mount, set start time and countdown state
     componentDidMount = () => {
-        this.setTime();
+        if(this.props.authenticated){
         this.checkLoginStatus();
+        this.setTime();
         this.setState({
             winner: false
         })
         this.checkCategory();
+    }
     }
 
     checkLoginStatus = () => {
         API.quiz(Auth.getToken())
         .then(nameRes => {
             console.log(nameRes);
-            // API.fetchId(nameRes.data.name)
-            // .then(idRes => {
-            //     console.log(this.state.name, idRes)
-            //     if (idRes) {
-                    this.setState({
-                        user: nameRes.data.name,
-                        user_id: nameRes.data.id
-                    });
-            //     }
-            // })
+            this.setState({
+                user: nameRes.data.name,
+                user_id: nameRes.data.id
+            });
         })
     }
 

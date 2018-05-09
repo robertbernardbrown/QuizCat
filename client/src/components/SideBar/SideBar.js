@@ -11,7 +11,6 @@ class SideBar extends React.Component {
     return (
       <Menu>
         {this.props.login}
-        <a id="contact" className="menu-item" href="/contact">Contact</a>
       </Menu>
     );
   }

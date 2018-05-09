@@ -39,17 +39,19 @@ class App extends Component {
                 <Link to="/home">Home</Link><br/>
                 <Link to="/about">About</Link><br/>
                 <Link to="/leaderboard">Leaderboard</Link><br/>
-                <Link to="/logout">Log out</Link><br/>
+                <Link to="/contact">Contact</Link><br/>
+                <Link to="/logout">Log out</Link>
               </div>
             ) : 
             (
               <div>
                 <Link to="/">Log in</Link><br/>
-                <Link to="/signup">Sign up</Link>
+                <Link to="/signup">Sign up</Link><br/>
+                <Link to="/contact">Contact</Link>
               </div>
             )}/>
           <Switch>
-            <PropsRoute exact path="/" component={Main} />
+            <PropsRoute exact path="/" component={Main} authenticated={this.state.authenticated}/>
             <PropsRoute exact path="/about" component={About} />
             <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
             <PropsRoute exact path="/contact" component={Contact} />
