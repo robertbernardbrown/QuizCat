@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SignUpForm from '../../components/Signup';
 import API from '../../utils/API';
+import Header from '../../components/Header';
+import Wrapper from '../../components/Wrapper';
+import Footer from '../../components/Footer';
 
-class SignUpPage extends React.Component {
+class SignupPage extends React.Component {
   // set the initial component state
   state = {
     errors: {},
@@ -28,18 +31,19 @@ class SignUpPage extends React.Component {
 
     //const formData = `email=${email}&password=${password}`;
     API.signUp({name, email, password}).then(res => {
+        console.log(res);
       // change the component-container state
         // set a message
         localStorage.setItem('successMessage', res.data.message);
 
         // redirect user after sign up to login page
-        this.props.history.push('/login');
+        this.props.history.push('/contact');
         this.setState({
           errors: {}
         });
 
     }).catch(( {response} ) => {
-
+        console.log(this.state.errors)
         const errors = response.data.errors ? response.data.errors : {};
         errors.summary = response.data.message;
 
@@ -69,19 +73,25 @@ class SignUpPage extends React.Component {
    */
   render() {
     return (
-      <SignUpForm
-        onSubmit={this.processForm}
-        onChange={this.changeUser}
-        errors={this.state.errors}
-        user={this.state.user}
-      />
+      <div>
+        <Header/>
+        <Wrapper>
+        <SignUpForm
+          onSubmit={this.processForm}
+          onChange={this.changeUser}
+          errors={this.state.errors}
+          user={this.state.user}
+        />
+        </Wrapper>
+        <Footer/>
+      </div>
     );
   }
 
 }
 
-SignUpPage.contextTypes = {
+SignupPage.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-export default SignUpPage;
+export default SignupPage;

@@ -20,32 +20,32 @@ const SignUpForm = ({
 
       <div className="field-line">
         <input
-          placeholder="Name"
-          name="name"
-          errorText={errors.name}
-          onChange={onChange}
-          value={user.name}
+            placeholder={errors.name ? errors.name.toString() : "Name"}
+            name="name"
+            className={errors.name ? "has-error" : ""}
+            onChange={onChange}
+            value={user.name}
         />
       </div>
 
       <div className="field-line">
         <input
-          placeholder="Email"
-          name="email"
-          errorText={errors.email}
-          onChange={onChange}
-          value={user.email}
+            placeholder={errors.email ? errors.email.toString() : "Email"}
+            name="email"
+            className={errors.email ? "has-error" : ""}
+            onChange={onChange}
+            value={user.email}
         />
       </div>
 
       <div className="field-line">
         <input
-          placeholder="Password"
-          type="password"
-          name="password"
-          onChange={onChange}
-          errorText={errors.password}
-          value={user.password}
+            placeholder={errors.password ? errors.password.toString() : "Password"}
+            type="password"
+            name="password"
+            onChange={onChange}
+            className={errors.password ? "has-error" : ""}
+            value={user.password}
         />
       </div>
 
@@ -53,7 +53,7 @@ const SignUpForm = ({
         <button className="btn btn-primary" type="submit">Sign-Up</button>
       </div>
 
-      <p>Already have an account? <Link to={'/login'}>Log in</Link></p>
+      <p>Already have an account? <Link to={'/'}>Log in</Link></p>
     </form>
   </div>
 );

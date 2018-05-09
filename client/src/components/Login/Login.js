@@ -2,7 +2,7 @@ import "./Login.css";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Bootstrap from 'react-bootstrap';
+// import Bootstrap from 'react-bootstrap';
 // import { Card, CardText } from 'material-ui/Card';
 // import RaisedButton from 'material-ui/RaisedButton';
 // import TextField from 'material-ui/TextField';
@@ -17,22 +17,22 @@ const LoginForm = ({onSubmit,onChange,errors,successMessage,user,toggleAuthentic
 
       <div className="field-line">
         <input
-          placeholder="Email"
-          name="email"
-          errorText={errors.email}
-          onChange={onChange}
-          value={user.email}
+            placeholder={errors.email ? errors.email.toString() : "Email"}
+            name="email"
+            className={errors.email ? "has-error" : ""}
+            onChange={onChange}
+            value={user.email}
         />
       </div>
 
       <div className="field-line">
         <input
-          placeholder="Password"
-          type="password"
-          name="password"
-          onChange={onChange}
-          errorText={errors.password}
-          value={user.password}
+            placeholder={errors.password ? errors.password.toString() : "Password"}
+            type="password"
+            name="password"
+            onChange={onChange}
+            className={errors.password ? "has-error" : ""}
+            value={user.password}
         />
       </div>
 

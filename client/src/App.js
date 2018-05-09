@@ -10,7 +10,7 @@ import SideBar from "./components/SideBar";
 import { PrivateRoute, PropsRoute, LoggedOutRoute } from './components/Routes';
 import LoginPage from './pages/LoginPage';
 import LogoutFunction from './pages/LogoutFunction';
-import SignUpPage from './pages/SignupPage';
+import SignupPage from './pages/SignupPage';
 import Auth from './utils/Auth';
 
 class App extends Component {
@@ -44,7 +44,7 @@ class App extends Component {
             ) : 
             (
               <div>
-                <Link to="/login">Log in</Link><br/>
+                <Link to="/">Log in</Link><br/>
                 <Link to="/signup">Sign up</Link>
               </div>
             )}/>
@@ -53,8 +53,8 @@ class App extends Component {
             <PropsRoute exact path="/about" component={About} />
             <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
             <PropsRoute exact path="/contact" component={Contact} />
-            <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={this.toggleAuthenticateStatus} />
-            <LoggedOutRoute path="/signup" component={SignUpPage}/>
+            {/* <LoggedOutRoute path="/login" component={Main} toggleAuthenticateStatus={this.toggleAuthenticateStatus} /> */}
+            <LoggedOutRoute path="/signup" component={SignupPage}/>
             <Route path="/logout" component={LogoutFunction}/>
           </Switch>
         </div>

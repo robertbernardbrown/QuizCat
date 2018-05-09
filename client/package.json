@@ -5,6 +5,7 @@
   "proxy": "http://127.0.0.1:3001/",
   "dependencies": {
     "axios": "^0.18.0",
+    "bcrypt": "^2.0.1",
     "bootstrap": "3",
     "react": "^16.0.0",
     "react-bootstrap": "^0.32.1",

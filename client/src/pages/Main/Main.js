@@ -194,9 +194,10 @@ class Main extends Component {
                     </div>
                 :
                 <div>
-                    <p>Please login to play the quiz!</p>
-                    <LoginPage/>
-                    <SignupPage/>
+                    <p>Please login or signup to play the quiz!</p>
+                    <div className="container">
+                        <LoginPage/>
+                    </div>
                 </div>
                 }
                     
