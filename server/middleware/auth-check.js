@@ -6,8 +6,6 @@ const config = require('../../config/index');
  *  The Auth Checker middleware function.
  */
 module.exports = (req, res, next) => {
-  console.log("Headers:")
-  console.log(req.headers)
   if (!req.headers.authorization) {
     return res.status(401).end();
   }

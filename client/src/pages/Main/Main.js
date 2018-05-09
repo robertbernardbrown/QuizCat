@@ -39,6 +39,7 @@ class Main extends Component {
             winner: false
         })
         this.checkCategory();
+        this.props.toggleAuthenticateStatus();
     }
 
     getUserInfo = () => {
