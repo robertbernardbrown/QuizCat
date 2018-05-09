@@ -39,6 +39,9 @@ export default {
     saveScore: (userData) => {
         axios.post("/api/scores", userData);
     },
+    createFbUser: () => {
+        return axios.post("/user/oauth/facebook");
+    },
     fetchId: (name) => {
         console.log(name);
         return axios.get("/user/getid", { 

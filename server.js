@@ -36,7 +36,11 @@ passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 
 app.use('api', authCheckMiddleware);
-app.use(routes);
+
+const apiRoutes = require('./routes/api')
+const userRoutes = require('./routes/user')
+app.use('/api', apiRoutes);
+app.use('/user', userRoutes);
 
 // Send every request to the React app
 // Define any API routes before this runs

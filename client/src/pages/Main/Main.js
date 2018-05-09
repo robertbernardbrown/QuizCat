@@ -193,7 +193,7 @@ class Main extends Component {
                 :
                 <div>
                     <p>Please login to play the quiz!</p>
-                    <div className="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false">
+                    <div className="fb-login-button" onClick={this.checkLoginStatus} data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false">
                     </div>
                 </div>
                 }
