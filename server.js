@@ -4,7 +4,6 @@ const path = require("path");
 const passport = require('passport')
 const config = require("./config/index");
 const PORT = process.env.PORT || 3001;
-const FacebookStrategy = require("./server/passport/facebook-login");
 const {firstChange, secondChange} = require("./utils/randomCat");
 const routes = require("./routes");
 const authCheckMiddleware = require("./server/middleware/auth-check");
@@ -28,10 +27,8 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 
 //load Passport strategies
-const facebookLoginStrategy = require("./server/passport/facebook-login");
 const localSignupStrategy = require('./server/passport/local-signup');
 const localLoginStrategy = require('./server/passport/local-login');
-passport.use("facebookToken", FacebookStrategy);
 passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 

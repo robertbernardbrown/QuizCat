@@ -24,17 +24,9 @@ export default {
         axios.post("/user/login",  userData),
     signUp: userData => 
   	    axios.post('/user/signup', userData),
-    // quiz: token => {
-    //     console.log(token);
-    //     return axios.get('/api/user', {headers: {Authorization: `bearer ${token}`}})
-    // },
     quiz: token => {
         console.log(token);
-        return axios.get("https://graph.facebook.com/me?access_token="+token)
-    },
-    getUser: token => {
-        console.log(token);
-        return axios.get("https://graph.facebook.com/me?access_token="+token);
+        return axios.get('/api/user', {headers: {Authorization: `bearer ${token}`}})
     },
     saveScore: (userData) => {
         axios.post("/api/scores", userData);
