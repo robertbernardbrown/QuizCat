@@ -30,6 +30,8 @@ class Main extends Component {
 
     //on mount, set start time and countdown state
     componentDidMount = () => {
+        console.log("reloading home")
+        console.log(this.state.authenticated);
         this.setTime();
         this.checkLoginStatus();
         this.setState({
@@ -39,19 +41,14 @@ class Main extends Component {
     }
 
     checkLoginStatus = () => {
+        console.log("yo")
         API.quiz(Auth.getToken())
         .then(nameRes => {
             console.log(nameRes);
-            // API.fetchId(nameRes.data.name)
-            // .then(idRes => {
-            //     console.log(this.state.name, idRes)
-            //     if (idRes) {
-                    this.setState({
-                        user: nameRes.data.name,
-                        user_id: nameRes.data.id
-                    });
-            //     }
-            // })
+            this.setState({
+                user: nameRes.data.name,
+                user_id: nameRes.data.id,
+            })
         })
     }
 
@@ -174,13 +171,13 @@ class Main extends Component {
     handleShow = () => {
         this.setState({ show: true });
     }
-  
+
     render() {
         return (
             <div>
                 <Header/>
                 <Wrapper>
-                {this.state.user ? 
+                {this.props.authenticated ? 
                 // {/* render quiz if quiztime, else show countdown and about components */}
                     this.state.quizTime && this.state.stillIn ? 
                         <Quiz user={this.state.user} handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince} category={this.state.randomCat}/> 
@@ -193,7 +190,7 @@ class Main extends Component {
                 :
                 <div>
                     <p>Please login to play the quiz!</p>
-                    <div className="fb-login-button" onClick={this.checkLoginStatus} data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false">
+                    <div className="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false">
                     </div>
                 </div>
                 }

@@ -35,7 +35,7 @@ passport.use("facebookToken", FacebookStrategy);
 passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 
-app.use('api', authCheckMiddleware);
+app.use('/api', authCheckMiddleware);
 
 const apiRoutes = require('./routes/api')
 const userRoutes = require('./routes/user')

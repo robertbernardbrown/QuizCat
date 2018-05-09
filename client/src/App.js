@@ -40,17 +40,16 @@ class App extends Component {
 
       // login callback implementation goes inside the function() { ... } block
       FB.Event.subscribe('auth.statusChange', function(response) {
-        // example implementation
         if (response.authResponse) {
           console.log('Welcome!  Fetching your information.... ');
           FB.api('/me', function(response) {
+            console.log(response);
             console.log('Good to see you, ' + response.name + '.');
+            API.createFbUser();
+            // check if user is logged in on refresh
+            self.toggleAuthenticateStatus()
           });
-          API.createFbUser().then(({data})=> console.log(data))
           localStorage.setItem('token', response.authResponse.accessToken)
-          // check if user is logged in on refresh
-          console.log('tim')
-          self.toggleAuthenticateStatus()
         } else {
           console.log('User cancelled login or did not fully authorize.');
         }
@@ -65,8 +64,6 @@ class App extends Component {
       js.src = "//connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-
-  
 }
 
   render() {
@@ -79,7 +76,7 @@ class App extends Component {
                 <Link to="/home">Home</Link><br/>
                 <Link to="/about">About</Link><br/>
                 <Link to="/leaderboard">Leaderboard</Link><br/>
-                <Link to="/logout">Log out</Link><br/>
+                <Link to="/logout" >Log out</Link><br/>
               </div>
             ) : 
             (
@@ -89,13 +86,13 @@ class App extends Component {
               </div>
             )}/>
           <Switch>
-            <PropsRoute exact path="/" authenticated={this.state.authenticated} component={Main} toggleAuthenticateStatus={this.toggleAuthenticateStatus}/>
+            <PropsRoute exact path="/" component={Main} toggleAuthenticateStatus={this.toggleAuthenticateStatus} authenticated={this.state.authenticated}/>
             <PropsRoute exact path="/about" component={About} />
             <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
             <PropsRoute exact path="/contact" component={Contact} />
             {/* <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={this.toggleAuthenticateStatus} /> */}
             {/* <LoggedOutRoute path="/signup" component={SignUpPage}/> */}
-            <Route path="/logout" component={LogoutFunction}/>
+            <Route path="/logout" component={LogoutFunction} toggleAuthenticateStatus={this.toggleAuthenticateStatus}/>
           </Switch>
         </div>
       </Router>
