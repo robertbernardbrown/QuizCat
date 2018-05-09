@@ -7,9 +7,9 @@ export default {
         console.log(index)
         return axios.get(index);
     },
-    getCategory: () => {
+    getCategory: (token) => {
         console.log("GET should be hitting /api/category")
-        return axios.get("/api/category")
+        return axios.get("/api/category", {headers: {Authorization: `bearer ${token}`}})
     },
     updateCategory: () => {
         console.log("PUT should be hitting /api/category")

@@ -53,7 +53,7 @@ class Main extends Component {
     }
 
     checkCategory = () => {
-    API.getCategory()
+    API.getCategory(Auth.getToken())
     .then(res => {
         console.log(res)
         this.setState({
@@ -175,7 +175,7 @@ class Main extends Component {
     render() {
         return (
             <div>
-                <Header/>
+                <Header/> 
                 <Wrapper>
                 {this.props.authenticated ? 
                 // {/* render quiz if quiztime, else show countdown and about components */}
@@ -191,7 +191,7 @@ class Main extends Component {
                 <div>
                     <p>Please login or signup to play the quiz!</p>
                     <div className="container">
-                        <Route exact path="/" render={(props) => <LoginPage {...props} toggleAuthenticateStatus={this.props.toggleAuthenticateStatus} />} />
+                        <Route render={(props) => <LoginPage {...props} toggleAuthenticateStatus={this.props.toggleAuthenticateStatus} />} />
                         {/* <LoginPage toggleAuthenticateStatus={this.props.toggleAuthenticateStatus}/> */}
                     </div>
                 </div>
