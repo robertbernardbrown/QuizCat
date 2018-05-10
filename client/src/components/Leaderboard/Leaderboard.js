@@ -8,7 +8,7 @@ const Leaderboard = (props) => (
             <div className="row">
                 <div className="col-md-4 col-sm-4 col-xs-4 text-center">Name</div>
                 <div className="col-md-4 col-sm-4 col-xs-4 text-center">Category</div>
-                <div className="col-md-4 col-sm-4 col-xs-4 text-center">Time Elapsed</div>
+                <div className="col-md-4 col-sm-4 col-xs-4 text-center">Times</div>
             </div>
             {props.scores.map(cur => 
             <div key={cur._id} className="list-group-item row">
