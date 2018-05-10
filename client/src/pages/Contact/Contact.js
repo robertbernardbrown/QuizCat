@@ -7,7 +7,6 @@ import ContactComp from "../../components/Contact";
 
 const Contact = () => (
     <div>
-        <SideBar/>
         <Header/>
         <Wrapper>
             <ContactComp/>

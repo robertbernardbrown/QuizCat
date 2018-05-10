@@ -7,11 +7,10 @@ import AboutComp from "../../components/About";
 
 const About = () => (
     <div>
-        <SideBar/>
         <Header/>
         <Wrapper>
             <AboutComp/>
-        </Wrapper>
+        </Wrapper> 
         <Footer/>
     </div>
 )
