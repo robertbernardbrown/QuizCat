@@ -14,6 +14,11 @@ router.get("/user", (req, res) => {
 
 router.route("/scores")
     .post(quizController.saveScore)
+
+router.route("/getScores")
+    .get(quizController.fetchScore)
+
+router.route("/getScores/:category")
     .get(quizController.fetchScore)
 
 router.route("/category")
