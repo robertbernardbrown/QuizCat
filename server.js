@@ -18,7 +18,7 @@ const app = express();
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGODB_URI || config.dbUri);
 
-// Serve up static assets (usually on heroku)
+// Serve up static assets
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
