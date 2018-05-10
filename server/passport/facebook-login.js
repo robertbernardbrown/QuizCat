@@ -1,6 +1,6 @@
 const db = require("../../models");
 const FacebookStrategy = require('passport-facebook-token');
-const config = require("../../config/index");
+const config = (require("../../config/index") || process.env);
 
 module.exports = new FacebookStrategy({
   clientID: config.oauth.facebook.clientID,
