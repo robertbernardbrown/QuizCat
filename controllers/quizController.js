@@ -1,4 +1,5 @@
 const db = require("../models");
+const mongoose = require("mongoose");
 
 module.exports = {
   //go into db and fetch saved categories
@@ -47,14 +48,14 @@ module.exports = {
     });
   },
   fetchScore: (req, res) => {
-  //go into db and clear non-saved articles
-  db.Score.find({})
-    .where('userName').equals(req)
-    .then(function (data) {
-      // let articleObj = {
-      //   article: data
-      // };
-      res.redirect("/");
+    let data = {
+      category: req.params
+    }
+    console.log(data.category);
+    db.Score.find(data.category ? data.category : {})
+    .sort({ timeFinished: 1 })
+    .then(data => {
+      res.json(data);
     })
     .catch(err => {
       res.json(err);

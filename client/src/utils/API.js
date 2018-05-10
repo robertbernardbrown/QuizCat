@@ -31,6 +31,9 @@ export default {
     saveScore: (userData, token) => {
         axios.post("/api/scores", userData, {headers: {Authorization: `bearer ${token}`}});
     },
+    fetchScores: (category, token) => {
+        return axios.get("/api/getScores/" + category, {headers: {Authorization: `bearer ${token}`}});
+    },
     fetchId: (name) => {
         console.log(name);
         return axios.get("/user/getid", { 

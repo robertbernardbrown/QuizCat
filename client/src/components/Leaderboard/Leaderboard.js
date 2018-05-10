@@ -1,14 +1,10 @@
-import React, {Component} from "react";
+import React from "react";
 import "./Leaderboard.css";
 
-class Leaderboard extends Component {
-    render() {
-        return (
-            <div className="container">
-                <p>Stand-in Leaderboard</p>
-            </div>
-        )
-    }
-}
+const Leaderboard = (props) => (
+    <div className="container">
+        {props ? <div>{props.scores.map(cur=><p key={cur._id}>{cur.name}</p>)}</div> : <div>No scores to display</div>}
+    </div>
+)
 
 export default Leaderboard;
