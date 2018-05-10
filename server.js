@@ -2,11 +2,16 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const passport = require('passport')
-const config = require("./config/index" || process.env);
 const PORT = process.env.PORT || 3001;
 const {firstChange, secondChange} = require("./utils/randomCat");
 const routes = require("./routes");
 const authCheckMiddleware = require("./server/middleware/auth-check");
+let config;
+if(process.env.dbUri) {
+  config = process.env
+} else {
+  config = require("./config/index");
+}
 
 const app = express();
 
