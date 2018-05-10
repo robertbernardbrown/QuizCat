@@ -21,7 +21,7 @@ module.exports = {
   getId: (req, res) => {
     console.log(req)
     db.User.find({})
-    .where("nameUser").equals(req.query.name)
+    .where("userName").equals(req.query.name)
     .then(data => {
       res.status(200).json(data);
     })

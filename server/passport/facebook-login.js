@@ -20,7 +20,7 @@ async (accessToken, refreshToken, profile, done) => {
         } 
         const newUser = {
             idUser : profile.id,
-            nameUser : profile.name.givenName,
+            userName : profile.name.givenName,
             email : profile.emails[0].value
         };
         console.log("New user:" + newUser);

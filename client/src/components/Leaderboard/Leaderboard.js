@@ -3,7 +3,21 @@ import "./Leaderboard.css";
 
 const Leaderboard = (props) => (
     <div className="container">
-        {props ? <div>{props.scores.map(cur=><p key={cur._id}>{cur.name}</p>)}</div> : <div>No scores to display</div>}
+        {props ? 
+        <div>
+            <div className="row">
+                <div className="col-md-4 col-sm-4 col-xs-4 text-center">Name</div>
+                <div className="col-md-4 col-sm-4 col-xs-4 text-center">Category</div>
+                <div className="col-md-4 col-sm-4 col-xs-4 text-center">Time Elapsed</div>
+            </div>
+            {props.scores.map(cur => 
+            <div key={cur._id} className="list-group-item row">
+                <div className="col-md-4 col-sm-4 col-xs-4 text-center">{cur.userName[0].name}</div>
+                <div className="col-md-4 col-sm-4 col-xs-4 text-center">{cur.category}</div>
+                <div className="col-md-4 col-sm-4 col-xs-4 text-center">{cur.timeFinished}</div>
+            </div>)}
+        </div> : 
+        <div>No scores to display</div>}
     </div>
 )
 
