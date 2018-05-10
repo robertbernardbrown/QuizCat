@@ -36,7 +36,7 @@ class App extends Component {
           <SideBar login={this.state.authenticated ? 
             (
               <div>
-                <Link to="/home">Home</Link><br/>
+                <Link to="/">Home</Link><br/>
                 <Link to="/about">About</Link><br/>
                 <Link to="/leaderboard">Leaderboard</Link><br/>
                 <Link to="/contact">Contact</Link><br/>
@@ -47,6 +47,7 @@ class App extends Component {
               <div>
                 <Link to="/">Log in</Link><br/>
                 <Link to="/signup">Sign up</Link><br/>
+                <Link to="/about">About</Link><br/>
                 <Link to="/contact">Contact</Link>
               </div>
             )}/>
@@ -55,7 +56,6 @@ class App extends Component {
             <PropsRoute exact path="/about" component={About} />
             <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
             <PropsRoute exact path="/contact" component={Contact} />
-            {/* <LoggedOutRoute path="/login" component={Main} toggleAuthenticateStatus={this.toggleAuthenticateStatus} /> */}
             <LoggedOutRoute path="/signup" component={SignupPage} toggleAuthenticateStatus={this.toggleAuthenticateStatus}/>
             <PropsRoute path="/logout" component={LogoutFunction} toggleAuthenticateStatus={this.toggleAuthenticateStatus}/>
           </Switch>

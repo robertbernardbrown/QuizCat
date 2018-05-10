@@ -7,7 +7,6 @@ import LeaderboardComp from "../../components/Leaderboard/Leaderboard";
 
 const Leaderboard = () => (
     <div>
-        <SideBar/>
         <Header/>
         <Wrapper>
             <LeaderboardComp/>
