@@ -7,9 +7,9 @@ export default {
         console.log(index)
         return axios.get(index);
     },
-    getCategory: () => {
+    getCategory: (token) => {
         console.log("GET should be hitting /api/category")
-        return axios.get("/api/category")
+        return axios.get("/api/category", {headers: {Authorization: `bearer ${token}`}})
     },
     updateCategory: () => {
         console.log("PUT should be hitting /api/category")
@@ -24,20 +24,12 @@ export default {
         axios.post("/user/login",  userData),
     signUp: userData => 
   	    axios.post('/user/signup', userData),
-    // quiz: token => {
-    //     console.log(token);
-    //     return axios.get('/api/user', {headers: {Authorization: `bearer ${token}`}})
-    // },
     quiz: token => {
         console.log(token);
-        return axios.get("https://graph.facebook.com/me?access_token="+token)
+        return axios.get('/api/user', {headers: {Authorization: `bearer ${token}`}})
     },
-    getUser: token => {
-        console.log(token);
-        return axios.get("https://graph.facebook.com/me?access_token="+token);
-    },
-    saveScore: (userData) => {
-        axios.post("/api/scores", userData);
+    saveScore: (userData, token) => {
+        axios.post("/api/scores", userData, {headers: {Authorization: `bearer ${token}`}});
     },
     fetchId: (name) => {
         console.log(name);

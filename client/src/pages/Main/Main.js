@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { Route , withRouter} from 'react-router-dom';
 import Header from "../../components/Header";
 import Wrapper from "../../components/Wrapper";
 import Footer from "../../components/Footer";
@@ -8,6 +9,8 @@ import Quiz from "../../components/Quiz";
 import FeedbackModal from "../../components/Modal";
 import API from "../../utils/API";
 import Auth from "../../utils/Auth";
+import LoginPage from "../LoginPage";
+import SignupPage from "../SignupPage";
 
 class Main extends Component {
 
@@ -30,33 +33,28 @@ class Main extends Component {
 
     //on mount, set start time and countdown state
     componentDidMount = () => {
+        this.getUserInfo();
         this.setTime();
-        this.checkLoginStatus();
         this.setState({
             winner: false
         })
         this.checkCategory();
+        this.props.toggleAuthenticateStatus();
     }
 
-    checkLoginStatus = () => {
+    getUserInfo = () => {
         API.quiz(Auth.getToken())
-        .then(nameRes => {
-            console.log(nameRes);
-            // API.fetchId(nameRes.data.name)
-            // .then(idRes => {
-            //     console.log(this.state.name, idRes)
-            //     if (idRes) {
-                    this.setState({
-                        user: nameRes.data.name,
-                        user_id: nameRes.data.id
-                    });
-            //     }
-            // })
+        .then(res => {
+            console.log(res);
+            this.setState({
+                user: res.data.user,
+                user_id: res.data.user_id
+            });
         })
     }
 
     checkCategory = () => {
-    API.getCategory()
+    API.getCategory(Auth.getToken())
     .then(res => {
         console.log(res)
         this.setState({
@@ -69,8 +67,8 @@ class Main extends Component {
     setTime = () => {
         let start1 = new Date();
         let start2 = new Date();
-        start1.setHours(19, 2, 40)
-        start2.setHours(15, 38, 0)
+        start1.setHours(20, 2, 0)
+        start2.setHours(20, 3, 0)
         this.setState({
             start: start1,
             nextStart: start2,
@@ -161,7 +159,8 @@ class Main extends Component {
             timeFinished: this.state.timeSince, 
             category: this.state.randomCat
         }
-        API.saveScore(userScore)
+        console.log(userScore);
+        API.saveScore(userScore, Auth.getToken())
     }
   
     //close modal
@@ -178,9 +177,9 @@ class Main extends Component {
     render() {
         return (
             <div>
-                <Header/>
+                <Header/> 
                 <Wrapper>
-                {this.state.user ? 
+                {this.props.authenticated ? 
                 // {/* render quiz if quiztime, else show countdown and about components */}
                     this.state.quizTime && this.state.stillIn ? 
                         <Quiz user={this.state.user} handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince} category={this.state.randomCat}/> 
@@ -192,8 +191,10 @@ class Main extends Component {
                     </div>
                 :
                 <div>
-                    <p>Please login to play the quiz!</p>
-                    <div className="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false">
+                    <p>Please login or signup to play the quiz!</p>
+                    <div className="container">
+                        <Route render={(props) => <LoginPage {...props} toggleAuthenticateStatus={this.props.toggleAuthenticateStatus} />} />
+                        {/* <LoginPage toggleAuthenticateStatus={this.props.toggleAuthenticateStatus}/> */}
                     </div>
                 </div>
                 }

@@ -4,20 +4,13 @@ const router = require("express").Router();
 const quizController = require("../../controllers/quizController");
 
 // "/api/x routes
-router.route("/user")
-    .get((req, res) => {
-        // let split = req.headers.authorization.split(" ");
-        // let token = split[1];
-        // console.log("https://graph.facebook.com/me?access_token="+token)
-        // https.get("https://graph.facebook.com/me?access_token="+token, res => {
-        //     console.log(res.data);
-        // })
+router.get("/user", (req, res) => {
     res.status(200).json({
-      message: "You're authorized to see this secret message.",
-      // user values passed through from auth middleware
-      user: req.user
-    });
-  });
+        // user values passed through from auth middleware
+        user: req.user.name,
+        user_id: req.user._id
+      });
+})
 
 router.route("/scores")
     .post(quizController.saveScore)

@@ -8,9 +8,9 @@ import Contact from "../src/pages/Contact";
 import Leaderboard from "../src/pages/Leaderboard";
 import SideBar from "./components/SideBar";
 import { PrivateRoute, PropsRoute, LoggedOutRoute } from './components/Routes';
-// import LoginPage from './pages/LoginPage.jsx';
+import LoginPage from './pages/LoginPage';
 import LogoutFunction from './pages/LogoutFunction';
-// import SignUpPage from './pages/SignUpPage.jsx';
+import SignupPage from './pages/SignupPage';
 import Auth from './utils/Auth';
 
 class App extends Component {
@@ -39,23 +39,25 @@ class App extends Component {
                 <Link to="/home">Home</Link><br/>
                 <Link to="/about">About</Link><br/>
                 <Link to="/leaderboard">Leaderboard</Link><br/>
-                <Link to="/logout">Log out</Link><br/>
+                <Link to="/contact">Contact</Link><br/>
+                <Link to="/logout">Log out</Link>
               </div>
             ) : 
             (
               <div>
-                <Link to="/login">Log in</Link><br/>
-                <Link to="/signup">Sign up</Link>
+                <Link to="/">Log in</Link><br/>
+                <Link to="/signup">Sign up</Link><br/>
+                <Link to="/contact">Contact</Link>
               </div>
             )}/>
           <Switch>
-            <PropsRoute exact path="/" component={Main} />
+            <PropsRoute exact path="/" component={Main} authenticated={this.state.authenticated} toggleAuthenticateStatus={this.toggleAuthenticateStatus}/>
             <PropsRoute exact path="/about" component={About} />
             <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
             <PropsRoute exact path="/contact" component={Contact} />
-            {/* <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={this.toggleAuthenticateStatus} /> */}
-            {/* <LoggedOutRoute path="/signup" component={SignUpPage}/> */}
-            <Route path="/logout" component={LogoutFunction}/>
+            {/* <LoggedOutRoute path="/login" component={Main} toggleAuthenticateStatus={this.toggleAuthenticateStatus} /> */}
+            <LoggedOutRoute path="/signup" component={SignupPage} toggleAuthenticateStatus={this.toggleAuthenticateStatus}/>
+            <PropsRoute path="/logout" component={LogoutFunction} toggleAuthenticateStatus={this.toggleAuthenticateStatus}/>
           </Switch>
         </div>
       </Router>

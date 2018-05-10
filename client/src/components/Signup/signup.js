@@ -1,19 +1,32 @@
-import "./Login.css";
 import React from 'react';
+import "./signup.css";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-// import Bootstrap from 'react-bootstrap';
 // import { Card, CardText } from 'material-ui/Card';
 // import RaisedButton from 'material-ui/RaisedButton';
 // import TextField from 'material-ui/TextField';
 
-const LoginForm = ({onSubmit,onChange,errors,successMessage,user,toggleAuthenticateStatus}) => (
+const SignUpForm = ({
+  onSubmit,
+  onChange,
+  errors,
+  user,
+}) => (
   <div className="container">
     <form action="/" onSubmit={onSubmit}>
-      <h2 className="login-heading">Login</h2>
+      <h2 className="card-heading">Sign Up</h2>
 
-      {successMessage && <p className="success-message">{successMessage}</p>}
       {errors.summary && <p className="error-message">{errors.summary}</p>}
+
+      <div className="field-line">
+        <input
+            placeholder={errors.name ? errors.name.toString() : "Name"}
+            name="name"
+            className={errors.name ? "has-error" : ""}
+            onChange={onChange}
+            value={user.name}
+        />
+      </div>
 
       <div className="field-line">
         <input
@@ -37,20 +50,19 @@ const LoginForm = ({onSubmit,onChange,errors,successMessage,user,toggleAuthentic
       </div>
 
       <div className="button-line">
-        <button className="btn btn-primary" type="submit">Log-In</button>
+        <button className="btn btn-primary" type="submit">Sign-Up</button>
       </div>
 
-      <p>Don't have an account? <Link to={'/signup'}>Create one</Link>.</p>
+      <p>Already have an account? <Link to={'/'}>Log in</Link></p>
     </form>
   </div>
 );
 
-LoginForm.propTypes = {
+SignUpForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
-  successMessage: PropTypes.string.isRequired,
   user: PropTypes.object.isRequired
 };
 
-export default LoginForm;
+export default SignUpForm;
