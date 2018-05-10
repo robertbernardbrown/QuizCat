@@ -7,7 +7,7 @@ const {firstChange, secondChange} = require("./utils/randomCat");
 const routes = require("./routes");
 const authCheckMiddleware = require("./server/middleware/auth-check");
 let config;
-if(process.env.dbUri) {
+if(process.env.MONGODB_URI) {
   config = process.env
 } else {
   config = require("./config/index");
