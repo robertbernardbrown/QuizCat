@@ -33,10 +33,11 @@ module.exports = {
       category: req.body.category,
       timeFinished: req.body.timeFinished,
     }
+    console.log(scoreRecord);
     db.Score.create(scoreRecord)
     .then(function (data) {
       console.log("Data:" + data)
-      db.User.findOneAndUpdate({idUser: scoreRecord.userId}, { $push: {score:data} }, { new: true })
+      db.User.findOneAndUpdate({_id: scoreRecord.userId}, { $push: {score:data} }, { new: true })
       .then( record => {
         console.log("Record:" + record)
       })

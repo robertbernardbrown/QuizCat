@@ -28,8 +28,8 @@ export default {
         console.log(token);
         return axios.get('/api/user', {headers: {Authorization: `bearer ${token}`}})
     },
-    saveScore: (userData) => {
-        axios.post("/api/scores", userData);
+    saveScore: (userData, token) => {
+        axios.post("/api/scores", userData, {headers: {Authorization: `bearer ${token}`}});
     },
     fetchId: (name) => {
         console.log(name);

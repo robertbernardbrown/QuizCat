@@ -67,8 +67,8 @@ class Main extends Component {
     setTime = () => {
         let start1 = new Date();
         let start2 = new Date();
-        start1.setHours(19, 2, 40)
-        start2.setHours(15, 38, 0)
+        start1.setHours(20, 2, 0)
+        start2.setHours(20, 3, 0)
         this.setState({
             start: start1,
             nextStart: start2,
@@ -159,7 +159,8 @@ class Main extends Component {
             timeFinished: this.state.timeSince, 
             category: this.state.randomCat
         }
-        API.saveScore(userScore)
+        console.log(userScore);
+        API.saveScore(userScore, Auth.getToken())
     }
   
     //close modal
