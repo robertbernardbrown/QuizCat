@@ -1,6 +1,6 @@
 const db = require("../models");
 const JWT = require('jsonwebtoken');
-const { JWT_SECRET } = (require('../config') || process.env)
+const { JWT_SECRET } = require('../config' || process.env)
 
 signToken = user => {
   return JWT.sign({
