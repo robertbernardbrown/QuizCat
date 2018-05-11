@@ -43,15 +43,23 @@ class Leaderboard extends Component {
     }
 
     componentDidMount() {
+        this.fetchScores();
+    }
+
+    fetchScores = () => {
         API.fetchScores(this.state.category, Auth.getToken())
         .then(res=> {
             console.log(res);
             this.setState({
                 scores: res.data
             });
-        }).then(() => {
-            console.log(this.state.scores)
         })
+    }
+
+    filterCategory = (category) => {
+        this.setState({
+            category: category
+        }, this.fetchScores);
     }
 
     render() {
@@ -59,7 +67,7 @@ class Leaderboard extends Component {
         <div>
             <Header/>
             <Wrapper>
-                <LeaderboardFilter categories={this.state.categories}/>
+                <LeaderboardFilter categories={this.state.categories} filterCategory={this.filterCategory}/>
                 <LeaderboardComp scores={this.state.scores}/>
             </Wrapper>
             <Footer/>

@@ -4,30 +4,34 @@ import {DropdownButton, MenuItem} from "react-bootstrap";
 
 const LeaderboardFilter = (props) => (
     <DropdownButton title="Filter Category" bsStyle="primary" id="category-filter" className="scrollable-menu">
-            <MenuItem eventKey="1">Any</MenuItem>
-            <MenuItem eventKey="2">General</MenuItem>
-            <MenuItem eventKey="3">Books</MenuItem>
-            <MenuItem eventKey="4">Film</MenuItem>
-            <MenuItem eventKey="5">Music</MenuItem>
-            <MenuItem eventKey="6">Theatre</MenuItem>
-            <MenuItem eventKey="7">TV</MenuItem>
-            <MenuItem eventKey="8">Video Games</MenuItem>
-            <MenuItem eventKey="9">Board Games</MenuItem>
-            <MenuItem eventKey="10">Nature</MenuItem>
-            <MenuItem eventKey="11">Computers</MenuItem>
-            <MenuItem eventKey="12">Math</MenuItem>
-            <MenuItem eventKey="13">Mythology</MenuItem>
-            <MenuItem eventKey="14">Geography</MenuItem>
-            <MenuItem eventKey="15">History</MenuItem>
-            <MenuItem eventKey="16">Politics</MenuItem>
-            <MenuItem eventKey="17">Art</MenuItem>
-            <MenuItem eventKey="18">Celebrities</MenuItem>
-            <MenuItem eventKey="19">Animals</MenuItem>
-            <MenuItem eventKey="20">Vehicles</MenuItem>
-            <MenuItem eventKey="21">Comics</MenuItem>
-            <MenuItem eventKey="22">Gadgets</MenuItem>
-            <MenuItem eventKey="23">Anime</MenuItem>
-            <MenuItem eventKey="24">Cartoons</MenuItem>
+        {/* {props.categories.map((cur, i) => {
+            <MenuItem eventKey={i}>{cur}</MenuItem>
+        })} */}
+        {/* This is gross. Need to find a way to iterate through dropdown options */}
+        <MenuItem onSelect={props.filterCategory} eventKey="Any">Any</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="General">General</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Books">Books</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Film">Film</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Music">Music</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Theatre">Theatre</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="TV">TV</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Video Games">Video Games</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Board Games">Board Games</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Nature">Nature</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Computers">Computers</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Math">Math</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Mythology">Mythology</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Geography">Geography</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="History">History</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Politics">Politics</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Art">Art</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Celebrities">Celebrities</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Animals">Animals</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Vehicles">Vehicles</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Comics">Comics</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Gadgets">Gadgets</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Anime">Anime</MenuItem>
+        <MenuItem onSelect={props.filterCategory} eventKey="Cartoons">Cartoons</MenuItem>
     </DropdownButton>
 )
 

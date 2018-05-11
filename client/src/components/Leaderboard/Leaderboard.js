@@ -2,8 +2,9 @@ import React from "react";
 import "./Leaderboard.css";
 
 const Leaderboard = (props) => (
+    console.log(props.scores),
     <div className="container">
-        {props ? 
+        {props.scores.length ? 
         <div>
             <div className="row">
                 <div className="col-md-4 col-sm-4 col-xs-4 text-center">Name</div>
