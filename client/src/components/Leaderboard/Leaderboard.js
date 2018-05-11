@@ -18,7 +18,7 @@ const Leaderboard = (props) => (
             </div>)}
         </div> : 
         <div>No scores to display</div>}
-    </div>
+    </div> 
 )
 
 export default Leaderboard;
