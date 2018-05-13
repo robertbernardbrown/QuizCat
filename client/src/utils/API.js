@@ -32,7 +32,10 @@ export default {
         axios.post("/api/scores", userData, {headers: {Authorization: `bearer ${token}`}});
     },
     fetchScores: (category, token) => {
-        return axios.get("/api/getScores/" + category, {headers: {Authorization: `bearer ${token}`}});
+        return axios.get("/api/getScores/"+category, {headers: {Authorization: `bearer ${token}`}});
+    },
+    fetchUserScores: (user, token) => {
+        return axios.get("/api/getUserScores/"+user, {headers: {Authorization: `bearer ${token}`}});
     },
     fetchId: (name) => {
         console.log(name);

@@ -40,7 +40,8 @@ class Leaderboard extends Component {
             'Anime',
             'Cartoons',
         ],
-        category: ""
+        category: "",
+        searchUser: ""
     }
 
     componentDidMount() {
@@ -63,6 +64,24 @@ class Leaderboard extends Component {
         }, this.fetchScores);
     }
 
+    userSearch = (e) => {
+        e.preventDefault();
+        API.fetchUserScores(this.state.searchUser, Auth.getToken())
+        .then(res => {
+            console.log(res);
+            this.setState({
+                scores: res.data
+            })
+        })
+    }
+
+    onChange = (e) =>{
+        console.log(e.target);
+        this.setState({
+            searchUser: e.target.value
+        });
+    }
+
     className = "col-md-6 col-sm-6 col-xs-12";
 
     render() {
@@ -71,7 +90,7 @@ class Leaderboard extends Component {
             <Header/>
             <Wrapper>
                 <div className="row">
-                    <LeaderboardSearch className={this.className}/>
+                    <LeaderboardSearch className={this.className} userSearch={this.userSearch} onChange={this.onChange}/>
                     <LeaderboardFilter className={this.className} categories={this.state.categories} filterCategory={this.filterCategory}/>
                 </div>
                 <LeaderboardComp scores={this.state.scores}/>

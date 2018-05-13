@@ -6,7 +6,7 @@ const LeaderboardFilter = (props) => (
     <div className={props.className + " right"}>
     <DropdownButton title="Filter Category" bsStyle="primary btn-block" id="category-filter" className="scrollable-menu">
         {props.categories.map((cur, i) => (
-            <MenuItem eventKey={cur} bsClass="menu-item" onSelect={props.filterCategory}>{cur}</MenuItem>
+            <MenuItem key={i} eventKey={cur} bsClass="menu-item" onSelect={props.filterCategory}>{cur}</MenuItem>
         ))}
     </DropdownButton>
     </div>

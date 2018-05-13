@@ -50,11 +50,27 @@ module.exports = {
     let data = {
       category: req.params
     }
-    console.log(data.category);
+    console.log(data);
     db.Score.find(data.category ? data.category : {})
     .sort({ timeFinished: 1 })
     .limit( 10 )
     .populate('userName', 'name')
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+  },
+  fetchUserScore: (req, res) => {
+    let data = {
+      name: req.params
+    }
+    console.log(data);
+    db.User.find(data.name ? data.name : {})
+    .sort({ timeFinished: 1 })
+    .limit( 10 )
+    .populate('score')
     .then(data => {
       res.json(data);
     })

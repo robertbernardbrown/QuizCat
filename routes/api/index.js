@@ -21,6 +21,9 @@ router.route("/getScores")
 router.route("/getScores/:category")
     .get(quizController.fetchScore)
 
+router.route("/getUserScores/:name")
+    .get(quizController.fetchUserScore)
+
 router.route("/category")
     .post(quizController.createCat)
     .get(quizController.fetchCategory)
