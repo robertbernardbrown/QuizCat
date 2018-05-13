@@ -7,6 +7,7 @@ import LeaderboardComp from "../../components/Leaderboard/Leaderboard";
 import LeaderboardFilter from "../../components/LeaderboardFilter";
 import API from "../../utils/API";
 import Auth from "../../utils/Auth";
+import LeaderboardSearch from "../../components/LeaderboardSearch";
 
 class Leaderboard extends Component { 
 
@@ -62,12 +63,17 @@ class Leaderboard extends Component {
         }, this.fetchScores);
     }
 
+    className = "col-md-6 col-sm-6 col-xs-12";
+
     render() {
         return(
         <div>
             <Header/>
             <Wrapper>
-                <LeaderboardFilter categories={this.state.categories} filterCategory={this.filterCategory}/>
+                <div className="row">
+                    <LeaderboardSearch className={this.className}/>
+                    <LeaderboardFilter className={this.className} categories={this.state.categories} filterCategory={this.filterCategory}/>
+                </div>
                 <LeaderboardComp scores={this.state.scores}/>
             </Wrapper>
             <Footer/>

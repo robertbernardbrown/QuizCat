@@ -53,6 +53,7 @@ module.exports = {
     console.log(data.category);
     db.Score.find(data.category ? data.category : {})
     .sort({ timeFinished: 1 })
+    .limit( 10 )
     .populate('userName', 'name')
     .then(data => {
       res.json(data);
