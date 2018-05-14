@@ -1,6 +1,11 @@
 const jwt = require('jsonwebtoken');
 const User = require('mongoose').model('User');
-const config = require('../../config/index');
+let config;
+if(process.env.JWT_SECRET) {
+  config = process.env
+} else {
+  config = require("../../config/index");
+}
 
 /**
  *  The Auth Checker middleware function.

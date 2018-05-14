@@ -2,18 +2,23 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const passport = require('passport')
-const config = require("./config/index");
 const PORT = process.env.PORT || 3001;
 const {firstChange, secondChange} = require("./utils/randomCat");
 const routes = require("./routes");
 const authCheckMiddleware = require("./server/middleware/auth-check");
+let config;
+if(process.env.MONGODB_URI) {
+  config = process.env
+} else {
+  config = require("./config/index");
+}
 
 const app = express();
 
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGODB_URI || config.dbUri);
 
-// Serve up static assets (usually on heroku)
+// Serve up static assets
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
