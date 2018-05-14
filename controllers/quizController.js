@@ -29,7 +29,7 @@ module.exports = {
   saveScore: (req, res) => {
     // console.log(req);
     let scoreRecord = {
-      userName: [req.body.userId],
+      userName: req.body.userName,
       category: req.body.category,
       timeFinished: req.body.timeFinished,
     }
@@ -50,10 +50,10 @@ module.exports = {
     let data = {
       category: req.params
     }
-    console.log(data.category);
+    console.log(data);
     db.Score.find(data.category ? data.category : {})
     .sort({ timeFinished: 1 })
-    .populate('userName', 'name')
+    .limit( 10 )
     .then(data => {
       res.json(data);
     })
@@ -61,93 +61,21 @@ module.exports = {
       res.json(err);
     });
   },
-
-  saveArticle: (req, res) => {
-  //go into db and clear non-saved articles
-  let id = req.params.id;
-  let query = { _id: id };
-  db.Article.findByIdAndUpdate(id, { saved: true })
-  .then(function(data){
-    console.log(data);
-  })
-  .catch(err=>{
-    res.json(err);
-  })
-  res.redirect("/");
-  },
-
-  unsaveArticle: (req, res) => {
-  //go into db and clear non-saved articles
-  let id = req.params.id;
-  console.log(id);
-  let query = { _id: id };
-  db.Article.findByIdAndUpdate(id, { saved: false })
-  .then(function(data){
-    console.log(data);
-    res.redirect("saved");
-  })
-  .catch(err=>{
-    res.json(err);
-  })
-  },
-
-  fetchData: (req, res) => {
-  var url = "https://hackernoon.com/tagged/software-development";
-    request(url, (error, response, html)=>{
-      if (error) throw error;
-      var $ = cheerio.load(html);
-        $(".postArticle").each(function (i, element) {
-          let item = {
-            author: $(element).find("[data-user-id]").text(),
-            title: $(element).find(".graf--title").text(),
-            image: $(element).find("div.aspectRatioPlaceholder").children().next().attr("src"),
-            published: $(element).find("time").text(),
-            url: $(element).find(".postArticle-content").parent().attr("href")
-          }
-          db.Article.create(item)
-          .then(function(){
-            res.redirect("/");
-          })
-          .catch(err=>{
-            console.log(err);
-            res.redirect("/");
-          });
-        })
+  fetchUserScore: (req, res) => {
+    let data = {
+      userName: req.params
+    }
+    console.log(data.userName);
+    db.Score.find(data.userName)
+    .sort({ timeFinished: 1 })
+    .limit( 10 )
+    .populate('score')
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      res.json(err);
     });
-  },
-
-  clearSaved: (req, res) => {
-  db.Note.remove({});
-  db.Article.remove()
-  .where('saved').equals('true')
-  .then(function (data) {
-    res.render("saved");
-  })
-  .catch(err => {
-    res.json(err);
-  });
-  },
-
-  articleNotesGet: (req, res) =>{
-  let id = req.params.id;
-  db.Article.findById({_id:id})
-  .populate("note")
-  .then(data=>{
-    res.json(data);
-  })
-  .catch(err => {
-    res.json(err);
-  });
-  },
-  noteDelete: (req, res)=>{
-  let id = req.params.id;
-  db.Note.findByIdAndRemove(id)
-  .then(function(deleted) {
-    res.redirect("saved");
-  })
-  .catch(err=> {
-    res.json(err);
-  });
   }
 }
 
