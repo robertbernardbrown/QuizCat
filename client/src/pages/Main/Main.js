@@ -11,6 +11,7 @@ import API from "../../utils/API";
 import Auth from "../../utils/Auth";
 import LoginPage from "../LoginPage";
 import SignupPage from "../SignupPage";
+import { PropsRoute } from "../../components/Routes";
 
 class Main extends Component {
 
@@ -31,15 +32,13 @@ class Main extends Component {
         user_id: ""
     }
 
-    //on mount, set start time and countdown state
-    componentDidMount = () => {
+    componentWillMount() {
         this.getUserInfo();
         this.setTime();
         this.setState({
             winner: false
         })
         this.checkCategory();
-        this.props.toggleAuthenticateStatus();
     }
 
     getUserInfo = () => {
@@ -173,15 +172,13 @@ class Main extends Component {
     handleShow = () => {
         this.setState({ show: true });
     }
-  
+
     render() {
         return (
             <div>
                 <Header/> 
                 <Wrapper>
-                {this.props.authenticated ? 
-                // {/* render quiz if quiztime, else show countdown and about components */}
-                    this.state.quizTime && this.state.stillIn ? 
+                {this.state.quizTime && this.state.stillIn ? 
                         <Quiz user={this.state.user} handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince} category={this.state.randomCat}/> 
                     : 
                     <div>
@@ -189,16 +186,7 @@ class Main extends Component {
                         <CountdownComp countdown={this.state.countdown}/>
                         <FeedbackModal show={this.state.show} handleClose={this.handleClose} winner={this.state.winner} timer={this.state.timeSince}/>
                     </div>
-                :
-                <div>
-                    <p>Please login or signup to play the quiz!</p>
-                    <div className="container">
-                        <Route render={(props) => <LoginPage {...props} toggleAuthenticateStatus={this.props.toggleAuthenticateStatus} />} />
-                        {/* <LoginPage toggleAuthenticateStatus={this.props.toggleAuthenticateStatus}/> */}
-                    </div>
-                </div>
                 }
-                    
                 </Wrapper>
                 <Footer/>
             </div>

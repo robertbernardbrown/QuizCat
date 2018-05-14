@@ -3,6 +3,9 @@ import { Route , withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Auth from '../../utils/Auth';
 import LoginForm from '../../components/Login';
+import Header from '../../components/Header';
+import Wrapper from '../../components/Wrapper';
+import Footer from '../../components/Footer';
 import API from '../../utils/API';
 
 class LoginPage extends Component {
@@ -52,7 +55,8 @@ class LoginPage extends Component {
         this.setState({
           errors: {}
         });
-    }).catch(( {response} ) => {
+    })
+    .catch(( {response} ) => {
         console.log(response)
         const errors = response.data.errors ? response.data.errors : {};
         errors.summary = response.data.message;
@@ -83,13 +87,19 @@ class LoginPage extends Component {
    */
   render() {
     return (
-        <LoginForm
-        onSubmit={this.processForm}
-        onChange={this.changeUser}
-        errors={this.state.errors}
-        successMessage={this.state.successMessage}
-        user={this.state.user}
-        />
+      <div>
+        <Header/>
+          <Wrapper>
+          <LoginForm
+          onSubmit={this.processForm}
+          onChange={this.changeUser}
+          errors={this.state.errors}
+          successMessage={this.state.successMessage}
+          user={this.state.user}
+          />
+          </Wrapper>
+        <Footer/>
+      </div>
     );
   }
 
