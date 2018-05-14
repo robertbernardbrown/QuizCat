@@ -2,7 +2,6 @@ import React from "react";
 import "./Leaderboard.css";
 
 const Leaderboard = (props) => (
-    console.log(props.scores),
     <div className="container">
         {props.scores.length ? 
         <div>
@@ -13,7 +12,7 @@ const Leaderboard = (props) => (
             </div>
             {props.scores.map(cur => 
             <div key={cur._id} className="list-group-item row">
-                <div className="item-data col-md-4 col-sm-4 col-xs-4 text-center">{cur.userName[0].name}</div>
+                <div className="item-data col-md-4 col-sm-4 col-xs-4 text-center">{cur.userName}</div>
                 <div className="item-data col-md-4 col-sm-4 col-xs-4 text-center">{cur.category}</div>
                 <div className="item-data col-md-4 col-sm-4 col-xs-4 text-center">{cur.timeFinished}</div>
             </div>)}

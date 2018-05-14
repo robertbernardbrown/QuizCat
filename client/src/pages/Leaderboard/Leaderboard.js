@@ -13,6 +13,7 @@ class Leaderboard extends Component {
 
     state = {
         scores: [],
+        userScores: [],
         categories: [
             'Any',
             'General',
@@ -53,7 +54,7 @@ class Leaderboard extends Component {
         .then(res=> {
             console.log(res);
             this.setState({
-                scores: res.data
+                scores: res.data,
             });
         })
     }
@@ -93,7 +94,7 @@ class Leaderboard extends Component {
                     <LeaderboardSearch className={this.className} userSearch={this.userSearch} onChange={this.onChange}/>
                     <LeaderboardFilter className={this.className} categories={this.state.categories} filterCategory={this.filterCategory}/>
                 </div>
-                <LeaderboardComp scores={this.state.scores}/>
+                <LeaderboardComp scores={this.state.scores} userScores={this.state.userScores}/>
             </Wrapper>
             <Footer/>
         </div>
