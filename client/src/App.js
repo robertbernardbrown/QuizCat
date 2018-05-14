@@ -52,7 +52,7 @@ class App extends Component {
               </div>
             )}/>
           <Switch>
-            <PropsRoute exact path="/" component={Main} authenticated={this.state.authenticated} toggleAuthenticateStatus={this.toggleAuthenticateStatus}/>
+            <PropsRoute exact path="/" component={this.state.authenticated ? Main : LoginPage} authenticated={this.state.authenticated} toggleAuthenticateStatus={this.toggleAuthenticateStatus}/>
             <PropsRoute exact path="/about" component={About} />
             <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
             <PropsRoute exact path="/contact" component={Contact} />
