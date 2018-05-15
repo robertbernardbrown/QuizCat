@@ -45,7 +45,6 @@ class LoginPage extends Component {
       // change the component-container state
         // save the token
         Auth.authenticateUser(res.data.token);
-        console.log(this.props)
 
         // update authenticated state
         this.props.toggleAuthenticateStatus()

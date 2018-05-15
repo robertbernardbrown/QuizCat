@@ -3,13 +3,13 @@ import React from "react";
 const About = () => (
     <div>
         <p>
-            QuizCat is a twice-daily quiz built around a different category for each quiz.
+            QuizCat is an hourly quiz built around offering different randomly-selected categories for each quiz.
         </p>
         <p>
             Each quiz is 12 questions of varying difficulty. Miss one and you're out for the rest of the quiz.
         </p>
         <p>
-            To play, just pull up the site and log-in before the 2pm or 8pm quiz times to play!
+            To play, just pull up the site and log-in before the start of each hour to play!
         </p>
         <p>
             Example Topics:
@@ -18,7 +18,9 @@ const About = () => (
             <li>Film</li>
             <li>Music</li>
             <li>History</li>
-            <li>Science</li>
+            <li>Anime</li>
+            <li>Art</li>
+            <li>Video Games</li>
         </ul>
     </div>
 )
