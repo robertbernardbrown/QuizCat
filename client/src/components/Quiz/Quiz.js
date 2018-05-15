@@ -19,7 +19,7 @@ class Quiz extends Component {
     }
 
     componentDidMount() {
-        API.getQuiz(this.props.category, Auth.getToken())
+        API.getQuiz(Auth.getToken())
         .then(res=>{
             console.log(res)
             //fetch quiz from API

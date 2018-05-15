@@ -12,8 +12,8 @@ router.get("/user", (req, res) => {
       });
 })
 
-router.route("/getQuiz/:category")
-    .get(quizController.getQuiz)
+router.route("/fetchQuiz")
+    .get(quizController.fetchQuiz)
 
 router.route("/scores")
     .post(quizController.saveScore)

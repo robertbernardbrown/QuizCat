@@ -31,14 +31,13 @@ let categories = [
   
   randomCat = () => {
     let index =  categories[Math.floor(Math.random()*categories.length)];
-    console.log(index);
     return index;
   }
    
   const changeCat = schedule.scheduleJob('1 0 * * * *', function(){
     let randomCategory = randomCat();
     quizController.updateCategory(randomCategory);
-    quizController.getQuiz(randomCategory);
+    quizController.createQuiz(randomCategory);
   });
 
   module.exports = changeCat;

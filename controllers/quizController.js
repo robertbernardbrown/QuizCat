@@ -79,16 +79,23 @@ module.exports = {
       res.json(err);
     });
   },
-  getQuiz: (req, res) => {
-    let category = req.params;
-    console.log(category);
-    let index =  dict[category]
+  fetchQuiz: () => {
+    db.Questions.find({})
+    .then(res=> {
+      console.log("Get quiz from DB"+res);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  },
+  createQuiz: (category) => {
+    db.Questions.remove({});
+    let index =  dict[category];
     request(index, (err, res, body)=> {
-      if (err) {
-        console.log(err);
-      }
-      console.log(body);
-      res.json(body);
+      if (err) console.log(err);
+      let parsed = JSON.parse(body);
+      db.Questions.insertMany(parsed.results)
+      .catch(err=> console.log(err));
     })
   }
 }
