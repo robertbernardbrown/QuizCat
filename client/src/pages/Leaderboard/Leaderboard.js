@@ -51,7 +51,6 @@ class Leaderboard extends Component {
     fetchScores = () => {
         API.fetchScores(this.state.category, Auth.getToken())
         .then(res=> {
-            console.log(res);
             this.setState({
                 scores: res.data,
             });

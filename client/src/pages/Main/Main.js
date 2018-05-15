@@ -40,7 +40,6 @@ class Main extends Component {
     getUserInfo = () => {
         API.quiz(Auth.getToken())
         .then(res => {
-            console.log(res);
             this.setState({
                 user: res.data.user,
                 user_id: res.data.user_id
@@ -51,7 +50,6 @@ class Main extends Component {
     checkCategory = () => {
     API.getCategory(Auth.getToken())
     .then(res => {
-        console.log(res)
         this.setState({
             randomCat: res.data[0].category
         })
@@ -62,15 +60,10 @@ class Main extends Component {
     setTime = () => {
         let now = new Date();
         let start = new Date();
-        // let start2 = new Date();
         let hours = now.getHours()
-        // let minutes = now.getMinutes()
         start.setHours(hours, 0, 0, 0);
-        console.log(start);
-        // start2.setHours(13, 2, 0)
         this.setState({
             start: start,
-            // nextStart: start2,
             countdown: this.tickDown()
         })
     }
@@ -82,10 +75,9 @@ class Main extends Component {
 
     tickDown = () => {
         var now = new Date();
-        if (now > this.state.start) { // too late, go to tomorrow
+        if (now > this.state.start) { // too late, go to next hour
           let newStart = this.state.start.setHours(this.state.start.getHours() + 1)
           this.setState({
-            //   start: this.state.nextStart,
               start: newStart,
               stillIn: true
           })
@@ -127,7 +119,6 @@ class Main extends Component {
                 time: now,
                 stopTimer: false,
                 winner: false,
-                // randomCat: this.randomCat()
             })
             this.runTimer();
         }
@@ -158,7 +149,6 @@ class Main extends Component {
             timeFinished: this.state.timeSince, 
             category: this.state.randomCat
         }
-        console.log(userScore);
         API.saveScore(userScore, Auth.getToken())
     }
   
