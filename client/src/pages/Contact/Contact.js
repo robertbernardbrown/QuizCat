@@ -3,9 +3,10 @@ import Header from "../../components/Header";
 import Wrapper from "../../components/Wrapper";
 import Footer from "../../components/Footer";
 import ContactComp from "../../components/Contact";
+import "./Contact.css"
 
 const Contact = () => (
-    <div>
+    <div className="site">
         <Header/>
         <Wrapper>
             <ContactComp/>

@@ -2,9 +2,9 @@ import React from "react";
 import "./Footer.css";
 
 const Footer = () => (
-    <footer className="footer navbar-fixed-bottom" id="footer">
+    <footer className="footer" id="footer">
         <div className="container">
-            <span className="text-muted footer-block">BobBrown 2017</span>
+            <div className="text-muted footer-block">BobBrown©2017</div>
         </div>
     </footer>
 )

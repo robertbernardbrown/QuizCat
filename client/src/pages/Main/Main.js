@@ -8,6 +8,7 @@ import Quiz from "../../components/Quiz";
 import FeedbackModal from "../../components/Modal";
 import API from "../../utils/API";
 import Auth from "../../utils/Auth";
+import "./Main.css"
 
 class Main extends Component {
 
@@ -165,7 +166,7 @@ class Main extends Component {
 
     render() {
         return (
-            <div>
+            <div className="site">
                 <Header/> 
                 <Wrapper>
                 {this.state.quizTime && this.state.stillIn ? 
