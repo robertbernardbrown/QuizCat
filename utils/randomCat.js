@@ -1,5 +1,5 @@
 const schedule = require('node-schedule');
-const controller = require("../controllers/quizController");
+const quizController = require("../controllers/quizController");
 
 let categories = [
     'Any',
@@ -36,7 +36,9 @@ let categories = [
   }
    
   const changeCat = schedule.scheduleJob('1 0 * * * *', function(){
-    controller.updateCategory(randomCat());
+    let randomCategory = randomCat();
+    quizController.updateCategory(randomCategory);
+    quizController.getQuiz(randomCategory);
   });
 
   module.exports = changeCat;
