@@ -62,7 +62,11 @@ class Main extends Component {
         let now = new Date();
         let start = new Date();
         let hours = now.getHours()
-        start.setHours(hours, 0, 0, 0);
+        if (hours === 23) {
+            start.setHours(0, 0, 0, 0);
+        } else {
+            start.setHours(hours+1, 0, 0, 0);
+        }
         this.setState({
             start: start,
             countdown: this.tickDown()
@@ -77,11 +81,17 @@ class Main extends Component {
     tickDown = () => {
         var now = new Date();
         if (now > this.state.start) { // too late, go to next hour
-          let newStart = this.state.start.setHours(this.state.start.getHours() + 1)
-          this.setState({
-              start: newStart,
-              stillIn: true
-          })
+            let start = new Date();
+            let hours = now.getHours()
+            if (hours === 23) {
+                start.setHours(0, 0, 0, 0);
+            } else {
+                start.setHours(hours+1, 0, 0, 0);
+            }
+            this.setState({
+                start: start,
+                stillIn: true
+            })
         }
         var remain = ((this.state.start - now) / 1000);
         // var hh = this.pad((remain / 60 / 60) % 60);
