@@ -7,6 +7,7 @@ import LeaderboardFilter from "../../components/LeaderboardFilter";
 import API from "../../utils/API";
 import Auth from "../../utils/Auth";
 import LeaderboardSearch from "../../components/LeaderboardSearch";
+import "./Leaderboard.css";
 
 class Leaderboard extends Component { 
 
