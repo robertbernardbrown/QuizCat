@@ -64,13 +64,17 @@ class Main extends Component {
     }
 
     setTime = () => {
-        let start1 = new Date();
-        let start2 = new Date();
-        start1.setHours(12, 7, 0)
-        start2.setHours(13, 2, 0)
+        let now = new Date();
+        let start = new Date();
+        // let start2 = new Date();
+        let hours = now.getHours()
+        let minutes = now.getMinutes()
+        start.setHours(hours, 0, 0, 0);
+        console.log(start);
+        // start2.setHours(13, 2, 0)
         this.setState({
-            start: start1,
-            nextStart: start2,
+            start: start,
+            // nextStart: start2,
             countdown: this.tickDown()
         })
     }
@@ -83,19 +87,19 @@ class Main extends Component {
     tickDown = () => {
         var now = new Date();
         if (now > this.state.start) { // too late, go to tomorrow
-          let newStart = this.state.start.setDate(this.state.start.getDate() + 1)
+          let newStart = this.state.start.setHours(this.state.start.getHours() + 1)
           this.setState({
-              start: this.state.nextStart,
-              nextStart: newStart,
+            //   start: this.state.nextStart,
+              start: newStart,
               stillIn: true
           })
         }
         var remain = ((this.state.start - now) / 1000);
-        var hh = this.pad((remain / 60 / 60) % 60);
+        // var hh = this.pad((remain / 60 / 60) % 60);
         var mm = this.pad((remain / 60) % 60);
         var ss = this.pad(remain % 60);
         this.setState({
-            countdown: `${hh}:${mm}:${ss}`
+            countdown: `${mm}:${ss}`
         });
         //run quizTime function to check for "00:00:00" to run quiz
         this.quizTime(this.state.countdown);
@@ -120,7 +124,7 @@ class Main extends Component {
 
     quizTime = (countdown) => {
         var now = new Date();
-        if (countdown === "00:00:00") {
+        if (countdown === "00:00") {
             this.setState({
                 show: false,
                 quizTime: true,
