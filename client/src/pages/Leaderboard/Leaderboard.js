@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import Header from "../../components/Header";
 import Wrapper from "../../components/Wrapper";
 import Footer from "../../components/Footer";
-import SideBar from "../../components/SideBar";
 import LeaderboardComp from "../../components/Leaderboard/Leaderboard";
 import LeaderboardFilter from "../../components/LeaderboardFilter";
 import API from "../../utils/API";
@@ -52,7 +51,6 @@ class Leaderboard extends Component {
     fetchScores = () => {
         API.fetchScores(this.state.category, Auth.getToken())
         .then(res=> {
-            console.log(res);
             this.setState({
                 scores: res.data,
             });

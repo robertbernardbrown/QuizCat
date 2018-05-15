@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import { Route , withRouter} from 'react-router-dom';
 import Header from "../../components/Header";
 import Wrapper from "../../components/Wrapper";
 import Footer from "../../components/Footer";
@@ -9,9 +8,6 @@ import Quiz from "../../components/Quiz";
 import FeedbackModal from "../../components/Modal";
 import API from "../../utils/API";
 import Auth from "../../utils/Auth";
-import LoginPage from "../LoginPage";
-import SignupPage from "../SignupPage";
-import { PropsRoute } from "../../components/Routes";
 
 class Main extends Component {
 
@@ -44,7 +40,6 @@ class Main extends Component {
     getUserInfo = () => {
         API.quiz(Auth.getToken())
         .then(res => {
-            console.log(res);
             this.setState({
                 user: res.data.user,
                 user_id: res.data.user_id
@@ -55,7 +50,6 @@ class Main extends Component {
     checkCategory = () => {
     API.getCategory(Auth.getToken())
     .then(res => {
-        console.log(res)
         this.setState({
             randomCat: res.data[0].category
         })
@@ -64,13 +58,12 @@ class Main extends Component {
     }
 
     setTime = () => {
-        let start1 = new Date();
-        let start2 = new Date();
-        start1.setHours(12, 7, 0)
-        start2.setHours(13, 2, 0)
+        let now = new Date();
+        let start = new Date();
+        let hours = now.getHours()
+        start.setHours(hours, 0, 0, 0);
         this.setState({
-            start: start1,
-            nextStart: start2,
+            start: start,
             countdown: this.tickDown()
         })
     }
@@ -82,20 +75,19 @@ class Main extends Component {
 
     tickDown = () => {
         var now = new Date();
-        if (now > this.state.start) { // too late, go to tomorrow
-          let newStart = this.state.start.setDate(this.state.start.getDate() + 1)
+        if (now > this.state.start) { // too late, go to next hour
+          let newStart = this.state.start.setHours(this.state.start.getHours() + 1)
           this.setState({
-              start: this.state.nextStart,
-              nextStart: newStart,
+              start: newStart,
               stillIn: true
           })
         }
         var remain = ((this.state.start - now) / 1000);
-        var hh = this.pad((remain / 60 / 60) % 60);
+        // var hh = this.pad((remain / 60 / 60) % 60);
         var mm = this.pad((remain / 60) % 60);
         var ss = this.pad(remain % 60);
         this.setState({
-            countdown: `${hh}:${mm}:${ss}`
+            countdown: `${mm}:${ss}`
         });
         //run quizTime function to check for "00:00:00" to run quiz
         this.quizTime(this.state.countdown);
@@ -120,14 +112,13 @@ class Main extends Component {
 
     quizTime = (countdown) => {
         var now = new Date();
-        if (countdown === "00:00:00") {
+        if (countdown === "00:00") {
             this.setState({
                 show: false,
                 quizTime: true,
                 time: now,
                 stopTimer: false,
                 winner: false,
-                // randomCat: this.randomCat()
             })
             this.runTimer();
         }
@@ -158,7 +149,6 @@ class Main extends Component {
             timeFinished: this.state.timeSince, 
             category: this.state.randomCat
         }
-        console.log(userScore);
         API.saveScore(userScore, Auth.getToken())
     }
   
