@@ -79,7 +79,9 @@ module.exports = {
     })
   },
   createQuiz: (category) => {
-    db.Questions.remove({});
+    db.Questions.remove({}, function(){
+      console.log("collection removed");
+    });
     let index =  dict[category];
     request(index, (err, res, body)=> {
       if (err) console.log(err);
