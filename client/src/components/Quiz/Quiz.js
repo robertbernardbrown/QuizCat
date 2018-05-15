@@ -19,12 +19,12 @@ class Quiz extends Component {
     }
 
     componentDidMount() {
-        API.getQuiz(Auth.getToken())
+        API.fetchQuiz(Auth.getToken())
         .then(res=>{
             console.log(res)
             //fetch quiz from API
             this.setState({ 
-                quiz: shuffleArray(res.data.results),
+                quiz: res.data,
             })
             //set initial quiz question
             this.setQuestion();
