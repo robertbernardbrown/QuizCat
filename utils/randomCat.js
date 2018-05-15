@@ -35,11 +35,8 @@ let categories = [
     return index;
   }
    
-  const firstChange = schedule.scheduleJob('2 14 19 * * *', function(){
-    controller.updateCategory(randomCat());
-  });
-  const secondChange = schedule.scheduleJob('2 15 19 * * *', function(){
+  const firstChange = schedule.scheduleJob('/1 * * *', function(){
     controller.updateCategory(randomCat());
   });
 
-  module.exports = {firstChange, secondChange};
+  module.exports = firstChange;

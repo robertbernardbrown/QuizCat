@@ -4,6 +4,7 @@ import shuffleArray from "../../utils/shuffleArray";
 import Question from "../Question";
 import Answer from "../Answer";
 import API from "../../utils/API";
+import Auth from "../../utils/Auth";
 import Timer from "../Timer";
 
 class Quiz extends Component {
@@ -18,7 +19,7 @@ class Quiz extends Component {
     }
 
     componentDidMount() {
-        API.getQuiz(this.props.category)
+        API.getQuiz(this.props.category, Auth.getToken())
         .then(res=>{
             console.log(res)
             //fetch quiz from API

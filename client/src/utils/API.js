@@ -2,10 +2,10 @@ import axios from "axios";
 import dict from "./dict";
 
 export default {
-    getQuiz: (key) => {
-        let index =  dict[key]
+    getQuiz: (category, token) => {
+        let index =  dict[category]
         console.log(index)
-        return axios.get(index);
+        return axios.get("/api/getQuiz/"+category, {headers: {Authorization: `bearer ${token}`}});
     },
     getCategory: (token) => {
         console.log("GET should be hitting /api/category")

@@ -39,7 +39,7 @@ class Main extends Component {
             winner: false
         })
         this.checkCategory();
-    }
+    } 
 
     getUserInfo = () => {
         API.quiz(Auth.getToken())

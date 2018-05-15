@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const passport = require('passport')
 const PORT = process.env.PORT || 3001;
-const {firstChange, secondChange} = require("./utils/randomCat");
+const firstChange = require("./utils/randomCat");
 const routes = require("./routes");
 const authCheckMiddleware = require("./server/middleware/auth-check");
 let config;
@@ -24,7 +24,6 @@ if (process.env.NODE_ENV === "production") {
 }
 
 firstChange;
-secondChange;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

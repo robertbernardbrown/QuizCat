@@ -1,5 +1,7 @@
 const db = require("../models");
 const mongoose = require("mongoose");
+const request = require("request");
+const dict = require("../utils/dict");
 
 module.exports = {
   //go into db and fetch saved categories
@@ -76,6 +78,18 @@ module.exports = {
     .catch(err => {
       res.json(err);
     });
+  },
+  getQuiz: (req, res) => {
+    let category = req.params;
+    console.log(category);
+    let index =  dict[category]
+    request(index, (err, res, body)=> {
+      if (err) {
+        console.log(err);
+      }
+      console.log(body);
+      res.json(body);
+    })
   }
 }
 
