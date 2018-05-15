@@ -4,6 +4,7 @@ import shuffleArray from "../../utils/shuffleArray";
 import Question from "../Question";
 import Answer from "../Answer";
 import API from "../../utils/API";
+import Auth from "../../utils/Auth";
 import Timer from "../Timer";
 
 class Quiz extends Component {
@@ -18,12 +19,12 @@ class Quiz extends Component {
     }
 
     componentDidMount() {
-        API.getQuiz(this.props.category)
+        API.fetchQuiz(Auth.getToken())
         .then(res=>{
             console.log(res)
             //fetch quiz from API
             this.setState({ 
-                quiz: shuffleArray(res.data.results),
+                quiz: res.data,
             })
             //set initial quiz question
             this.setQuestion();

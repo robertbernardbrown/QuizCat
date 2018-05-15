@@ -12,6 +12,9 @@ router.get("/user", (req, res) => {
       });
 })
 
+router.route("/fetchQuiz")
+    .get(quizController.fetchQuiz)
+
 router.route("/scores")
     .post(quizController.saveScore)
 

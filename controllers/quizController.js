@@ -1,5 +1,7 @@
 const db = require("../models");
 const mongoose = require("mongoose");
+const request = require("request");
+const dict = require("../utils/dict");
 
 module.exports = {
   //go into db and fetch saved categories
@@ -11,35 +13,26 @@ module.exports = {
   },
   //update the category for the quiz
   updateCategory: (req, res) => {
-    // console.log(req)
-    // console.log(req.body)
-    // let cat = { category: "Any" }
     db.Category.find({})
     .update({$set: {category: req}})
-    // .then(dbCat => console.log(dbCat))
     .catch(err=> res.json(err));
   },
   //keeping for now in case I need to recreate category in db
   createCat: (req, res) => {
     let cat = { category: "Any" }
     db.Category.create(cat)
-    // .then(dbCat => console.log(dbCat))
     .catch(err=> res.json(err));
   },
   saveScore: (req, res) => {
-    // console.log(req);
     let scoreRecord = {
       userName: req.body.userName,
       category: req.body.category,
       timeFinished: req.body.timeFinished,
     }
-    console.log(scoreRecord);
     db.Score.create(scoreRecord)
     .then(function (data) {
-      // console.log("Data:" + data)
       db.User.findOneAndUpdate({_id: req.body.userId}, { $push: {score:data} }, { new: true })
       .then( record => {
-        // console.log("Record:" + record)
       })
     })
     .catch(err => {
@@ -50,7 +43,6 @@ module.exports = {
     let data = {
       category: req.params
     }
-    console.log(data);
     db.Score.find(data.category ? data.category : {})
     .sort({ timeFinished: 1 })
     .limit( 10 )
@@ -65,7 +57,6 @@ module.exports = {
     let data = {
       userName: req.params
     }
-    console.log(data.userName);
     db.Score.find(data.userName)
     .sort({ timeFinished: 1 })
     .limit( 10 )
@@ -76,6 +67,26 @@ module.exports = {
     .catch(err => {
       res.json(err);
     });
+  },
+  fetchQuiz: (req, res) => {
+    db.Questions.find({})
+    .then(quiz=> {
+      res.json(quiz);
+    })
+    .catch(err => {
+      console.log(err);
+      res.json(err);
+    })
+  },
+  createQuiz: (category) => {
+    db.Questions.remove({});
+    let index =  dict[category];
+    request(index, (err, res, body)=> {
+      if (err) console.log(err);
+      let parsed = JSON.parse(body);
+      db.Questions.insertMany(parsed.results)
+      .catch(err=> console.log(err));
+    })
   }
 }
 

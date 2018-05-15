@@ -39,7 +39,7 @@ class Main extends Component {
             winner: false
         })
         this.checkCategory();
-    }
+    } 
 
     getUserInfo = () => {
         API.quiz(Auth.getToken())
@@ -66,7 +66,7 @@ class Main extends Component {
     setTime = () => {
         let start1 = new Date();
         let start2 = new Date();
-        start1.setHours(13, 0, 0)
+        start1.setHours(12, 7, 0)
         start2.setHours(13, 2, 0)
         this.setState({
             start: start1,
