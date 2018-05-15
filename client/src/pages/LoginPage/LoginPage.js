@@ -86,7 +86,7 @@ class LoginPage extends Component {
    */
   render() {
     return (
-      <div>
+      <div className="site">
         <Header/>
           <Wrapper>
           <LoginForm

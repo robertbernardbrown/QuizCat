@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 import AboutComp from "../../components/About";
 
 const About = () => (
-    <div>
+    <div className="site">
         <Header/>
         <Wrapper>
             <AboutComp/>

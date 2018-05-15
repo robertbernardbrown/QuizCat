@@ -73,7 +73,7 @@ class SignupPage extends React.Component {
    */
   render() {
     return (
-      <div>
+      <div className="site">
         <Header/>
         <Wrapper>
         <SignUpForm

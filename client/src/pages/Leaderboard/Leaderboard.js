@@ -86,7 +86,7 @@ class Leaderboard extends Component {
 
     render() {
         return(
-        <div>
+        <div className="site">
             <Header/>
             <Wrapper>
                 <div className="row">
