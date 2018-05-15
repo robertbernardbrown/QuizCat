@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import { Route , withRouter} from 'react-router-dom';
 import Header from "../../components/Header";
 import Wrapper from "../../components/Wrapper";
 import Footer from "../../components/Footer";
@@ -9,9 +8,6 @@ import Quiz from "../../components/Quiz";
 import FeedbackModal from "../../components/Modal";
 import API from "../../utils/API";
 import Auth from "../../utils/Auth";
-import LoginPage from "../LoginPage";
-import SignupPage from "../SignupPage";
-import { PropsRoute } from "../../components/Routes";
 
 class Main extends Component {
 
@@ -68,7 +64,7 @@ class Main extends Component {
         let start = new Date();
         // let start2 = new Date();
         let hours = now.getHours()
-        let minutes = now.getMinutes()
+        // let minutes = now.getMinutes()
         start.setHours(hours, 0, 0, 0);
         console.log(start);
         // start2.setHours(13, 2, 0)

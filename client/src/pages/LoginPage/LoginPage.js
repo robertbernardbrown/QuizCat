@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Route , withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Auth from '../../utils/Auth';
 import LoginForm from '../../components/Login';
