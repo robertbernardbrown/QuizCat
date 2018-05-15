@@ -68,15 +68,15 @@ class Leaderboard extends Component {
         e.preventDefault();
         API.fetchUserScores(this.state.searchUser, Auth.getToken())
         .then(res => {
-            console.log(res);
-            this.setState({
-                scores: res.data
-            })
+            if (typeof res.data === "object") {
+            this.setState({scores: res.data})
+            } else {
+            this.setState({scores: ""})
+            }
         })
     }
 
     onChange = (e) =>{
-        console.log(e.target);
         this.setState({
             searchUser: e.target.value
         });
