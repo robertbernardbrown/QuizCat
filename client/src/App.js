@@ -12,6 +12,16 @@ import LoginPage from './pages/LoginPage';
 import LogoutFunction from './pages/LogoutFunction';
 import SignupPage from './pages/SignupPage';
 import Auth from './utils/Auth';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import home from '@fortawesome/fontawesome-free-solid/faHome';
+import question from '@fortawesome/fontawesome-free-solid/faQuestionCircle';
+import trophy from '@fortawesome/fontawesome-free-solid/faTrophy';
+import airplane from '@fortawesome/fontawesome-free-solid/faPaperPlane';
+import signout from '@fortawesome/fontawesome-free-solid/faSignOutAlt';
+import login from '@fortawesome/fontawesome-free-solid/faSignInAlt';
+import signup from '@fortawesome/fontawesome-free-solid/faUserPlus';
+
+
 
 class App extends Component {
 
@@ -36,19 +46,19 @@ class App extends Component {
           <SideBar login={this.state.authenticated ? 
             (
               <div>
-                <Link to="/">Home</Link><br/>
-                <Link to="/about">About</Link><br/>
-                <Link to="/leaderboard">Leaderboard</Link><br/>
-                <Link to="/contact">Contact</Link><br/>
-                <Link to="/logout">Log out</Link>
+                <FontAwesomeIcon icon={home}/> <Link to="/">Home</Link><br/>
+                <FontAwesomeIcon icon={question}/> <Link to="/about">About</Link><br/>
+                <FontAwesomeIcon icon={trophy}/> <Link to="/leaderboard">Leaderboard</Link><br/>
+                <FontAwesomeIcon icon={airplane}/> <Link to="/contact">Contact</Link><br/>
+                <FontAwesomeIcon icon={signout}/> <Link to="/logout">Log out</Link>
               </div>
             ) : 
             (
               <div>
-                <Link to="/">Log in</Link><br/>
-                <Link to="/signup">Sign up</Link><br/>
-                <Link to="/about">About</Link><br/>
-                <Link to="/contact">Contact</Link>
+                <FontAwesomeIcon icon={login}/> <Link to="/">Log in</Link><br/>
+                <FontAwesomeIcon icon={signup}/> <Link to="/signup">Sign up</Link><br/>
+                <FontAwesomeIcon icon={question}/> <Link to="/about">About</Link><br/>
+                <FontAwesomeIcon icon={airplane}/> <Link to="/contact">Contact</Link>
               </div>
             )}/>
           <Switch>
