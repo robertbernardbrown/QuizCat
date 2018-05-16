@@ -20,6 +20,8 @@ import airplane from '@fortawesome/fontawesome-free-solid/faPaperPlane';
 import signout from '@fortawesome/fontawesome-free-solid/faSignOutAlt';
 import login from '@fortawesome/fontawesome-free-solid/faSignInAlt';
 import signup from '@fortawesome/fontawesome-free-solid/faUserPlus';
+import catheart from '../src/assets/heart-eyes-cat.png';
+import catsmile from '../src/assets/happy-cat.png';
 
 
 
@@ -45,20 +47,26 @@ class App extends Component {
         <div id="app-container">
           <SideBar login={this.state.authenticated ? 
             (
-              <div>
-                <FontAwesomeIcon icon={home}/> <Link to="/">Home</Link><br/>
-                <FontAwesomeIcon icon={question}/> <Link to="/about">About</Link><br/>
-                <FontAwesomeIcon icon={trophy}/> <Link to="/leaderboard">Leaderboard</Link><br/>
-                <FontAwesomeIcon icon={airplane}/> <Link to="/contact">Contact</Link><br/>
-                <FontAwesomeIcon icon={signout}/> <Link to="/logout">Log out</Link>
+              <div id="sidebar-links">
+                <div className="sidebar-img">
+                  <img id="cat-face" src={catheart} alt="heart cat"/>
+                </div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={home}/>     <Link to="/">Home</Link></div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={question}/> <Link to="/about">About</Link></div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={trophy}/>   <Link to="/leaderboard">Leaderboard</Link></div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={airplane}/> <Link to="/contact">Contact</Link></div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={signout}/>  <Link to="/logout">Log out</Link></div>
               </div>
             ) : 
             (
-              <div>
-                <FontAwesomeIcon icon={login}/> <Link to="/">Log in</Link><br/>
-                <FontAwesomeIcon icon={signup}/> <Link to="/signup">Sign up</Link><br/>
-                <FontAwesomeIcon icon={question}/> <Link to="/about">About</Link><br/>
-                <FontAwesomeIcon icon={airplane}/> <Link to="/contact">Contact</Link>
+              <div id="sidebar-links">
+                <div className="sidebar-img">
+                  <img id="cat-face" src={catsmile} alt="smile cat"/>
+                </div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={login}/>    <Link to="/">Log in</Link></div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={signup}/>   <Link to="/signup">Sign up</Link></div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={question}/> <Link to="/about">About</Link></div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={airplane}/> <Link to="/contact">Contact</Link></div>
               </div>
             )}/>
           <Switch>
