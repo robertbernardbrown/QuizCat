@@ -9,7 +9,7 @@ class SideBar extends React.Component {
 
   render () {
     return (
-      <Menu>
+      <Menu width={280}>
         {this.props.login}
       </Menu>
     );

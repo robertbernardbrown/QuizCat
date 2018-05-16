@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Average+Sans|NTR|Overpass|Patrick+Hand|Shanti');
+
+#greeting {
+    font-family: 'Shanti', sans-serif;
+}
+
+#inner-greeting-div {
+    margin: 0 auto;
+    width: 90%;
+}
+
+#category-name {
+    text-decoration: underline;
+}
+
+h2 {
+    text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+    #inner-greeting-div {
+        margin: 0 auto;
+        width: 60%;
+    }
+} 
+
+/* font-family: 'Patrick Hand', cursive;
+font-family: 'Overpass', sans-serif;
+font-family: 'NTR', sans-serif;
+font-family: 'Shanti', sans-serif; */

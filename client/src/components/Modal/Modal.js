@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Button, Modal } from "react-bootstrap";
 import "./Modal.css";
+import angrycat from "../../assets/side-face-angry-cat.png";
+import surprisecat from "../../assets/surprise-cat.png";
 
 class FeedbackModal extends Component {
     render() {
@@ -13,11 +15,16 @@ class FeedbackModal extends Component {
                 <Modal.Title>You...win?!</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <h4>That's actually surprising</h4>
-                <p>
-                  We might have underestimated you.<br/>
-                  You took {this.props.timer} to finish the quiz
-                </p>
+                <div id="cat-div">
+                  <img id="cat-img" src={surprisecat} alt="angry cat"/>
+                </div>
+                <div className="model-content">
+                  <h4>That's actually surprising</h4>
+                  <p>
+                    We might have underestimated you.<br/>
+                    You took {this.props.timer} to finish the quiz
+                  </p>
+                </div>
               </Modal.Body>
               <Modal.Footer>
                 <Button onClick={this.props.handleClose}>Close</Button>
@@ -30,10 +37,15 @@ class FeedbackModal extends Component {
                 <Modal.Title>You lose!</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <h4>Nice try, idiot</h4>
-                <p>
-                  Maybe get smarter next time
-                </p>
+                <div id="cat-div">
+                  <img id="cat-img" src={angrycat} alt="angry cat"/>
+                </div>
+                <div className="model-content">
+                  <h4>Nice try, idiot</h4>
+                  <p>
+                    Maybe get smarter next time
+                  </p>
+                </div>
               </Modal.Body>
               <Modal.Footer>
                 <Button onClick={this.props.handleClose}>Close</Button>
