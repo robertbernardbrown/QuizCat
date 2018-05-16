@@ -13,48 +13,50 @@ const SignUpForm = ({
   user,
 }) => (
   <div className="container">
-    <form action="/" onSubmit={onSubmit}>
-      <h2 className="card-heading">Sign Up</h2>
+    <div id="inner-credential-div">
+      <form action="/" onSubmit={onSubmit}>
+        <h2 className="card-heading">Sign Up</h2>
 
-      {errors.summary && <p className="error-message">{errors.summary}</p>}
+        {errors.summary && <p className="error-message">{errors.summary}</p>}
 
-      <div className="field-line">
-        <input
-            placeholder={errors.name ? errors.name.toString() : "Name"}
-            name="name"
-            className={errors.name ? "has-error" : ""}
-            onChange={onChange}
-            value={user.name}
-        />
-      </div>
+        <div className="field-line">
+          <input
+              placeholder={errors.name ? errors.name.toString() : "Name"}
+              name="name"
+              className={errors.name ? "has-error" : ""}
+              onChange={onChange}
+              value={user.name}
+          />
+        </div>
 
-      <div className="field-line">
-        <input
-            placeholder={errors.email ? errors.email.toString() : "Email"}
-            name="email"
-            className={errors.email ? "has-error" : ""}
-            onChange={onChange}
-            value={user.email}
-        />
-      </div>
+        <div className="field-line">
+          <input
+              placeholder={errors.email ? errors.email.toString() : "Email"}
+              name="email"
+              className={errors.email ? "has-error" : ""}
+              onChange={onChange}
+              value={user.email}
+          />
+        </div>
 
-      <div className="field-line">
-        <input
-            placeholder={errors.password ? errors.password.toString() : "Password"}
-            type="password"
-            name="password"
-            onChange={onChange}
-            className={errors.password ? "has-error" : ""}
-            value={user.password}
-        />
-      </div>
+        <div className="field-line">
+          <input
+              placeholder={errors.password ? errors.password.toString() : "Password"}
+              type="password"
+              name="password"
+              onChange={onChange}
+              className={errors.password ? "has-error" : ""}
+              value={user.password}
+          />
+        </div>
 
-      <div className="button-line">
-        <button className="btn btn-primary" type="submit">Sign-Up</button>
-      </div>
+        <div className="button-line">
+          <button className="btn btn-primary btn-block" type="submit">Sign-Up</button>
+        </div>
 
-      <p>Already have an account? <Link to={'/'}>Log in</Link></p>
-    </form>
+        <p>Already have an account? <br/><Link to={'/'} id="sign">Log in</Link></p>
+      </form>
+    </div>
   </div>
 );
 

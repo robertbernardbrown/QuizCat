@@ -9,39 +9,41 @@ import { Link } from 'react-router-dom';
 
 const LoginForm = ({onSubmit,onChange,errors,successMessage,user,toggleAuthenticateStatus}) => (
   <div className="container">
-    <form action="/" onSubmit={onSubmit}>
-      <h2 className="login-heading">Login</h2>
+    <div id="inner-credential-div">
+      <form action="/" onSubmit={onSubmit}>
+        <h2 className="login-heading">Login</h2>
 
-      {successMessage && <p className="success-message">{successMessage}</p>}
-      {errors.summary && <p className="error-message">{errors.summary}</p>}
+        {successMessage && <p className="success-message">{successMessage}</p>}
+        {errors.summary && <p className="error-message">{errors.summary}</p>}
 
-      <div className="field-line">
-        <input
-            placeholder={errors.email ? errors.email.toString() : "Email"}
-            name="email"
-            className={errors.email ? "has-error" : ""}
-            onChange={onChange}
-            value={user.email}
-        />
-      </div>
+        <div className="field-line">
+          <input
+              placeholder={errors.email ? errors.email.toString() : "Email"}
+              name="email"
+              className={errors.email ? "has-error" : ""}
+              onChange={onChange}
+              value={user.email}
+          />
+        </div>
 
-      <div className="field-line">
-        <input
-            placeholder={errors.password ? errors.password.toString() : "Password"}
-            type="password"
-            name="password"
-            onChange={onChange}
-            className={errors.password ? "has-error" : ""}
-            value={user.password}
-        />
-      </div>
+        <div className="field-line">
+          <input
+              placeholder={errors.password ? errors.password.toString() : "Password"}
+              type="password"
+              name="password"
+              onChange={onChange}
+              className={errors.password ? "has-error" : ""}
+              value={user.password}
+          />
+        </div>
 
-      <div className="button-line">
-        <button className="btn btn-primary" type="submit">Log-In</button>
-      </div>
+        <div className="button-line">
+          <button className="btn btn-primary btn-block" type="submit">Log-In</button>
+        </div>
 
-      <p>Don't have an account? <Link to={'/signup'}>Create one</Link>.</p>
-    </form>
+        <p>Don't have an account? <Link to={'/signup'} id="sign">Create&nbsp;one</Link>.</p>
+      </form>
+    </div>
   </div>
 );
 
