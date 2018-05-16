@@ -2,7 +2,7 @@ import React from "react";
 
 const Greeting = (props) => (
     <div className="greeting">
-        <h1>Welcome to QuizCat, {props.name}!</h1>
+        <h2>Welcome to QuizCat, {props.name}!</h2>
         <p>Play the quiz at the start of every hour!</p>
         <br/>
         <p>Quizzes span all kinds of categories and each quiz is different.</p>
