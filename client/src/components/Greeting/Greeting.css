@@ -2,11 +2,9 @@
 
 #greeting {
     font-family: 'Shanti', sans-serif;
-    /* border: 2px solid green; */
 }
 
 #inner-greeting-div {
-    /* border: 2px solid red; */
     margin: 0 auto;
     width: 90%;
 }

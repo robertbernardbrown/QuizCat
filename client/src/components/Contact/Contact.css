@@ -1,0 +1,24 @@
+#contact-link {
+    text-decoration: none;
+    color: #926b44;
+} 
+
+#contact-link:hover{
+    text-decoration: none;
+    color: #f1b070
+}
+
+#inner-contact-div {
+    margin: 0 auto;
+    width: 90%;
+    border: 3px solid black;
+    background: white;
+    padding: 3px
+}
+
+@media only screen and (min-width: 768px) {
+    #inner-contact-div {
+        margin: 0 auto;
+        width: 60%;
+    }
+} 

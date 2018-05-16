@@ -42,7 +42,7 @@ class App extends Component {
   render() {
     return(
       <Router>
-        <div id="hi">
+        <div id="app-container">
           <SideBar login={this.state.authenticated ? 
             (
               <div>

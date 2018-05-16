@@ -1,0 +1,11 @@
+#inner-about-div {
+    margin: 0 auto;
+    width: 90%;
+}
+
+@media only screen and (min-width: 768px) {
+    #inner-about-div {
+        margin: 0 auto;
+        width: 60%;
+    }
+} 
