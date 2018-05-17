@@ -66,7 +66,7 @@ class Main extends Component {
         if (hours === 23) {
             start.setHours(0, 0, 0, 0);
         } else {
-            start.setHours(hours, minutes+1, 0, 0);
+            start.setHours(hours, minutes+4, 0, 0);
         }
         this.setState({
             start: start,
@@ -88,7 +88,7 @@ class Main extends Component {
             if (hours === 23) {
                 start.setHours(0, 0, 0, 0);
             } else {
-                start.setHours(hours, minutes+1, 0, 0);
+                start.setHours(hours, minutes+4, 0, 0);
             }
             this.setState({
                 start: start,
