@@ -28,7 +28,12 @@ import catsmile from '../src/assets/happy-cat.png';
 class App extends Component {
 
   state = {
-    authenticated: false
+    authenticated: false,
+    menuOpen: false
+  }
+
+  closeMenu () {
+    this.setState({menuOpen: false})
   }
 
   componentDidMount() {
@@ -45,17 +50,17 @@ class App extends Component {
     return(
       <Router>
         <div id="app-container">
-          <SideBar login={this.state.authenticated ? 
+          <SideBar isOpen={this.state.menuOpen} login={this.state.authenticated ? 
             (
               <div id="sidebar-links">
                 <div className="sidebar-img">
                   <img id="cat-face" src={catheart} alt="heart cat"/>
                 </div>
-                <div className="sidebar-link"><FontAwesomeIcon icon={home}/>     <Link to="/">Home</Link></div>
-                <div className="sidebar-link"><FontAwesomeIcon icon={question}/> <Link to="/about">About</Link></div>
-                <div className="sidebar-link"><FontAwesomeIcon icon={trophy}/>   <Link to="/leaderboard">Leaderboard</Link></div>
-                <div className="sidebar-link"><FontAwesomeIcon icon={airplane}/> <Link to="/contact">Contact</Link></div>
-                <div className="sidebar-link"><FontAwesomeIcon icon={signout}/>  <Link to="/logout">Log out</Link></div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={home}/>     <Link onClick={() => this.closeMenu()} to="/">Home</Link></div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={question}/> <Link onClick={() => this.closeMenu()} to="/about">About</Link></div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={trophy}/>   <Link onClick={() => this.closeMenu()} to="/leaderboard">Leaderboard</Link></div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={airplane}/> <Link onClick={() => this.closeMenu()} to="/contact">Contact</Link></div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={signout}/>  <Link onClick={() => this.closeMenu()} to="/logout">Log out</Link></div>
               </div>
             ) : 
             (
@@ -63,10 +68,10 @@ class App extends Component {
                 <div className="sidebar-img">
                   <img id="cat-face" src={catsmile} alt="smile cat"/>
                 </div>
-                <div className="sidebar-link"><FontAwesomeIcon icon={login}/>    <Link to="/">Log in</Link></div>
-                <div className="sidebar-link"><FontAwesomeIcon icon={signup}/>   <Link to="/signup">Sign up</Link></div>
-                <div className="sidebar-link"><FontAwesomeIcon icon={question}/> <Link to="/about">About</Link></div>
-                <div className="sidebar-link"><FontAwesomeIcon icon={airplane}/> <Link to="/contact">Contact</Link></div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={login}/>    <Link onClick={() => this.closeMenu()} to="/">Log in</Link></div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={signup}/>   <Link onClick={() => this.closeMenu()} to="/signup">Sign up</Link></div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={question}/> <Link onClick={() => this.closeMenu()} to="/about">About</Link></div>
+                <div className="sidebar-link"><FontAwesomeIcon icon={airplane}/> <Link onClick={() => this.closeMenu()} to="/contact">Contact</Link></div>
               </div>
             )}/>
           <Switch>

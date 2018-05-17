@@ -8,7 +8,9 @@ const Question = props => {
     let decodedString = dom.body.textContent;
     return (
         <div className="question">
-            <p>{decodedString}</p>
+            <div id="inner-question-div">
+                <p className="question-text">{decodedString}</p>
+            </div>
         </div>
     )
 }
