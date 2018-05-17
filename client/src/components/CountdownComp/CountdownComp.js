@@ -6,7 +6,7 @@ const CountdownComp = (props) => (
             <div className="text-center" id="countdown">
                 {props.countdown}
             </div>
-            <p id="red-text">Remember, miss one question and you're out!</p>
+            <p id="red-text">Remember, miss one question and you're outta here!</p>
         </div>
 )
 

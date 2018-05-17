@@ -19,10 +19,10 @@ class FeedbackModal extends Component {
                   <img id="cat-img" src={surprisecat} alt="angry cat"/>
                 </div>
                 <div className="model-content">
-                  <h4>That's actually surprising</h4>
+                  <h4>That's actually surprising.</h4>
                   <p>
                     We might have underestimated you.<br/>
-                    You took {this.props.timer} to finish the quiz
+                    You took {this.props.timer} to finish the quiz.
                   </p>
                 </div>
               </Modal.Body>
@@ -41,9 +41,9 @@ class FeedbackModal extends Component {
                   <img id="cat-img" src={angrycat} alt="angry cat"/>
                 </div>
                 <div className="model-content">
-                  <h4>Nice try, idiot</h4>
+                  <h4>Nice try, dummy.</h4>
                   <p>
-                    Maybe get smarter next time
+                    Maybe get smarter next time!
                   </p>
                 </div>
               </Modal.Body>
