@@ -34,8 +34,9 @@ let categories = [
     return index;
   }
    
-  const changeCat = schedule.scheduleJob('* /5 * * * *', function(){
+  const changeCat = schedule.scheduleJob('*/5 * * * *', function(){
     let randomCategory = randomCat();
+    console.log(randomCategory);
     quizController.updateCategory(randomCategory);
     quizController.createQuiz(randomCategory);
   });

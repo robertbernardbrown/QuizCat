@@ -63,10 +63,11 @@ class Main extends Component {
         let start = new Date();
         let hours = now.getHours();
         let minutes = now.getMinutes();
+        let remainder = 5 - (minutes % 5)
         if (hours === 23) {
             start.setHours(0, 0, 0, 0);
         } else {
-            start.setHours(hours, minutes+5, 0, 0);
+            start.setHours(hours, (minutes+remainder), 0, 0);
         }
         this.setState({
             start: start,
@@ -85,10 +86,11 @@ class Main extends Component {
             let start = new Date();
             let hours = now.getHours();
             let minutes = now.getMinutes();
+            let remainder = 5 - (minutes % 5)
             if (hours === 23) {
                 start.setHours(0, 0, 0, 0);
             } else {
-                start.setHours(hours, minutes+5, 0, 0);
+                start.setHours(hours, (minutes+remainder), 0, 0);
             }
             this.setState({
                 start: start,
