@@ -97,7 +97,6 @@ class Quiz extends Component {
             !this.state.quiz.length ? <div className="container"> Loading question </div> : (
                 <div className="container">
                     <div>
-                        <p id="red-text">Miss one question and you're out!</p>
                         <Question questions={this.state.question}/>
                         <Answer options={this.state.options} answer={this.state.answer} handleUserGuess={this.handleUserGuess}/>
                         <Timer time={this.props.timer}/>

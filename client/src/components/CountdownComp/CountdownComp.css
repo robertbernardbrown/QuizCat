@@ -3,3 +3,8 @@
     margin: 0 auto;
     font-size: 40px
 }
+
+#red-text {
+    color: red;
+    text-align: center;
+}

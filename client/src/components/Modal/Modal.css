@@ -2,18 +2,15 @@
 
 #cat-img {
     width: 100%;
-    /* border: 2px solid red; */
     display: inline-block
 }
 
 #cat-div {
     width: 100px;
-    /* border: 2px solid purple; */
     display: inline-block
 
 }
 
 .model-content {
-    /* border: 2px solid green; */
     display: inline-block
 }
