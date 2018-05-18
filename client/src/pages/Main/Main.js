@@ -64,11 +64,7 @@ class Main extends Component {
         let hours = now.getHours();
         let minutes = now.getMinutes();
         let remainder = 5 - (minutes % 5)
-        if (hours === 23) {
-            start.setHours(0, 0, 0, 0);
-        } else {
-            start.setHours(hours, (minutes+remainder), 0, 0);
-        }
+        start.setHours(hours, (minutes+remainder), 0, 0);
         this.setState({
             start: start,
             countdown: this.tickDown()
@@ -82,16 +78,12 @@ class Main extends Component {
 
     tickDown = () => {
         var now = new Date();
-        if (now > this.state.start) { // too late, go to next hour
+        if (now > this.state.start) { // too late, go to next 5 minutes
             let start = new Date();
             let hours = now.getHours();
             let minutes = now.getMinutes();
             let remainder = 5 - (minutes % 5)
-            if (hours === 23) {
-                start.setHours(0, 0, 0, 0);
-            } else {
-                start.setHours(hours, (minutes+remainder), 0, 0);
-            }
+            start.setHours(hours, (minutes+remainder), 0, 0);
             this.setState({
                 start: start,
                 stillIn: true
