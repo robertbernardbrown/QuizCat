@@ -30,15 +30,9 @@
   font-size: 1.15em;
 }
 
-/* Morph shape necessary with bubble or elastic */
-.bm-morph-shape {
-  /* fill: white; */
-}
-
 /* Wrapper for item list */
 .bm-item-list {
   color: #b8b7ad;
-  /* padding: 0.8em; */
 }
 
 /* Styling of overlay */
