@@ -26,13 +26,13 @@
 /* General sidebar styles */
 .bm-menu {
   background: white;
-  /* padding: 2.5em 1.5em 0; */
+  width: 99%;
   font-size: 1.15em;
 }
 
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
-  fill: white;
+  /* fill: white; */
 }
 
 /* Wrapper for item list */
