@@ -1,14 +1,12 @@
 #inner-credential-div {
     margin: 0 auto;
     width: 200px;
-    text-align: center
+    text-align: center;
 }
 
 .field-line >input{
     width: 100%;
     margin-bottom: 3px;
-    /* padding-top */
-    
 }
 
 #sign:hover {

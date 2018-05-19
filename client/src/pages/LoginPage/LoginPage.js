@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import Wrapper from '../../components/Wrapper';
 import Footer from '../../components/Footer';
 import API from '../../utils/API';
+import FbLogin from "../../components/FbLogin";
 
 class LoginPage extends Component {
   // set the initial component state
