@@ -31,8 +31,10 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 
 //load Passport strategies
+const facebookLoginStrategy = require("./server/passport/facebook-login");
 const localSignupStrategy = require('./server/passport/local-signup');
 const localLoginStrategy = require('./server/passport/local-login');
+passport.use("facebookToken", facebookLoginStrategy);
 passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 

@@ -36,7 +36,10 @@ export default {
                 name: name
             }
         });
-    }
+    },
+    createFbUser: () => {
+        return axios.post("/user/oauth/facebook");
+    },
 
 
     

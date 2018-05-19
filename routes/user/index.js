@@ -1,12 +1,9 @@
 const router = require("express").Router();
 const validator = require('validator');
-// const userController = require("../../controllers/userController");
+const userController = require("../../controllers/userController");
 const passport = require("passport");
 
 // "/user/x routes
-// router.route("/oauth/facebook")
-//     .post(passport.authenticate("facebookToken", {session: false}), userController.facebookOauth);
-
 // router.route("/getid")
 //     .get(userController.getId);
 
@@ -140,5 +137,8 @@ router.post('/login', (req, res, next) => {
         });
     })(req, res, next);
 });
+
+router.route("/oauth/facebook")
+    .post(passport.authenticate("facebookToken", {session: false}), userController.facebookOauth);
 
 module.exports = router;
