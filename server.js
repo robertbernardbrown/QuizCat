@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 3001;
 const changeCat = require("./utils/randomCat");
 const routes = require("./routes");
 const authCheckMiddleware = require("./server/middleware/auth-check");
+const FacebookTokenStrategy = require('passport-facebook-token');
 let config;
 if(process.env.MONGODB_URI) {
   config = process.env
@@ -31,8 +32,10 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 
 //load Passport strategies
+const facebookTokenLoginStrategy = require("./server/passport/facebook-login");
 const localSignupStrategy = require('./server/passport/local-signup');
 const localLoginStrategy = require('./server/passport/local-login');
+passport.use('facebook-token', facebookTokenLoginStrategy);
 passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 

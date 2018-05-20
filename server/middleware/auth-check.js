@@ -6,7 +6,6 @@ if(process.env.JWT_SECRET) {
 } else {
   config = require("../../config/index");
 }
-
 /**
  *  The Auth Checker middleware function.
  */

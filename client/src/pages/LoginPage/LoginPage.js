@@ -80,6 +80,12 @@ class LoginPage extends Component {
     });
   }
 
+  setUser = user => {
+    this.setState({
+      user
+    })
+  }
+
   /**
    * Render the component.
    */
@@ -94,6 +100,9 @@ class LoginPage extends Component {
           errors={this.state.errors}
           successMessage={this.state.successMessage}
           user={this.state.user}
+          setUser={this.setUser}
+          authenticated={this.props.authenticated} 
+          toggleAuthenticateStatus={this.props.toggleAuthenticateStatus}
           />
           </Wrapper>
         <Footer/>

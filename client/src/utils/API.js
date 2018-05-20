@@ -36,8 +36,7 @@ export default {
                 name: name
             }
         });
-    }
-
-
-    
+    },
+    createFbUser: (userData, access_token) =>
+        axios.post("/user/oauth/facebook/token?access_token="+access_token, userData),
 }
