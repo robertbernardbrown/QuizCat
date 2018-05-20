@@ -1,18 +1,18 @@
 import React, {Component} from "react";
 import FacebookLogin from 'react-facebook-login';
 import API from "../../utils/API";
+import Auth from "../../utils/Auth";
 import "./FbLogin.css";
 
 class FbLogin extends Component {
 
     componentLoaded = (response) => {
-        console.log(response);
-        API.createFbUser(response)
+        let access_token = response.accessToken;
+        API.createFbUser(response, access_token).then(res=> {
+            Auth.authenticateUser(res.data.token);
+            this.props.toggleAuthenticateStatus()
+        })
     }
-
-    // componentClicked = (response) => {
-    //     API.createFbUser(response);
-    // }
 
     render() {
         return(
@@ -20,7 +20,6 @@ class FbLogin extends Component {
             appId="240493756527031"
             autoLoad={false}
             fields="name,email,picture"
-            // onClick={this.componentClicked}
             callback={this.componentLoaded} 
             cssClass="btn btn-primary btn-block fb-btn"
             icon="fa-facebook"

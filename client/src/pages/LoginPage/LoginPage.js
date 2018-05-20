@@ -101,6 +101,8 @@ class LoginPage extends Component {
           successMessage={this.state.successMessage}
           user={this.state.user}
           setUser={this.setUser}
+          authenticated={this.props.authenticated} 
+          toggleAuthenticateStatus={this.props.toggleAuthenticateStatus}
           />
           </Wrapper>
         <Footer/>

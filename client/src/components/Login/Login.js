@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import FbLogin from '../FbLogin';
 
-const LoginForm = ({onSubmit,onChange,errors,successMessage,user,toggleAuthenticateStatus,onClick}) => (
+const LoginForm = ({onSubmit,onChange,errors,successMessage,user,toggleAuthenticateStatus,setUser,onClick,authenticated}) => (
   <div className="container">
     <div id="inner-credential-div">
       <h2 className="login-heading">Login</h2>
-      <FbLogin onClick={() => this.props.setUser(user)}/>
+      <FbLogin onClick={() => setUser(user)} authenticated={authenticated} toggleAuthenticateStatus={toggleAuthenticateStatus}/>
       <form action="/" onSubmit={onSubmit}>
 
         {successMessage && <p className="success-message">{successMessage}</p>}
