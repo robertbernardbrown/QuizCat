@@ -3,9 +3,9 @@ const User = require('mongoose').model('User');
 const PassportLocalStrategy = require('passport-local').Strategy;
 let config;
 if(process.env.JWT_SECRET) {
-  config = process.env
+    config = process.env
 } else {
-  config = require("../../config/index");
+    config = require("../../config/index");
 }
 
 /**
