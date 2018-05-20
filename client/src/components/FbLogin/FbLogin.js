@@ -5,10 +5,14 @@ import "./FbLogin.css";
 
 class FbLogin extends Component {
 
-    componentClicked = (response) => {
+    componentLoaded = (response) => {
         console.log(response);
-        API.createFbUser();
+        API.createFbUser(response)
     }
+
+    // componentClicked = (response) => {
+    //     API.createFbUser(response);
+    // }
 
     render() {
         return(
@@ -17,7 +21,7 @@ class FbLogin extends Component {
             autoLoad={false}
             fields="name,email,picture"
             // onClick={this.componentClicked}
-            callback={this.componentClicked} 
+            callback={this.componentLoaded} 
             cssClass="btn btn-primary btn-block fb-btn"
             icon="fa-facebook"
             />

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const validator = require('validator');
 const userController = require("../../controllers/userController");
+const FacebookTokenStrategy = require('passport-facebook-token');
 const passport = require("passport");
 
 // "/user/x routes
@@ -110,35 +111,57 @@ router.post('/signup', (req, res, next) => {
 router.post('/login', (req, res, next) => {
     const validationResult = validateLoginForm(req.body);
     if (!validationResult.success) {
-      return res.status(400).json({
-        success: false,
-        message: validationResult.message,
-        errors: validationResult.errors
+        return res.status(400).json({
+            success: false,
+            message: validationResult.message,
+            errors: validationResult.errors
         });
     }
     return passport.authenticate('local-login', (err, token, userData) => {
-      if (err) {
-        if (err.name === 'IncorrectCredentialsError') {
-          return res.status(400).json({
+        if (err) {
+            if (err.name === 'IncorrectCredentialsError') {
+                return res.status(400).json({
+                    success: false,
+                    message: err.message
+                });
+            }
+            return res.status(400).json({
             success: false,
-            message: err.message
-        });
-    }
-    return res.status(400).json({
-          success: false,
-          message: 'Could not process the form.'
-        });
-    }
-    return res.json({
-        success: true,
-        message: 'You have successfully logged in!',
-        token,
-        user: userData
+            message: 'Could not process the form.'
+            });
+        }
+        console.log("Token for normal login: "+token, userData)
+        return res.json({
+            success: true,
+            message: 'You have successfully logged in!',
+            token,
+            user: userData
         });
     })(req, res, next);
 });
 
-router.route("/oauth/facebook")
-    .post(passport.authenticate("facebookToken", {session: false}), userController.facebookOauth);
+// router.route("/oauth/facebook")
+//     .post(passport.authenticate("facebookToken", {session: false}), userController.facebookOauth);
+
+router.post("/oauth/facebook/token?:access_token", (req, res, next) => {
+    const fbInfo = req.body
+    const access_token = {access_token: req.params.access_token};
+    console.log(fbInfo)
+    console.log("in the url")
+    console.log(access_token);
+    return passport.authenticate('facebook-token', {session: false}, (err, token, userData) => {
+        if (err) {
+            return res.status(400)
+        }
+        console.log("token: "+token)
+        console.log(userData);
+        return res.json({
+            success:true,
+            message: 'You have logged in!',
+            token,
+            user: userData
+        })
+    })(req, res, next);
+})
 
 module.exports = router;
