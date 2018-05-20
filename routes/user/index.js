@@ -1,12 +1,7 @@
 const router = require("express").Router();
 const validator = require('validator');
-const userController = require("../../controllers/userController");
 const FacebookTokenStrategy = require('passport-facebook-token');
 const passport = require("passport");
-
-// "/user/x routes
-// router.route("/getid")
-//     .get(userController.getId);
 
 /**
  * Validate the sign up form
@@ -138,9 +133,6 @@ router.post('/login', (req, res, next) => {
         });
     })(req, res, next);
 });
-
-// router.route("/oauth/facebook")
-//     .post(passport.authenticate("facebookToken", {session: false}), userController.facebookOauth);
 
 router.post("/oauth/facebook/token?:access_token", (req, res, next) => {
     const fbInfo = req.body
