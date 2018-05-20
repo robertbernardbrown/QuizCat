@@ -55,7 +55,6 @@ class LoginPage extends Component {
         });
     })
     .catch(( {response} ) => {
-        console.log(response)
         const errors = response.data.errors ? response.data.errors : {};
         errors.summary = response.data.message;
 

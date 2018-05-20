@@ -31,7 +31,6 @@ class SignupPage extends React.Component {
 
     //const formData = `email=${email}&password=${password}`;
     API.signUp({name, email, password}).then(res => {
-        console.log(res);
       // change the component-container state
         // set a message
         localStorage.setItem('successMessage', res.data.message);
@@ -43,7 +42,6 @@ class SignupPage extends React.Component {
         });
 
     }).catch(( {response} ) => {
-        console.log(response)
         const errors = response.data.errors ? response.data.errors : {};
         errors.summary = response.data.message;
 

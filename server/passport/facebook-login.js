@@ -13,7 +13,6 @@ module.exports = new FacebookTokenStrategy({
   clientSecret: config.clientSecret,
 },
 async (accessToken, refreshToken, profile, done) => {
-        console.log("in the passport");
     try {
         function tokenize(obj){
             const payload = {
@@ -21,20 +20,10 @@ async (accessToken, refreshToken, profile, done) => {
             };
             const token = jwt.sign(payload, config.JWT_SECRET);
             const data = obj;
-            console.log("tokenize done")
             return done(null, token, data)
         }
-        console.log("Profile:")
-        console.log(profile);
-        console.log("Access Token:")
-        console.log(accessToken);
-        console.log("refresh token:")
-        console.log(refreshToken);
         const existingUser = await db.User.findOne({'fbId': profile.id});
-        console.log("Existing User:")
-        console.log(existingUser);
         if(existingUser) {
-          console.log("inside existing user")
           return tokenize(existingUser);
         } 
         const newUser = {
@@ -42,8 +31,6 @@ async (accessToken, refreshToken, profile, done) => {
             name : profile.name.givenName,
             email : profile.emails[0].value
         };
-        console.log("New user:" + newUser);
-
         await db.User.create(newUser);
         return tokenize(newUser);
     } 
