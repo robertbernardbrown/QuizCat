@@ -2,16 +2,15 @@ const db = require("../../models");
 const jwt = require('jsonwebtoken');
 const FacebookTokenStrategy = require('passport-facebook-token');
 let config;
-try{
-    config = require("../../config/index");
-}catch(e){
+if(process.env.clientID) {
     config = process.env
+} else {
+    config = require("../../config/index");
 }
 
 module.exports = new FacebookTokenStrategy({
-  clientID: config.oauth.facebook.clientID,
-  clientSecret: config.oauth.facebook.clientSecret,
-//   callbackURL: "http://localhost:3000/auth/oauth/facebook/:access_token",
+  clientID: config.clientID,
+  clientSecret: config.clientSecret,
 },
 async (accessToken, refreshToken, profile, done) => {
         console.log("in the passport");
