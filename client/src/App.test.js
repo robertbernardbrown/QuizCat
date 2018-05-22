@@ -56,7 +56,6 @@ describe("About Component", () => {
   
   it("About renders", () => {
     const about = render(<About/>);
-    console.log(about);
     expect(about).toHaveLength(1);
   });
     
@@ -67,7 +66,6 @@ describe("Answer Component", () => {
 
   it("Answer shallow exists", () => {
     const answer = shallow(<Answer options={options}/>)
-    console.log(answer);
     expect(answer).toHaveLength(1);
   });
 
@@ -78,7 +76,6 @@ describe("Answer Component", () => {
   
   it("Answer renders", () => {
     const answer = render(<Answer options={options}/>);
-    console.log(answer);
     expect(answer).toHaveLength(1);
   });
 });
@@ -86,7 +83,6 @@ describe("Answer Component", () => {
 describe("Contact Component", () => {
   it("Contact shallow exists", () => {
     const contact = shallow(<Contact/>)
-    console.log(contact);
     expect(contact).toHaveLength(1);
   });
 
@@ -97,27 +93,23 @@ describe("Contact Component", () => {
   
   it("Contact renders", () => {
     const contact = render(<Contact/>);
-    console.log(contact);
     expect(contact).toHaveLength(1);
   });
 });
 
 describe("App Component", () => {
-  it('App shallow renders without crashing', () => {
+  it('App shallow exists', () => {
     const app = shallow(<App />);
-    console.log(app)
     expect(app).toHaveLength(1);
   });
 
   it('App renders without crashing', () => {
     const div = document.createElement('div');
-    console.log(div);
     ReactDOM.render(<App />, div);
   });
 
   it("App renders", () => {
     const app = render(<App/>);
-    console.log(app);
     expect(app).toHaveLength(1);
   });
   
