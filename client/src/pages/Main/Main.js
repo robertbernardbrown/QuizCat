@@ -8,6 +8,7 @@ import Quiz from "../../components/Quiz";
 import FeedbackModal from "../../components/Modal";
 import API from "../../utils/API";
 import Auth from "../../utils/Auth";
+import ErrorBoundary from "../../components/ErrorBoundary";
 import "./Main.css"
 
 class Main extends Component {
@@ -173,19 +174,21 @@ class Main extends Component {
     render() {
         return (
             <div className="site">
-                <Header/> 
-                <Wrapper>
-                {this.state.quizTime && this.state.stillIn ? 
-                        <Quiz user={this.state.user} handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince} category={this.state.randomCat}/> 
-                    : 
-                    <div>
-                        <Greeting category={this.state.randomCat} name={this.state.user}/>
-                        <CountdownComp countdown={this.state.countdown}/>
-                        <FeedbackModal show={this.state.show} handleClose={this.handleClose} winner={this.state.winner} timer={this.state.timeSince}/>
-                    </div>
-                }
-                </Wrapper>
-                <Footer/>
+                <ErrorBoundary>
+                    <Header/> 
+                    <Wrapper>
+                    {this.state.quizTime && this.state.stillIn ? 
+                            <Quiz user={this.state.user} handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince} category={this.state.randomCat}/> 
+                        : 
+                        <div>
+                            <Greeting category={this.state.randomCat} name={this.state.user}/>
+                            <CountdownComp countdown={this.state.countdown}/>
+                            <FeedbackModal show={this.state.show} handleClose={this.handleClose} winner={this.state.winner} timer={this.state.timeSince}/>
+                        </div>
+                    }
+                    </Wrapper>
+                    <Footer/>
+                </ErrorBoundary>
             </div>
         )
     }

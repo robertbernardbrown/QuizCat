@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import Wrapper from '../../components/Wrapper';
 import Footer from '../../components/Footer';
 import API from '../../utils/API';
+import ErrorBoundary from "../../components/ErrorBoundary";
 
 class LoginPage extends Component {
   // set the initial component state
@@ -90,22 +91,24 @@ class LoginPage extends Component {
    */
   render() {
     return (
-      <div className="site">
-        <Header/>
-          <Wrapper>
-          <LoginForm
-          onSubmit={this.processForm}
-          onChange={this.changeUser}
-          errors={this.state.errors}
-          successMessage={this.state.successMessage}
-          user={this.state.user}
-          setUser={this.setUser}
-          authenticated={this.props.authenticated} 
-          toggleAuthenticateStatus={this.props.toggleAuthenticateStatus}
-          />
-          </Wrapper>
-        <Footer/>
-      </div>
+      <ErrorBoundary>
+        <div className="site">
+          <Header/>
+            <Wrapper>
+            <LoginForm
+            onSubmit={this.processForm}
+            onChange={this.changeUser}
+            errors={this.state.errors}
+            successMessage={this.state.successMessage}
+            user={this.state.user}
+            setUser={this.setUser}
+            authenticated={this.props.authenticated} 
+            toggleAuthenticateStatus={this.props.toggleAuthenticateStatus}
+            />
+            </Wrapper>
+          <Footer/>
+        </div>
+      </ErrorBoundary>
     );
   }
 

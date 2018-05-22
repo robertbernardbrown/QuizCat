@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://127.0.0.1:3001/",
+  "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "react-addons-test-utils": "^15.6.2"
+  },
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
