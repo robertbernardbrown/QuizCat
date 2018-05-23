@@ -5,6 +5,7 @@ import About from "./components/About";
 import Answer from "./components/Answer";
 import Contact from "./components/Contact";
 import CountdownComp from "./components/CountdownComp";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 import App from "./App";
 import ReactDOM from "react-dom";
@@ -19,38 +20,22 @@ beforeAll(() => {
   };
 });
 
-const setup = propOverrides => {
-  const props = Object.assign({
-    completedCount: 0,
-    activeCount: 0,
-    onClearCompleted: jest.fn(),
-  }, propOverrides)
+var componentSmokeTest = (ComponentName, Component) => {
 
-  const wrapper = shallow(<Footer {...props} />)
-
-  return {
-    props,
-    wrapper,
-    clear: wrapper.find('.clear-completed'),
-    count: wrapper.find('.todo-count'),
-  }
-}
-
-function componentSmokeTest(ComponentName, Component) {
-  it(ComponentName + " shallow exists", () => {
-    const ComponentName = shallow(Component)
-    expect(ComponentName).toHaveLength(1);
-  });
-
-  it(ComponentName + " renders without crashing", () => {
-    const div = document.createElement('div');
-    ReactDOM.render(Component, div);
-  });
-
-  it(ComponentName + " renders", () => {
-    const ComponentName = render(Component);
-    expect(ComponentName).toHaveLength(1);
-  });
+    it(ComponentName + " shallow exists", () => {
+      const ComponentName = shallow(Component)
+      expect(ComponentName).toHaveLength(1);
+    });
+  
+    it(ComponentName + " renders without crashing", () => {
+      const div = document.createElement('div');
+      ReactDOM.render(Component, div);
+    });
+  
+    it(ComponentName + " renders", () => {
+      const ComponentName = render(Component);
+      expect(ComponentName).toHaveLength(1);
+    });
 }
 
 describe("App Component", () => {
@@ -113,6 +98,19 @@ describe("Countdown Component", () => {
     expect(innerCountdownComp).toHaveLength(1);
     expect(paragraphs).toHaveLength(1);
     expect(paragraphsText).toContain("Remember, miss one question and you're outta here!");
+  });
+});
+
+describe("ErrorBoundary Component", () => {
+
+  it("ErrorBoundary shallow does not contain content when hasError is false", () => {
+    const errorBoundary = shallow(<ErrorBoundary/>).setState({hasError:false}).text();
+    expect(errorBoundary).toContain("");
+  });
+
+  it("ErrorBoundary shallow contains content when hasError is true", () => {
+    const errorBoundary = shallow(<ErrorBoundary/>).setState({hasError:true}).text();
+    expect(errorBoundary).toContain("Something went wrong");
   });
 });
 
