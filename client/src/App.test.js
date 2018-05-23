@@ -4,6 +4,9 @@ import Adapter from 'enzyme-adapter-react-16';
 import About from "./components/About";
 import Answer from "./components/Answer";
 import Contact from "./components/Contact";
+import CountdownComp from "./components/CountdownComp";
+import ErrorBoundary from "./components/ErrorBoundary";
+
 import App from "./App";
 import ReactDOM from "react-dom";
 Enzyme.configure({ adapter: new Adapter() })
@@ -17,33 +20,30 @@ beforeAll(() => {
   };
 });
 
-const setup = propOverrides => {
-  const props = Object.assign({
-    completedCount: 0,
-    activeCount: 0,
-    onClearCompleted: jest.fn(),
-  }, propOverrides)
+var componentSmokeTest = (ComponentName, Component) => {
 
-  const wrapper = shallow(<Footer {...props} />)
-
-  return {
-    props,
-    wrapper,
-    clear: wrapper.find('.clear-completed'),
-    count: wrapper.find('.todo-count'),
-  }
+    it(ComponentName + " shallow exists", () => {
+      const ComponentName = shallow(Component)
+      expect(ComponentName).toHaveLength(1);
+    });
+  
+    it(ComponentName + " renders without crashing", () => {
+      const div = document.createElement('div');
+      ReactDOM.render(Component, div);
+    });
+  
+    it(ComponentName + " renders", () => {
+      const ComponentName = render(Component);
+      expect(ComponentName).toHaveLength(1);
+    });
 }
 
-describe("About Component", () => {
-  it("About shallow exists", () => {
-    const about = shallow(<About/>)
-    expect(about).toHaveLength(1);
-  });
+describe("App Component", () => {
+  componentSmokeTest("App", <App/>);
+});
 
-  it('About renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<About />, div);
-  });
+describe("About Component", () => {
+  componentSmokeTest("About", <About/>);
 
   it("About shallow contains content", () => {
     const about = shallow(<About/>).find("div#about");
@@ -53,67 +53,65 @@ describe("About Component", () => {
     expect(innerAbout).toHaveLength(1);
     expect(li).toHaveLength(6);
   });
-  
-  it("About renders", () => {
-    const about = render(<About/>);
-    expect(about).toHaveLength(1);
-  });
-    
 });
 
 describe("Answer Component", () => {
   const options = ["hi", "there"];
+  componentSmokeTest("Answer", <Answer options={options}/>);
 
-  it("Answer shallow exists", () => {
-    const answer = shallow(<Answer options={options}/>)
+  it("Answer shallow contains content", () => {
+    const answer = shallow(<Answer options={options}/>).find("div.answer");
+    const innerAnswer = shallow(<Answer options={options}/>).find("div#inner-answer-div");
+    const listGroupItem = shallow(<Answer options={options}/>).find(".list-group-item");
+    const innerAnswerText = innerAnswer.text();
     expect(answer).toHaveLength(1);
-  });
-
-  it('Answer renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<Answer options={options}/>, div);
-  });
-  
-  it("Answer renders", () => {
-    const answer = render(<Answer options={options}/>);
-    expect(answer).toHaveLength(1);
+    expect(innerAnswer).toHaveLength(1);
+    expect(listGroupItem).toHaveLength(2);
+    expect(innerAnswerText).toContain("hithere");
   });
 });
 
 describe("Contact Component", () => {
-  it("Contact shallow exists", () => {
-    const contact = shallow(<Contact/>)
-    expect(contact).toHaveLength(1);
-  });
+  componentSmokeTest("Contact", <Contact/>);
 
-  it('Contact renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<Contact/>, div);
-  });
-  
-  it("Contact renders", () => {
-    const contact = render(<Contact/>);
+  it("Contact shallow contains content", () => {
+    const contact = shallow(<Contact/>).find("div.contact");
+    const innerContact = shallow(<Contact/>).find("div#inner-contact-div");
+    const paragraphs = shallow(<Contact/>).find("p");
+    const innerContactText = innerContact.text();
     expect(contact).toHaveLength(1);
+    expect(innerContact).toHaveLength(1);
+    expect(paragraphs).toHaveLength(4);
+    expect(innerContactText).toContain("Please direct any questions or concerns to:");
   });
 });
 
-describe("App Component", () => {
-  it('App shallow exists', () => {
-    const app = shallow(<App />);
-    expect(app).toHaveLength(1);
-  });
+describe("Countdown Component", () => {
+  componentSmokeTest("CountdownComp", <CountdownComp/>);
 
-  it('App renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<App />, div);
+  it("CountdownComp shallow contains content", () => {
+    const countdownComp = shallow(<CountdownComp/>).find("div.countdown-container");
+    const innerCountdownComp = shallow(<CountdownComp/>).find("div#countdown");
+    const paragraphs = shallow(<CountdownComp/>).find("p");
+    const paragraphsText = paragraphs.text();
+    expect(countdownComp).toHaveLength(1);
+    expect(innerCountdownComp).toHaveLength(1);
+    expect(paragraphs).toHaveLength(1);
+    expect(paragraphsText).toContain("Remember, miss one question and you're outta here!");
   });
-
-  it("App renders", () => {
-    const app = render(<App/>);
-    expect(app).toHaveLength(1);
-  });
-  
 });
 
+describe("ErrorBoundary Component", () => {
+
+  it("ErrorBoundary shallow does not contain content when hasError is false", () => {
+    const errorBoundary = shallow(<ErrorBoundary/>).setState({hasError:false}).text();
+    expect(errorBoundary).toContain("");
+  });
+
+  it("ErrorBoundary shallow contains content when hasError is true", () => {
+    const errorBoundary = shallow(<ErrorBoundary/>).setState({hasError:true}).text();
+    expect(errorBoundary).toContain("Something went wrong");
+  });
+});
 
 
