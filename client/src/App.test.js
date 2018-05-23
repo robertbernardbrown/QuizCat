@@ -52,7 +52,6 @@ function componentSmokeTest(ComponentName, Component) {
 }
 
 describe("About Component", () => {
-
   componentSmokeTest("About", <About/>);
 
   it("About shallow contains content", () => {
@@ -63,12 +62,10 @@ describe("About Component", () => {
     expect(innerAbout).toHaveLength(1);
     expect(li).toHaveLength(6);
   });
-  
 });
 
 describe("Answer Component", () => {
   const options = ["hi", "there"];
-
   componentSmokeTest("Answer", <Answer options={options}/>);
 
   it("Answer shallow contains content", () => {
@@ -81,11 +78,9 @@ describe("Answer Component", () => {
     expect(listGroupItem).toHaveLength(2);
     expect(innerAnswerText).toContain("hithere");
   });
-  
 });
 
 describe("Contact Component", () => {
-  
   componentSmokeTest("Contact", <Contact/>);
 
   it("Contact shallow contains content", () => {
@@ -98,13 +93,10 @@ describe("Contact Component", () => {
     expect(paragraphs).toHaveLength(4);
     expect(innerContactText).toContain("Please direct any questions or concerns to:");
   });
-  
 });
 
 describe("App Component", () => {
-
   componentSmokeTest("App", <App/>);
-
 });
 
 
