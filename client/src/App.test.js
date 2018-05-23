@@ -4,6 +4,8 @@ import Adapter from 'enzyme-adapter-react-16';
 import About from "./components/About";
 import Answer from "./components/Answer";
 import Contact from "./components/Contact";
+import CountdownComp from "./components/CountdownComp";
+
 import App from "./App";
 import ReactDOM from "react-dom";
 Enzyme.configure({ adapter: new Adapter() })
@@ -51,6 +53,10 @@ function componentSmokeTest(ComponentName, Component) {
   });
 }
 
+describe("App Component", () => {
+  componentSmokeTest("App", <App/>);
+});
+
 describe("About Component", () => {
   componentSmokeTest("About", <About/>);
 
@@ -95,9 +101,19 @@ describe("Contact Component", () => {
   });
 });
 
-describe("App Component", () => {
-  componentSmokeTest("App", <App/>);
-});
+describe("Countdown Component", () => {
+  componentSmokeTest("CountdownComp", <CountdownComp/>);
 
+  it("CountdownComp shallow contains content", () => {
+    const countdownComp = shallow(<CountdownComp/>).find("div.countdown-container");
+    const innerCountdownComp = shallow(<CountdownComp/>).find("div#countdown");
+    const paragraphs = shallow(<CountdownComp/>).find("p");
+    const paragraphsText = paragraphs.text();
+    expect(countdownComp).toHaveLength(1);
+    expect(innerCountdownComp).toHaveLength(1);
+    expect(paragraphs).toHaveLength(1);
+    expect(paragraphsText).toContain("Remember, miss one question and you're outta here!");
+  });
+});
 
 
