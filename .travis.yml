@@ -4,7 +4,7 @@ node_js:
   - "stable"
 
 before_script: 
-  - cd project
+  - cd client
   - npm install
 
 script:
