@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/robertbernardbrown/QuizCat.svg?branch=master)](https://travis-ci.com/robertbernardbrown/QuizCat)
+
 # QuizCat
 Scheduled, timed trivia game with categories
 
