@@ -23,8 +23,12 @@ import login from '@fortawesome/fontawesome-free-solid/faSignInAlt';
 import signup from '@fortawesome/fontawesome-free-solid/faUserPlus';
 import catheart from '../src/assets/heart-eyes-cat.png';
 import catsmile from '../src/assets/happy-cat.png';
-
-
+import openSocket from 'socket.io-client';
+const  socket = openSocket('http://localhost:3002');
+function subscribeToTimer(cb) {
+  console.log("hi")
+}
+subscribeToTimer();
 
 class App extends Component {
 
