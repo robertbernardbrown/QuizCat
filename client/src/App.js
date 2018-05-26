@@ -24,11 +24,7 @@ import signup from '@fortawesome/fontawesome-free-solid/faUserPlus';
 import catheart from '../src/assets/heart-eyes-cat.png';
 import catsmile from '../src/assets/happy-cat.png';
 import openSocket from 'socket.io-client';
-const  socket = openSocket('http://localhost:3002');
-function subscribeToTimer(cb) {
-  console.log("hi")
-}
-subscribeToTimer();
+const  socket = openSocket(window.location.origin);
 
 class App extends Component {
 
@@ -81,7 +77,7 @@ class App extends Component {
                 </div>
               )}/>
             <Switch>
-              <PropsRoute exact path="/" component={this.state.authenticated ? Main : LoginPage} authenticated={this.state.authenticated} toggleAuthenticateStatus={this.toggleAuthenticateStatus}/>
+              <PropsRoute exact path="/" component={this.state.authenticated ? Main : LoginPage} authenticated={this.state.authenticated} toggleAuthenticateStatus={this.toggleAuthenticateStatus} socket={socket}/>
               <PropsRoute exact path="/about" component={About} />
               <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
               <PropsRoute exact path="/contact" component={Contact} />

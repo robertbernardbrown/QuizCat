@@ -9,6 +9,7 @@ import FeedbackModal from "../../components/Modal";
 import API from "../../utils/API";
 import Auth from "../../utils/Auth";
 import ErrorBoundary from "../../components/ErrorBoundary";
+import UserCount from "../../components/UserCount";
 import "./Main.css"
 
 class Main extends Component {
@@ -184,6 +185,7 @@ class Main extends Component {
                             <Greeting category={this.state.randomCat} name={this.state.user}/>
                             <CountdownComp countdown={this.state.countdown}/>
                             <FeedbackModal show={this.state.show} handleClose={this.handleClose} winner={this.state.winner} timer={this.state.timeSince}/>
+                            <UserCount socket={this.props.socket}/>
                         </div>
                     }
                     </Wrapper>

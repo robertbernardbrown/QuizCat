@@ -16,14 +16,6 @@ if(process.env.MONGODB_URI) {
 
 const app = express();
 
-// var app = require('express')();
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
-io.on('connection', function(socket){ console.log("a user connected") });
-server.listen(3002, function socketConnection () {
-  console.log("Socket listening on 3002")
-});
-
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGODB_URI || config.dbUri);
 
@@ -56,6 +48,15 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-app.listen(PORT, function() {
+const server = app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
 });
+
+const io = require("socket.io").listen(server);
+// var app = require('express')();
+// const server = require('http').createServer(app);
+// const io = require('socket.io')(server);
+io.on('connection', function(socket){ console.log("a user connected") });
+// server.listen(3002, function socketConnection () {
+//   console.log("Socket listening on 3002")
+// });
