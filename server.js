@@ -52,11 +52,36 @@ const server = app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
 });
 
+let userCount = 0;
 const io = require("socket.io").listen(server);
-// var app = require('express')();
-// const server = require('http').createServer(app);
-// const io = require('socket.io')(server);
-io.on('connection', function(socket){ console.log("a user connected") });
-// server.listen(3002, function socketConnection () {
-//   console.log("Socket listening on 3002")
-// });
+io.on('connection', (socket) => { 
+  console.log("socket server listening")
+  console.log(`User connected: ${socket.id}`);
+  userCount++;
+  socket.emit("broadcast", userCount);
+
+  socket.on("disconnect", () => {
+    console.log(`User disconnected: ${socket.id}`);
+    userCount--;
+    socket.emit("broadcast", userCount);
+  });
+
+  setInterval(() => socket.emit("broadcast", userCount),1000)
+
+  socket.on("error", err => {
+    console.log(`Received error from user: ${socket.id}`);
+    console.log(err);
+  });
+
+  // socket.on('connect_failed', err => {
+  //   if (typeof console !== "undefined" && console !== null) {
+  //     console.log("Connect failed (port " + socket_port + ")");
+  //   }
+  //   return try_other_port();
+  // });
+
+  socket.on('connect_failed', err => {
+    console.log(err)
+    console.log("connect failed")
+  });
+});

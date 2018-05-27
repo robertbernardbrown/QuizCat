@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 class UserCount extends Component {
-    state={
+    state = {
         socketConnected: false,
         userCount: 0
     }
@@ -9,15 +9,16 @@ class UserCount extends Component {
     socket = this.props.socket
 
     componentDidMount() {
-        console.log(this.props);
         this.socket.on("connect", (data) => {
             console.log("connected");
+        })
+        this.socket.on("broadcast", (data) => {
+            // console.log(data);
             this.setState({
-                socketConnected: true,
-                userCount: this.state.userCount + 1
+                userCount: data
             })
-        });
-      }
+        })
+    }
 
     userConnected = (props) => {
         console.log("hi")
@@ -26,7 +27,7 @@ class UserCount extends Component {
 
     render(){
         return(
-            <button className="btn btn-primary" onClick={this.userConnected}>Users online:{this.state.userCount}</button>
+            <button className="btn btn-primary" onChange={this.listen} onClick={this.userConnected}>Users online:{this.state.userCount}</button>
         )
     }
 }
