@@ -1,33 +1,37 @@
 import React, { Component } from "react";
+import "./UserCount.css";
 
 class UserCount extends Component {
     state = {
         socketConnected: false,
-        userCount: 0
+        userCount: 0,
+        activeUsers: 0
     }
 
     socket = this.props.socket
 
     componentDidMount() {
-        this.socket.on("connect", (data) => {
-            console.log("connected");
-        })
         this.socket.on("broadcast", (data) => {
-            // console.log(data);
+            console.log(data);
             this.setState({
-                userCount: data
+                userCount: data.userCount,
+                activeUsers: data.activeUsers
             })
         })
+        // this.deactivateUser();
     }
 
-    userConnected = (props) => {
-        console.log("hi")
-        console.log(this.socket)
-    }
+    // deactivateUser = () => {
+    //     setInterval(() => this.socket.emit("deactivateUser", this.state.activeUsers),1000)
+    // }
 
     render(){
         return(
-            <button className="btn btn-primary" onChange={this.listen} onClick={this.userConnected}>Users online:{this.state.userCount}</button>
+            <div>
+                {this.props.stillIn && this.props.quizTime ? 
+                <p id="users">Kitties quizzing: {this.state.activeUsers}</p> : 
+                <p id="users">Kitties ready to quiz: {this.state.userCount}</p>}
+            </div>
         )
     }
 }

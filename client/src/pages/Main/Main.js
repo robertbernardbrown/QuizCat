@@ -138,6 +138,7 @@ class Main extends Component {
             stillIn: false,
             stopTimer: true
         })
+        this.props.socket.emit("deactivateUser")
         this.handleShow();
     }
 
@@ -179,7 +180,10 @@ class Main extends Component {
                     <Header/> 
                     <Wrapper>
                     {this.state.quizTime && this.state.stillIn ? 
+                        <div>
                             <Quiz user={this.state.user} handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince} category={this.state.randomCat}/> 
+                            <UserCount socket={this.props.socket} stillIn={this.state.stillIn} quizTime={this.state.quizTime}/>
+                        </div>
                         : 
                         <div>
                             <Greeting category={this.state.randomCat} name={this.state.user}/>
