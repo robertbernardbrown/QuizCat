@@ -55,7 +55,7 @@ const server = app.listen(PORT, function() {
 let user = {
   userCount: 0,
   activeUsers: 0
-}
+};
 const io = require("socket.io").listen(server);
 io.on('connection', (socket) => { 
   // console.log("socket server listening")
