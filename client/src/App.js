@@ -23,8 +23,8 @@ import login from '@fortawesome/fontawesome-free-solid/faSignInAlt';
 import signup from '@fortawesome/fontawesome-free-solid/faUserPlus';
 import catheart from '../src/assets/heart-eyes-cat.png';
 import catsmile from '../src/assets/happy-cat.png';
-import io from "socket.io-client";
-const socket = io();
+// import io from "socket.io-client";
+// const socket = io();
 
 class App extends Component {
 
@@ -80,7 +80,8 @@ class App extends Component {
               <PropsRoute exact path="/" component={this.state.authenticated ? Main : LoginPage} 
                                         authenticated={this.state.authenticated}
                                         toggleAuthenticateStatus={this.toggleAuthenticateStatus} 
-                                        socket={socket}/>
+                                        // socket={socket}
+                                        />
               <PropsRoute exact path="/about" component={About} />
               <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
               <PropsRoute exact path="/contact" component={Contact} />

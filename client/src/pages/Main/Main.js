@@ -120,7 +120,7 @@ class Main extends Component {
     }
 
     quizTime = (countdown) => {
-        this.props.socket.emit("activateUser");
+        // this.props.socket.emit("activateUser");
         var now = new Date();
         if (countdown === "00:00") {
             this.setState({
@@ -139,7 +139,7 @@ class Main extends Component {
             stillIn: false,
             stopTimer: true
         });
-        this.props.socket.emit("deactivateUser");
+        // this.props.socket.emit("deactivateUser");
         this.handleShow();
     }
 
@@ -183,14 +183,14 @@ class Main extends Component {
                     {this.state.quizTime && this.state.stillIn ? 
                         <div>
                             <Quiz user={this.state.user} handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince} category={this.state.randomCat}/> 
-                            <UserCount socket={this.props.socket} stillIn={this.state.stillIn} quizTime={this.state.quizTime}/>
+                            {/* <UserCount socket={this.props.socket} stillIn={this.state.stillIn} quizTime={this.state.quizTime}/> */}
                         </div>
                         : 
                         <div>
                             <Greeting category={this.state.randomCat} name={this.state.user}/>
                             <CountdownComp countdown={this.state.countdown}/>
                             <FeedbackModal show={this.state.show} handleClose={this.handleClose} winner={this.state.winner} timer={this.state.timeSince}/>
-                            <UserCount socket={this.props.socket}/>
+                            {/* <UserCount socket={this.props.socket}/> */}
                         </div>
                     }
                     </Wrapper>

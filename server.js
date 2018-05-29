@@ -52,43 +52,43 @@ const server = app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
 });
 
-let user = {
-  userCount: 0,
-  activeUsers: 0
-};
-const io = require("socket.io").listen(server);
-io.on('connection', (socket) => { 
-  // console.log("socket server listening")
-  // console.log(`User connected: ${socket.id}`);
-  user.userCount++;
-  socket.emit("broadcast", user);
+// let user = {
+//   userCount: 0,
+//   activeUsers: 0
+// };
+// const io = require("socket.io").listen(server);
+// io.on('connection', (socket) => { 
+//   // console.log("socket server listening")
+//   // console.log(`User connected: ${socket.id}`);
+//   user.userCount++;
+//   socket.emit("broadcast", user);
 
-  socket.on("disconnect", () => {
-    // console.log(`User disconnected: ${socket.id}`);
-    user.userCount--;
-    user.activeUsers--;
-    socket.emit("broadcast", user);
-  });
+//   socket.on("disconnect", () => {
+//     // console.log(`User disconnected: ${socket.id}`);
+//     user.userCount--;
+//     user.activeUsers--;
+//     socket.emit("broadcast", user);
+//   });
 
-  socket.on("deactivateUser", () => {
-    user.activeUsers--
-    socket.emit("broadcast", user);
-  });
+//   socket.on("deactivateUser", () => {
+//     user.activeUsers--
+//     socket.emit("broadcast", user);
+//   });
 
-  socket.on("activateUser", () => {
-    user.activeUsers = user.userCount
-    socket.emit("broadcast", user);
-  });
+//   socket.on("activateUser", () => {
+//     user.activeUsers = user.userCount
+//     socket.emit("broadcast", user);
+//   });
 
-  setInterval(() => socket.emit("broadcast", user),1000);
+//   setInterval(() => socket.emit("broadcast", user),1000);
 
-  socket.on("error", err => {
-    console.log(`Received error from user: ${socket.id}`);
-    console.log(err);
-  });
+//   socket.on("error", err => {
+//     console.log(`Received error from user: ${socket.id}`);
+//     console.log(err);
+//   });
 
-  socket.on('connect_failed', err => {
-    console.log(err)
-    console.log("connect failed")
-  });
-});
+//   socket.on('connect_failed', err => {
+//     console.log(err)
+//     console.log("connect failed")
+//   });
+// });
