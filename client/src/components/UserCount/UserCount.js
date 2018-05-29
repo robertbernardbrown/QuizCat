@@ -24,8 +24,8 @@ class UserCount extends Component {
         return(
             <div>
                 {this.props.stillIn && this.props.quizTime ? 
-                <p id="users">Kitties quizzing: {this.state.activeUsers}</p> : 
-                <p id="users">Kitties ready to quiz: {this.state.userCount}</p>}
+                <p id="users">Kitties still quizzing: {this.state.activeUsers}</p> : 
+                <p id="users">There are {this.state.userCount} cool cats ready to quiz</p>}
             </div>
         )
     }
