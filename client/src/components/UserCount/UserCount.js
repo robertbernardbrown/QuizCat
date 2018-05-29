@@ -12,6 +12,7 @@ class UserCount extends Component {
 
     componentDidMount() {
         this.socket.on("broadcast", (data) => {
+            console.log(data);
             this.setState({
                 userCount: data.userCount,
                 activeUsers: data.activeUsers
