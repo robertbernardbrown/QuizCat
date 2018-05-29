@@ -10,13 +10,13 @@ before_script:
 script:
   - npm run test
 
-notifications:
-  email:
-    on_failure: change
+# notifications:
+#   email:
+#     on_failure: change
 
-after_success: 'npm run coveralls'
+# after_success: 'npm run coveralls'
 
-cache:
-  yarn: true
-  directories:
-    - node_modules
+# cache:
+#   yarn: true
+#   directories:
+#     - node_modules
