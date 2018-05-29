@@ -73,12 +73,12 @@ io.on('connection', (socket) => {
   socket.on("deactivateUser", () => {
     user.activeUsers--
     socket.emit("broadcast", user);
-  })
+  });
 
   socket.on("activateUser", () => {
     user.activeUsers = user.userCount
     socket.emit("broadcast", user);
-  })
+  });
 
   setInterval(() => socket.emit("broadcast", user),1000);
 
