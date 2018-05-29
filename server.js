@@ -58,13 +58,13 @@ let user = {
 }
 const io = require("socket.io").listen(server);
 io.on('connection', (socket) => { 
-  console.log("socket server listening")
-  console.log(`User connected: ${socket.id}`);
+  // console.log("socket server listening")
+  // console.log(`User connected: ${socket.id}`);
   user.userCount++;
   socket.emit("broadcast", user);
 
   socket.on("disconnect", () => {
-    console.log(`User disconnected: ${socket.id}`);
+    // console.log(`User disconnected: ${socket.id}`);
     user.userCount--;
     user.activeUsers--;
     socket.emit("broadcast", user);
