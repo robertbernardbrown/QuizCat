@@ -61,7 +61,6 @@ io.on('connection', (socket) => {
   console.log("socket server listening")
   console.log(`User connected: ${socket.id}`);
   user.userCount++;
-  user.activeUsers++;
   socket.emit("broadcast", user);
 
   socket.on("disconnect", () => {
@@ -73,6 +72,11 @@ io.on('connection', (socket) => {
 
   socket.on("deactivateUser", () => {
     user.activeUsers--
+    socket.emit("broadcast", user);
+  })
+
+  socket.on("activateUser", () => {
+    user.activeUsers = user.userCount
     socket.emit("broadcast", user);
   })
 

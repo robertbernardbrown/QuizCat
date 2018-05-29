@@ -18,12 +18,7 @@ class UserCount extends Component {
                 activeUsers: data.activeUsers
             })
         })
-        // this.deactivateUser();
     }
-
-    // deactivateUser = () => {
-    //     setInterval(() => this.socket.emit("deactivateUser", this.state.activeUsers),1000)
-    // }
 
     render(){
         return(
