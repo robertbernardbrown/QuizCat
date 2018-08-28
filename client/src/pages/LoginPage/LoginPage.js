@@ -35,20 +35,15 @@ class LoginPage extends Component {
    * @param {object} event - the JavaScript event object
    */
   processForm = event => {
-    // prevent default action. in this case, action is the form submission event
     event.preventDefault();
-
-    // create a string for an HTTP body message
     const { email, password } = this.state.user;
  
-    //const formData = `email=${email}&password=${password}`;
     API.login({email, password}).then(res => {
-      // change the component-container state
-        // save the token
+
         Auth.authenticateUser(res.data.token);
 
-        // update authenticated state
         this.props.toggleAuthenticateStatus()
+
         // redirect signed in user to dashboard
         this.props.history.push('/');
         this.setState({
@@ -67,7 +62,6 @@ class LoginPage extends Component {
 
   /**
    * Change the user object.
-   *
    * @param {object} event - the JavaScript event object
    */
   changeUser = event => {
@@ -86,9 +80,6 @@ class LoginPage extends Component {
     })
   }
 
-  /**
-   * Render the component.
-   */
   render() {
     return (
       <ErrorBoundary>

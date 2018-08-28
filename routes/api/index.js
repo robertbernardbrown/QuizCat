@@ -1,5 +1,3 @@
-// import { request } from "https";
-const https = require("https");
 const router = require("express").Router();
 const quizController = require("../../controllers/quizController");
 

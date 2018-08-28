@@ -19,20 +19,15 @@ class SignupPage extends React.Component {
 
   /**
    * Process the form.
-   *
    * @param {object} event - the JavaScript event object
    */
   processForm = event => {
-    // prevent default action. in this case, action is the form submission event
     event.preventDefault();
     
     // create a string for an HTTP body message
     const { name, email, password } = this.state.user;
 
-    //const formData = `email=${email}&password=${password}`;
     API.signUp({name, email, password}).then(res => {
-      // change the component-container state
-        // set a message
         localStorage.setItem('successMessage', res.data.message);
 
         // redirect user after sign up to login page
@@ -53,7 +48,6 @@ class SignupPage extends React.Component {
 
   /**
    * Change the user object.
-   *
    * @param {object} event - the JavaScript event object
    */
   changeUser = event => {
@@ -66,9 +60,6 @@ class SignupPage extends React.Component {
     });
   }
 
-  /**
-   * Render the component.
-   */
   render() {
     return (
       <div className="site">
