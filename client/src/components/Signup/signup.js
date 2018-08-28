@@ -2,16 +2,8 @@ import React from 'react';
 import "./signup.css";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-// import { Card, CardText } from 'material-ui/Card';
-// import RaisedButton from 'material-ui/RaisedButton';
-// import TextField from 'material-ui/TextField';
 
-const SignUpForm = ({
-  onSubmit,
-  onChange,
-  errors,
-  user,
-}) => (
+const SignUpForm = ({onSubmit,onChange,errors,user}) => (
   <div className="container">
     <div id="inner-credential-div">
       <form action="/" onSubmit={onSubmit}>

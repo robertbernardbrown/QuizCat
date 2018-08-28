@@ -16,9 +16,7 @@ class Auth {
       return localStorage.getItem('token') !== null;
     }
   
-    /**
-     * Deauthenticate a user. Remove a token from Local Storage.
-     */
+    //Deauthenticate a user. Remove a token from Local Storage.
     static deauthenticateUser() {
       localStorage.removeItem('token');
     }
@@ -27,7 +25,6 @@ class Auth {
      * Get a token value.
      * @returns {string}
      */
-  
     static getToken() {
       let token = localStorage.getItem('token');
       return token;

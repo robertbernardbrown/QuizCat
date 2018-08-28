@@ -1,6 +1,9 @@
 const schedule = require('node-schedule');
 const quizController = require("../controllers/quizController");
 
+/**
+* Sets a random category on the backend
+*/
 let categories = [
     'Any',
     'General',
