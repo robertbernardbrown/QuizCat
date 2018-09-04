@@ -1,5 +1,4 @@
 import React from "react";
-import "./LeaderboardSearch.css";
 
 const LeaderboardSearch = (props) => (
     <div className={props.className + " left"}>

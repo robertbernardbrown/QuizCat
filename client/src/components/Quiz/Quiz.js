@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import "./Quiz.css";
 import shuffleArray from "../../utils/shuffleArray";
 import Question from "../Question";
 import Answer from "../Answer";
@@ -40,8 +39,7 @@ class Quiz extends Component {
             this.setState({
                 answer: this.parseString(this.state.quiz[this.state.questionIndex].correct_answer),
                 question: this.state.quiz[this.state.questionIndex].question
-            })
-            this.formatOptionArray();
+            }, this.formatOptionArray());
         }
     }
 
@@ -78,11 +76,12 @@ class Quiz extends Component {
 
     handleUserGuess = (e) => {
         if (e.target.textContent === this.state.answer) {
-            let questionIndex = ++this.state.questionIndex;
+            let questionIndex = this.state.questionIndex;
+            questionIndex = questionIndex + 1;
             this.setState({
                 questionIndex: questionIndex
-            })
-            this.setQuestion()
+            }, 
+            this.setQuestion);
         } else {
             this.props.handleLose();
         }

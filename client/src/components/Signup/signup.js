@@ -1,5 +1,4 @@
 import React from 'react';
-import "./signup.css";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
