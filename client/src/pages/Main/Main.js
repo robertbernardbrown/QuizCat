@@ -119,7 +119,6 @@ class Main extends Component {
     }
 
     quizTime = (countdown) => {
-        this.props.socket.emit("activateUser");
         var now = new Date();
         if (countdown === "00:00") {
             this.setState({
@@ -138,7 +137,6 @@ class Main extends Component {
             stillIn: false,
             stopTimer: true
         });
-        this.props.socket.emit("deactivateUser");
         this.handleShow();
     }
 

@@ -1,6 +1,6 @@
 #app-container {
     border: 3px solid black;
-    background-image: url("../src/assets/geometry/geometry.png");
+    background-color: white;
 }
 
 .sidebar-link {

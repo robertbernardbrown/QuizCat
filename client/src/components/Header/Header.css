@@ -8,7 +8,7 @@ h1 {
 }
 
 .header-div {
-    background-image: url("../../assets/background-tabby.jpg");
+    background-color: green;
     background-size: cover;
 }
 
