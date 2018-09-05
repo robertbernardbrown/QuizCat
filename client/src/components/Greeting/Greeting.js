@@ -1,5 +1,6 @@
 import React from "react";
 import "./Greeting.css";
+import PropTypes from "prop-types";
 
 const Greeting = (props) => (
     <div id="greeting">
@@ -10,5 +11,10 @@ const Greeting = (props) => (
         </div>
     </div>
 )
+
+Greeting.propTypes = {
+    name: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+};
 
 export default Greeting;

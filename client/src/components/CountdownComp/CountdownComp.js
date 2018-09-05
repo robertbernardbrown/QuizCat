@@ -1,5 +1,6 @@
 import React from "react";
 import "./CountdownComp.css";
+import PropTypes from "prop-types";
 
 const CountdownComp = (props) => (
         <div className="container countdown-container">
@@ -9,5 +10,9 @@ const CountdownComp = (props) => (
             <p id="red-text">Remember, miss one question and you're outta here!</p>
         </div>
 )
+
+CountdownComp.propTypes = {
+    countdown: PropTypes.string
+};
 
 export default CountdownComp;

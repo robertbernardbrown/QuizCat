@@ -1,5 +1,6 @@
 import React from "react";
 import "./Leaderboard.css";
+import PropTypes from "prop-types";
 
 const Leaderboard = (props) => (
     <div className="container">
@@ -20,5 +21,9 @@ const Leaderboard = (props) => (
         <div>No scores to display</div>}
     </div> 
 )
+
+Leaderboard.propTypes = {
+    scores: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default Leaderboard;

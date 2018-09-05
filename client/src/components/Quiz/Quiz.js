@@ -29,7 +29,7 @@ class Quiz extends Component {
             this.setQuestion();
         })
         .catch(err => console.log(err))
-    }
+    } 
 
     //sets each new question/options/answer chronologically from quiz stored in state
     setQuestion = () => {

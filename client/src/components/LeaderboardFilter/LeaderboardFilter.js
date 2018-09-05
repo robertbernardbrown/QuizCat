@@ -1,6 +1,7 @@
 import "./LeaderboardFilter.css";
 import React from "react";
 import {DropdownButton, MenuItem} from "react-bootstrap";
+import PropTypes from "prop-types";
 
 const LeaderboardFilter = (props) => (
     <div className={props.className + " right"}>
@@ -11,5 +12,11 @@ const LeaderboardFilter = (props) => (
     </DropdownButton>
     </div>
 )
+
+LeaderboardFilter.propTypes = {
+    className: PropTypes.string.isRequired,
+    categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+    filterCategory: PropTypes.func.isRequired
+};
 
 export default LeaderboardFilter;
