@@ -3,6 +3,7 @@ import { Button, Modal } from "react-bootstrap";
 import "./Modal.css";
 import angrycat from "../../assets/side-face-angry-cat.png";
 import surprisecat from "../../assets/surprise-cat.png";
+import PropTypes from 'prop-types';
 
 class FeedbackModal extends Component {
     render() {
@@ -56,5 +57,12 @@ class FeedbackModal extends Component {
       );
     }
   }
+
+  FeedbackModal.propTypes = {
+    winner: PropTypes.bool.isRequired,
+    show: PropTypes.bool.isRequired,
+    handleClose: PropTypes.func.isRequired,
+    timer: PropTypes.object.isRequired,
+  };
 
   export default FeedbackModal;

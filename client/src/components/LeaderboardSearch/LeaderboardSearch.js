@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const LeaderboardSearch = (props) => (
     <div className={props.className + " left"}>
@@ -8,6 +9,11 @@ const LeaderboardSearch = (props) => (
         </form>
     </div>
 )
+
+LeaderboardSearch.propTypes = {
+    onChange: PropTypes.func.isRequired,
+    userSearch: PropTypes.func.isRequired,
+};
 
 
 export default LeaderboardSearch

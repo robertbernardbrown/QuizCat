@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import FbLogin from '../FbLogin';
 
-const LoginForm = ({onSubmit,onChange,errors,successMessage,user,toggleAuthenticateStatus,setUser,onClick,authenticated}) => (
+const LoginForm = ({onSubmit,onChange,errors,successMessage,user,toggleAuthenticateStatus,setUser,authenticated}) => (
   <div className="container">
     <div id="inner-credential-div">
       <h2 className="login-heading">Login</h2>
@@ -50,7 +50,10 @@ LoginForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   successMessage: PropTypes.string.isRequired,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  toggleAuthenticateStatus: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool.isRequired,
 };
 
 export default LoginForm;
