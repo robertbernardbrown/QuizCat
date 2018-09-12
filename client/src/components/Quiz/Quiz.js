@@ -108,7 +108,10 @@ class Quiz extends Component {
 }
 
 Quiz.propTypes = {
-    timer: PropTypes.object.isRequired,
+    timer: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
     handleLose: PropTypes.func.isRequired,
     handleWin: PropTypes.func.isRequired
 }

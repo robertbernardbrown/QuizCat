@@ -62,7 +62,10 @@ class FeedbackModal extends Component {
     winner: PropTypes.bool.isRequired,
     show: PropTypes.bool.isRequired,
     handleClose: PropTypes.func.isRequired,
-    timer: PropTypes.object.isRequired,
+    timer: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ])
   };
 
   export default FeedbackModal;

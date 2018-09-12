@@ -19,7 +19,7 @@ class SideBar extends React.Component {
 
 SideBar.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  login: PropTypes.func.isRequired,
+  login: PropTypes.object.isRequired,
 }
 
 export default SideBar;
