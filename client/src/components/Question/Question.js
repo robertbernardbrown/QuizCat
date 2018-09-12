@@ -1,5 +1,6 @@
 import React from "react";
 import "./Question.css";
+import PropTypes from 'prop-types';
 
 const Question = props => {
     let parser = new DOMParser();
@@ -14,5 +15,9 @@ const Question = props => {
         </div>
     )
 }
+
+Question.propTypes = {
+    questions: PropTypes.string.isRequired
+};
 
 export default Question;

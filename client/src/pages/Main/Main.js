@@ -9,7 +9,7 @@ import FeedbackModal from "../../components/Modal";
 import API from "../../utils/API";
 import Auth from "../../utils/Auth";
 import ErrorBoundary from "../../components/ErrorBoundary";
-import "./Main.css"
+import "./Main.css";
 
 class Main extends Component {
 

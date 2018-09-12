@@ -5,6 +5,7 @@ import Answer from "../Answer";
 import API from "../../utils/API";
 import Auth from "../../utils/Auth";
 import Timer from "../Timer";
+import PropTypes from "prop-types";
 
 class Quiz extends Component {
 
@@ -104,6 +105,12 @@ class Quiz extends Component {
             )
         )
     }
+}
+
+Quiz.propTypes = {
+    timer: PropTypes.object.isRequired,
+    handleLose: PropTypes.func.isRequired,
+    handleWin: PropTypes.func.isRequired
 }
 
 export default Quiz;
