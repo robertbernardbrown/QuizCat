@@ -1,10 +1,17 @@
 .footer {
   min-height: 100px;
-  background-color: green;
+  border-top: 2px solid black;
   background-size: cover;
   margin-top: 20px;
   display: flex;
-  align-items: flex-end;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+  width: 100%;
+}
+
+.footer-block {
+  margin: auto;
 }
   
 .footer span {
