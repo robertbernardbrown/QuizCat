@@ -5,9 +5,7 @@ import "react-bootstrap";
 
 const Header = () => (
     <div className="jumbotron header-div">
-        <div className="container">
-            <a href="/"><h1 className="header-text text-center">QuizCat</h1></a>
-        </div>
+        <a href="/" className="header-text text-center"><h1>QuizCat</h1></a>
     </div>
 )
 

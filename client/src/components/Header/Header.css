@@ -1,23 +1,31 @@
-.container a {
-    text-decoration: none;
-    color: white
-}
-
 h1 {
     text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
 }
 
 .header-div {
-    background-color: green;
-    background-size: cover;
+    border-bottom: 2px solid black;
+    display: flex;
+    justify-content: center;
 }
 
-.container a:hover{
+.header-div a {
+    text-decoration: none;
+    color: white;
+}
+
+.header-div a:hover{
     text-decoration: none;
     color: #f1b070
 }
 
-.container a:click{
+.header-div a:click{
     text-decoration: none;
     color: blue
+}
+
+.header-text {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    clear: both;
 }
