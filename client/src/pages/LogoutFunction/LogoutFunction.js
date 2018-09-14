@@ -24,7 +24,7 @@ class LogoutFunction extends React.Component {
 
 LogoutFunction.contextTypes = {
   router: PropTypes.object.isRequired,
-  toggleAuthenticateStatus: PropTypes.func.isRequired
+  toggleAuthenticateStatus: PropTypes.func
 };
 
 export default LogoutFunction;

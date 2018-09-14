@@ -2,20 +2,70 @@ h1 {
     text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
 }
 
-.header-div {
-    border-bottom: 2px solid black;
+header {
     display: flex;
     justify-content: center;
+    background-color: #424442;
+    border: 0;
+    position: relative;
+    box-shadow: inset 0 0 0 4px purple;
+}
+
+header::before, header::after {
+    box-sizing: inherit;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.header-div {
+    transition: color 0.25s;
+    background-color: #424442;
+}
+
+.header-div::before, .header-div::after {
+    border: 4px solid transparent;
+    width: 0;
+    height: 0;
+}
+
+.header-div::before {
+    top: 0;
+    left: 0;
+}
+
+.header-div::after {
+    bottom: 0;
+    right: 0;
+}
+
+.header-div:hover {
+    color: cyan;
+}
+
+.header-div:hover::before, .header-div:hover::after{
+    width: 100%;
+    height: 100%;
+}
+
+.header-div:hover::before {
+    border-top-color: cyan;
+    border-right-color: cyan;
+    transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+    -webkit-transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+}
+
+.header-div:hover::after {
+    border-bottom-color: cyan;
+    border-left-color: cyan;
+    transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
+    -webkit-transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
 }
 
 .header-div a {
     text-decoration: none;
     color: white;
-}
-
-.header-div a:hover{
-    text-decoration: none;
-    color: #f1b070
 }
 
 .header-div a:click{
@@ -28,4 +78,26 @@ h1 {
     padding: 0;
     display: inline-block;
     clear: both;
+}
+
+.nyan-cat {
+    left: 100%;
+    top: 0;
+    max-width: 100%;
+    width: 150px;
+    height: 100%;
+    position: absolute;
+    background-image: url("../../assets/nyan-cat.gif");
+    background-size: cover;
+    animation: myanimation 3s ease-in;
+}
+
+@keyframes myanimation
+{
+    from {
+        left: -40%;
+    }
+    to {
+        left: 100%;
+    }
 }
