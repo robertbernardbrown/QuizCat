@@ -6,7 +6,7 @@ const Leaderboard = (props) => (
     <div className="container">
         {props.scores.length ? 
         <div className="leaderboard-results">
-            <div className="row">
+            <div className="list-group-item row list-item-header">
                 <div className="col-md-4 col-sm-4 col-xs-4 text-center">Name</div>
                 <div className="col-md-4 col-sm-4 col-xs-4 text-center">Category</div>
                 <div className="col-md-4 col-sm-4 col-xs-4 text-center">Times</div>
