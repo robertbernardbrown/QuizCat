@@ -24,25 +24,3 @@ header {
     border: 0;
     position: relative;
 }
-
-/* .nyan-cat {
-    left: 100%;
-    top: 0;
-    max-width: 100%;
-    width: 150px;
-    height: 100%;
-    position: absolute;
-    background-image: url("../../assets/nyan-cat.gif");
-    background-size: cover;
-    animation: myanimation 3s ease-in;
-} */
-
-/* @keyframes myanimation
-{
-    from {
-        left: -40%;
-    }
-    to {
-        left: 100%;
-    }
-} */

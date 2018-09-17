@@ -1,15 +1,15 @@
 {
-  "main.css": "static/css/main.45195f80.css",
-  "main.css.map": "static/css/main.45195f80.css.map",
-  "main.js": "static/js/main.a3618c7c.js",
-  "main.js.map": "static/js/main.a3618c7c.js.map",
+  "main.css": "static/css/main.47c1f15b.css",
+  "main.css.map": "static/css/main.47c1f15b.css.map",
+  "main.js": "static/js/main.aea95b4d.js",
+  "main.js.map": "static/js/main.aea95b4d.js.map",
+  "static/media/background-cat.jpg": "static/media/background-cat.180a3697.jpg",
   "static/media/glyphicons-halflings-regular.eot": "static/media/glyphicons-halflings-regular.f4769f9b.eot",
   "static/media/glyphicons-halflings-regular.svg": "static/media/glyphicons-halflings-regular.89889688.svg",
   "static/media/glyphicons-halflings-regular.ttf": "static/media/glyphicons-halflings-regular.e18bbf61.ttf",
   "static/media/glyphicons-halflings-regular.woff": "static/media/glyphicons-halflings-regular.fa277232.woff",
   "static/media/glyphicons-halflings-regular.woff2": "static/media/glyphicons-halflings-regular.448c34a5.woff2",
-  "static/media/happy-cat.png": "static/media/happy-cat.0c953b0c.png",
-  "static/media/heart-eyes-cat.png": "static/media/heart-eyes-cat.0c99153e.png",
-  "static/media/side-face-angry-cat.png": "static/media/side-face-angry-cat.e5049ee4.png",
-  "static/media/surprise-cat.png": "static/media/surprise-cat.2e3d6041.png"
+  "static/media/heart-eyes-cat.png": "static/media/heart-eyes-cat.74ba45fc.png",
+  "static/media/side-face-angry-cat.png": "static/media/side-face-angry-cat.39f92538.png",
+  "static/media/surprise-cat.png": "static/media/surprise-cat.dbf86ed3.png"
 }

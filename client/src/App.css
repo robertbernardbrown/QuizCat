@@ -4,7 +4,7 @@ body, html {
 
 #app-container {
     background-color: white;
-    background-image: url("../src/assets/cat-background.jpg");
+    background-image: url("../src/assets/background-cat.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

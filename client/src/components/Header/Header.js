@@ -1,11 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Header.css";
 import "react-bootstrap";
 
 const Header = () => (
         <header className="jumbotron header-div">
-            <a href="/" className="header-text"><h1>QuizCat</h1></a>
-            {/* <div className="nyan-cat"></div> */}
+            <Link to={'/'} className="header-text"><h1>QuizCat</h1></Link>
         </header>
 )
 
