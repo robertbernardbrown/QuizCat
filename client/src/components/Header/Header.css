@@ -80,7 +80,7 @@ header::before, header::after {
     clear: both;
 }
 
-.nyan-cat {
+/* .nyan-cat {
     left: 100%;
     top: 0;
     max-width: 100%;
@@ -90,9 +90,9 @@ header::before, header::after {
     background-image: url("../../assets/nyan-cat.gif");
     background-size: cover;
     animation: myanimation 3s ease-in;
-}
+} */
 
-@keyframes myanimation
+/* @keyframes myanimation
 {
     from {
         left: -40%;
@@ -100,4 +100,4 @@ header::before, header::after {
     to {
         left: 100%;
     }
-}
+} */
