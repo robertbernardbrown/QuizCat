@@ -1,5 +1,13 @@
+body, html {
+    height: 100%;
+}
+
 #app-container {
     background-color: white;
+    background-image: url("../src/assets/cat-background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .sidebar-link {

@@ -1,14 +1,20 @@
-header > h1 {
-    /* text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black; */
+header > a {
     margin: 0;
     padding: 0;
     display: inline-block;
     clear: both;
+    text-decoration: none;
+    color: orange;
+}
+
+header > a:hover {
+    text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+    text-decoration: none;
+    color: orange;
 }
 
 .jumbotron {
-    background: white;
-    color: orange;
+    background: rgba(255, 255, 255, 0)
 }
 
 header {

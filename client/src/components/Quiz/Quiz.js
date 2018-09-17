@@ -95,7 +95,7 @@ class Quiz extends Component {
     render() {
         return (
             !this.state.quiz.length ? <div className="container"> Loading question </div> : (
-                <div className="container">
+                <div className="container inner-display-div">
                     <div>
                         <Question questions={this.state.question}/>
                         <Answer options={this.state.options} answer={this.state.answer} handleUserGuess={this.handleUserGuess}/>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import FbLogin from '../FbLogin';
 
 const LoginForm = ({onSubmit,onChange,errors,successMessage,user,toggleAuthenticateStatus,setUser,authenticated}) => (
-  <div id="inner-credential-div">
+  <div className="inner-display-div">
     <h2 className="login-heading">Login</h2>
     <FbLogin onClick={() => setUser(user)} authenticated={authenticated} toggleAuthenticateStatus={toggleAuthenticateStatus}/>
     <form action="/" onSubmit={onSubmit}>

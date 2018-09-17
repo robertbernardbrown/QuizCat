@@ -182,7 +182,7 @@ class Main extends Component {
                             <Quiz user={this.state.user} handleLose={this.handleLose} handleWin={this.handleWin} timer={this.state.timeSince} category={this.state.randomCat}/> 
                         </div>
                         : 
-                        <div>
+                        <div className="inner-display-div">
                             <Greeting category={this.state.randomCat} name={this.state.user}/>
                             <CountdownComp countdown={this.state.countdown}/>
                             <FeedbackModal show={this.state.show} handleClose={this.handleClose} winner={this.state.winner} timer={this.state.timeSince}/>

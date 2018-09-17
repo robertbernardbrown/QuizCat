@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 const SignUpForm = ({onSubmit,onChange,errors,user}) => (
   <div className="container">
-    <div id="inner-credential-div">
+    <div className="inner-display-div">
+      <h2 className="card-heading">Sign Up</h2>
       <form action="/" onSubmit={onSubmit}>
-        <h2 className="card-heading">Sign Up</h2>
 
         {errors.summary && <p className="error-message">{errors.summary}</p>}
 
