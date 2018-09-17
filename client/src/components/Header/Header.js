@@ -4,7 +4,7 @@ import "react-bootstrap";
 
 const Header = () => (
         <header className="jumbotron header-div">
-            <a href="/" className="header-text"><h1>QuizCat</h1></a>
+            <h1>QuizCat</h1>
             {/* <div className="nyan-cat"></div> */}
         </header>
 )
