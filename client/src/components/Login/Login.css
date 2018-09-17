@@ -1,7 +1,11 @@
 #inner-credential-div {
     margin: 0 auto;
-    width: 200px;
+    width: 250px;
     text-align: center;
+    padding: 20px;
+    background:rgba(124, 124, 128, 0.74);
+    border-radius: 25px;
+    border: 4px solid grey;
 }
 
 .field-line >input{
@@ -21,6 +25,6 @@
 @media only screen and (min-width: 768px) {
     #inner-credential-div {
         margin: 0 auto;
-        width: 200px;
+        width: 250px;
     }
 } 
