@@ -1,23 +1,26 @@
-.container a {
+header > a {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    clear: both;
     text-decoration: none;
-    color: white
+    color: orange;
 }
 
-h1 {
+header > a:hover {
     text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
-}
-
-.header-div {
-    background-image: url("../../assets/background-tabby.jpg");
-    background-size: cover;
-}
-
-.container a:hover{
     text-decoration: none;
-    color: #f1b070
+    color: orange;
 }
 
-.container a:click{
-    text-decoration: none;
-    color: blue
+.jumbotron {
+    background: rgba(255, 255, 255, 0)
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border: 0;
+    position: relative;
 }

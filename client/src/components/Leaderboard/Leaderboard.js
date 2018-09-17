@@ -1,10 +1,11 @@
 import React from "react";
 import "./Leaderboard.css";
+import PropTypes from "prop-types";
 
 const Leaderboard = (props) => (
     <div className="container">
         {props.scores.length ? 
-        <div>
+        <div className="leaderboard-results">
             <div className="row">
                 <div className="col-md-4 col-sm-4 col-xs-4 text-center">Name</div>
                 <div className="col-md-4 col-sm-4 col-xs-4 text-center">Category</div>
@@ -20,5 +21,9 @@ const Leaderboard = (props) => (
         <div>No scores to display</div>}
     </div> 
 )
+
+Leaderboard.propTypes = {
+    scores: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default Leaderboard;

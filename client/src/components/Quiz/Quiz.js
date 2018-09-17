@@ -1,11 +1,11 @@
 import React, {Component} from "react";
-import "./Quiz.css";
 import shuffleArray from "../../utils/shuffleArray";
 import Question from "../Question";
 import Answer from "../Answer";
 import API from "../../utils/API";
 import Auth from "../../utils/Auth";
 import Timer from "../Timer";
+import PropTypes from "prop-types";
 
 class Quiz extends Component {
 
@@ -30,7 +30,7 @@ class Quiz extends Component {
             this.setQuestion();
         })
         .catch(err => console.log(err))
-    }
+    } 
 
     //sets each new question/options/answer chronologically from quiz stored in state
     setQuestion = () => {
@@ -40,8 +40,7 @@ class Quiz extends Component {
             this.setState({
                 answer: this.parseString(this.state.quiz[this.state.questionIndex].correct_answer),
                 question: this.state.quiz[this.state.questionIndex].question
-            })
-            this.formatOptionArray();
+            }, this.formatOptionArray());
         }
     }
 
@@ -78,11 +77,12 @@ class Quiz extends Component {
 
     handleUserGuess = (e) => {
         if (e.target.textContent === this.state.answer) {
-            let questionIndex = ++this.state.questionIndex;
+            let questionIndex = this.state.questionIndex;
+            questionIndex = questionIndex + 1;
             this.setState({
                 questionIndex: questionIndex
-            })
-            this.setQuestion()
+            }, 
+            this.setQuestion);
         } else {
             this.props.handleLose();
         }
@@ -95,7 +95,7 @@ class Quiz extends Component {
     render() {
         return (
             !this.state.quiz.length ? <div className="container"> Loading question </div> : (
-                <div className="container">
+                <div className="container inner-display-div">
                     <div>
                         <Question questions={this.state.question}/>
                         <Answer options={this.state.options} answer={this.state.answer} handleUserGuess={this.handleUserGuess}/>
@@ -105,6 +105,15 @@ class Quiz extends Component {
             )
         )
     }
+}
+
+Quiz.propTypes = {
+    timer: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
+    handleLose: PropTypes.func.isRequired,
+    handleWin: PropTypes.func.isRequired
 }
 
 export default Quiz;

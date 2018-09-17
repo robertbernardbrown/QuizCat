@@ -106,7 +106,9 @@ class LoginPage extends Component {
 }
 
 LoginPage.contextTypes = {
-  router: PropTypes.object.isRequired
+  router: PropTypes.object.isRequired,
+  toggleAuthenticateStatus: PropTypes.func,
+  authenticated: PropTypes.bool
 };
 
 export default LoginPage;

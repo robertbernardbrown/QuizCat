@@ -1,6 +1,7 @@
 import React from "react";
 import "./SideBar.css";
 import { slide as Menu } from 'react-burger-menu';
+import PropTypes from "prop-types";
 
 class SideBar extends React.Component {
   showSettings (event) {
@@ -14,6 +15,11 @@ class SideBar extends React.Component {
       </Menu>
     );
   }
+}
+
+SideBar.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  login: PropTypes.object.isRequired,
 }
 
 export default SideBar;

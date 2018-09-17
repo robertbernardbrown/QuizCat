@@ -85,7 +85,9 @@ module.exports = {
     let index =  dict[category];
     request(index, (err, res, body)=> {
       if (err) console.log(err);
+      console.log(category, index);
       let parsed = JSON.parse(body);
+      console.log(parsed);
       db.Questions.insertMany(parsed.results)
       .catch(err=> console.log(err));
     })

@@ -39,8 +39,11 @@ let categories = [
    
   const changeCat = schedule.scheduleJob('2 */5 * * * *', function(){
     let randomCategory = randomCat();
-    quizController.updateCategory(randomCategory);
-    quizController.createQuiz(randomCategory);
+    function updateCategoryAndQuestions(category) {
+      quizController.updateCategory(category)
+      quizController.createQuiz(category);
+    }
+    updateCategoryAndQuestions(randomCategory);
   });
 
   module.exports = changeCat;

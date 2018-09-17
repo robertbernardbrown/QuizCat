@@ -1,5 +1,6 @@
 import React from "react";
 import "./Answer.css";
+import PropTypes from "prop-types";
 
 const Answer = (props) => (
     <div className="answer">
@@ -13,5 +14,11 @@ const Answer = (props) => (
         </div>
     </div>
 )
+
+Answer.propTypes = {
+    options: PropTypes.arrayOf(PropTypes.string).isRequired,
+    answer: PropTypes.string.isRequired,
+    handleUserGuess: PropTypes.func.isRequired,
+};
 
 export default Answer;

@@ -4,7 +4,7 @@ import "../About/About.css";
 
 const About = () => (
     <div id="about">
-        <div id="inner-about-div">
+        <div id="inner-about-div" className="inner-display-div">
             <p>
                 QuizCat is a quiz that runs on every 5th minute of the hour. It's built around offering different randomly-selected categories for each quiz.
             </p>

@@ -1,6 +1,13 @@
+body, html {
+    height: 100%;
+}
+
 #app-container {
-    border: 3px solid black;
-    background-image: url("../src/assets/geometry/geometry.png");
+    background-color: white;
+    background-image: url("../src/assets/background-cat.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .sidebar-link {
