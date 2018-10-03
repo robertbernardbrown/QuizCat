@@ -57,4 +57,4 @@ typings/
 
 .DS_Store
 config/
-
+.vscode
